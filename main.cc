@@ -18,18 +18,16 @@ int main()
 
     printf("===Stage1 - full request:===\n");
     for(const auto & e : examples)
-    if (!state.parse(e))
-        printf("Error parse\n");
+        if (!state.parse(e))
+            printf("Error parse\n");
 
     printf("===Stage2 - data fragmentation 1 byte===\n");
     for(const auto & e : examples)
     {
         for(const auto & c : e)
-        if (!state.parse(&c, 1))
-            printf("Error parse\n");
+            if (!state.parse(&c, 1))
+                printf("Error parse\n");
     }
-
-
 
     return 0;
 }
