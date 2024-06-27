@@ -1,4 +1,5 @@
 #include "httpReq.h"
+#include <fstream>
 
 void httpReqResult::payload(__attribute__((unused)) const char * data, __attribute__((unused)) unsigned len, __attribute__((unused)) bool isFirst, __attribute__((unused)) bool isLast)
 {
@@ -10,24 +11,18 @@ void httpReqResult::payload(__attribute__((unused)) const char * data, __attribu
 
 int main()
 {
-    std::vector<std::string> examples;
-    examples.push_back("GET /example/ HTTP/1.1\r\nHost: www.test.com\r\n\r\n");
-    examples.push_back("POST /url/ HTTP/1.1\r\nHost: www.test.com\r\nContent-Length: 5\r\n\r\n12345");
+    std::ifstream f("input.txt");
+    std::string input((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
 
     httpReq state;
 
-    printf("===Stage1 - full request:===\n");
-    for(const auto & e : examples)
-        if (!state.parse(e))
-            printf("Error parse\n");
+    printf("===Test1 - full request:===\n");
+    state.parse(input);
 
-    printf("===Stage2 - data fragmentation 1 byte===\n");
-    for(const auto & e : examples)
-    {
-        for(const auto & c : e)
-            if (!state.parse(&c, 1))
-                printf("Error parse\n");
-    }
+    printf("===Test2 - data fragmentation 1 byte===\n");
+    for(const auto & c : input)
+        if (!state.parse(&c, 1))
+            printf("Error parse\n");
 
     return 0;
 }

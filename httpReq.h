@@ -6,7 +6,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <inttypes.h>
+#include <cstdint>
 
 struct httpReqResult
 {
@@ -18,7 +18,7 @@ struct httpReqResult
     void payload(__attribute__((unused)) const char * data, __attribute__((unused)) unsigned len, __attribute__((unused)) bool isFirst, __attribute__((unused)) bool isLast);
 };
 
-struct httpReq : public httpReqResult
+struct httpReq : httpReqResult
 {
     bool parse(const char * data, unsigned len);
     bool parse(const std::string & data) { return parse(data.c_str(), data.length()); }

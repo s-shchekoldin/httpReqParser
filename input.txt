@@ -1,0 +1,9 @@
+GET /example/ HTTP/1.1
+Host: www.test.com
+X-Header: any-header
+
+POST /url/ HTTP/1.1
+Host: www.test.com
+Content-Length: 5
+
+12345
