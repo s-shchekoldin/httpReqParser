@@ -3,7 +3,10 @@
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
+#ifndef HTTPREQ_H
+#define HTTPREQ_H
 #pragma once
+
 #include <string>
 #include <vector>
 #include <cstdint>
@@ -26,7 +29,7 @@ struct httpReq : httpReqResult
     bool empty() const { return mainState.node == node_t::NO_STATE && prlState.empty(); }
 
 private:
-    enum node_t
+    enum class node_t
     {
         LOOP_1_0, // line_1
             LABEL_1_0, LOOP_1_1,
@@ -167,3 +170,4 @@ private:
     bool text_16_1(state_t & state);
     bool text_16_2(state_t & state);
 };
+#endif
