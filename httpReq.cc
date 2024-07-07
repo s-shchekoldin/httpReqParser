@@ -242,8 +242,8 @@ inline bool httpReq::text_2_0_0_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -266,8 +266,8 @@ inline bool httpReq::text_2_0_1_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -290,8 +290,8 @@ inline bool httpReq::text_2_0_2_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -314,8 +314,8 @@ inline bool httpReq::text_2_0_3_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -338,8 +338,8 @@ inline bool httpReq::text_2_0_4_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -362,8 +362,8 @@ inline bool httpReq::text_2_0_5_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -386,8 +386,8 @@ inline bool httpReq::text_2_0_6_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -410,8 +410,8 @@ inline bool httpReq::text_2_0_7_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -434,8 +434,8 @@ inline bool httpReq::text_2_0_8_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -458,8 +458,8 @@ inline bool httpReq::text_2_0_9_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -482,8 +482,8 @@ inline bool httpReq::text_2_0_10_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -568,8 +568,8 @@ inline bool httpReq::text_3_1(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -777,8 +777,8 @@ inline bool httpReq::text_6_4(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -841,8 +841,8 @@ inline bool httpReq::text_6_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -929,8 +929,8 @@ inline bool httpReq::text_6_9(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1000,7 +1000,6 @@ inline bool httpReq::text_9_0(state_t & state, bool isCaseCall)
             sym |= 0x20;
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             bool ret = isCaseCall && state.consumed > 1;
             state.consumed = 0;
@@ -1266,8 +1265,8 @@ inline bool httpReq::text_9_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1311,8 +1310,8 @@ inline bool httpReq::text_10_0_0_0(state_t & state)
             sym |= 0x20;
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1498,8 +1497,8 @@ inline bool httpReq::text_10_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1543,8 +1542,8 @@ inline bool httpReq::text_11_0_0_0(state_t & state)
             sym |= 0x20;
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1729,8 +1728,8 @@ inline bool httpReq::text_11_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1880,8 +1879,8 @@ inline bool httpReq::text_12_3(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -1928,8 +1927,8 @@ inline bool httpReq::text_13_1(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
@@ -2122,8 +2121,8 @@ inline bool httpReq::text_16_2(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
-            state.consumed = 0;
             state.node = node_t::NO_STATE;
+            state.consumed = 0;
             return false;
         }
         else if (state.consumed >= sizeof(text))
