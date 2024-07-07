@@ -23,7 +23,7 @@ inline void httpReq::parse(state_t & state)
         switch(state.node)
         {
             case node_t::LOOP_1_0: loop_1_0(state); break;
-            case node_t::LABEL_1_0: label_1_0(state); break;
+            case node_t::LABEL_1_0: if (!label_1_0(state) || state.node != node_t::LOOP_1_1) break; __attribute__ ((fallthrough));
             case node_t::LOOP_1_1: loop_1_1(state); break;
             case node_t::ANY_2_0: any_2_0(state); break;
             case node_t::TEXT_2_0_0_0: text_2_0_0_0(state); break;
@@ -36,67 +36,67 @@ inline void httpReq::parse(state_t & state)
             case node_t::TEXT_2_0_7_0: text_2_0_7_0(state); break;
             case node_t::TEXT_2_0_8_0: text_2_0_8_0(state); break;
             case node_t::TEXT_2_0_9_0: text_2_0_9_0(state); break;
-            case node_t::TEXT_2_0_10_0: text_2_0_10_0(state); break;
-            case node_t::BANG_2_0: bang_2_0(state); break;
-            case node_t::GOTO_2_2: goto_2_2(state); break;
+            case node_t::TEXT_2_0_10_0: if (!text_2_0_10_0(state) || state.node != node_t::BANG_2_0) break; __attribute__ ((fallthrough));
+            case node_t::BANG_2_0: if (!bang_2_0(state) || state.node != node_t::GOTO_2_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_2_2: if (!goto_2_2(state) || state.node != node_t::GOTO_2_3) break; __attribute__ ((fallthrough));
             case node_t::GOTO_2_3: goto_2_3(state); break;
-            case node_t::TEXT_3_0: text_3_0(state); break;
+            case node_t::TEXT_3_0: if (!text_3_0(state) || state.node != node_t::TEXT_3_1) break; __attribute__ ((fallthrough));
             case node_t::TEXT_3_1: text_3_1(state); break;
             case node_t::LOOP_5_0: loop_5_0(state); break;
-            case node_t::LABEL_5_0: label_5_0(state); break;
+            case node_t::LABEL_5_0: if (!label_5_0(state) || state.node != node_t::LOOP_5_1) break; __attribute__ ((fallthrough));
             case node_t::LOOP_5_1: loop_5_1(state); break;
-            case node_t::RANGE_6_0: range_6_0(state); break;
-            case node_t::STRING_6_1: string_6_1(state); break;
-            case node_t::RANGE_6_2: range_6_2(state); break;
-            case node_t::FUNC_6_3: func_6_3(state); break;
-            case node_t::TEXT_6_4: text_6_4(state); break;
-            case node_t::RANGE_6_5: range_6_5(state); break;
-            case node_t::TEXT_6_6: text_6_6(state); break;
-            case node_t::RANGE_6_7: range_6_7(state); break;
-            case node_t::TEXT_6_8: text_6_8(state); break;
-            case node_t::TEXT_6_9: text_6_9(state); break;
+            case node_t::RANGE_6_0: if (!range_6_0(state) || state.node != node_t::STRING_6_1) break; __attribute__ ((fallthrough));
+            case node_t::STRING_6_1: if (!string_6_1(state) || state.node != node_t::RANGE_6_2) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_6_2: if (!range_6_2(state) || state.node != node_t::FUNC_6_3) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_6_3: if (!func_6_3(state) || state.node != node_t::TEXT_6_4) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_6_4: if (!text_6_4(state) || state.node != node_t::RANGE_6_5) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_6_5: if (!range_6_5(state) || state.node != node_t::TEXT_6_6) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_6_6: if (!text_6_6(state) || state.node != node_t::RANGE_6_7) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_6_7: if (!range_6_7(state) || state.node != node_t::TEXT_6_8) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_6_8: if (!text_6_8(state) || state.node != node_t::TEXT_6_9) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_6_9: if (!text_6_9(state) || state.node != node_t::RET_6_10) break; __attribute__ ((fallthrough));
             case node_t::RET_6_10: ret_6_10(state); break;
             case node_t::LOOP_8_0: loop_8_0(state); break;
-            case node_t::LABEL_8_0: label_8_0(state); break;
+            case node_t::LABEL_8_0: if (!label_8_0(state) || state.node != node_t::LOOP_8_1) break; __attribute__ ((fallthrough));
             case node_t::LOOP_8_1: loop_8_1(state); break;
-            case node_t::TEXT_9_0: text_9_0(state, false); break;
-            case node_t::RANGE_9_1: range_9_1(state); break;
-            case node_t::STRING_9_2: string_9_2(state); break;
-            case node_t::FUNC_9_3: func_9_3(state); break;
-            case node_t::RANGE_9_4: range_9_4(state); break;
-            case node_t::TEXT_9_5: text_9_5(state); break;
+            case node_t::TEXT_9_0: if (!text_9_0(state, false) || state.node != node_t::RANGE_9_1) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_9_1: if (!range_9_1(state) || state.node != node_t::STRING_9_2) break; __attribute__ ((fallthrough));
+            case node_t::STRING_9_2: if (!string_9_2(state) || state.node != node_t::FUNC_9_3) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_9_3: if (!func_9_3(state) || state.node != node_t::RANGE_9_4) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_9_4: if (!range_9_4(state) || state.node != node_t::TEXT_9_5) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_9_5: if (!text_9_5(state) || state.node != node_t::TEXT_9_6) break; __attribute__ ((fallthrough));
             case node_t::TEXT_9_6: text_9_6(state); break;
             case node_t::ANY_10_0: any_10_0(state); break;
-            case node_t::TEXT_10_0_0_0: text_10_0_0_0(state); break;
-            case node_t::BANG_10_0: bang_10_0(state); break;
-            case node_t::RANGE_10_2: range_10_2(state); break;
-            case node_t::STRING_10_3: string_10_3(state); break;
-            case node_t::FUNC_10_4: func_10_4(state); break;
-            case node_t::TEXT_10_5: text_10_5(state); break;
+            case node_t::TEXT_10_0_0_0: if (!text_10_0_0_0(state) || state.node != node_t::BANG_10_0) break; __attribute__ ((fallthrough));
+            case node_t::BANG_10_0: if (!bang_10_0(state) || state.node != node_t::RANGE_10_2) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_10_2: if (!range_10_2(state) || state.node != node_t::STRING_10_3) break; __attribute__ ((fallthrough));
+            case node_t::STRING_10_3: if (!string_10_3(state) || state.node != node_t::FUNC_10_4) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_10_4: if (!func_10_4(state) || state.node != node_t::TEXT_10_5) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_10_5: if (!text_10_5(state) || state.node != node_t::TEXT_10_6) break; __attribute__ ((fallthrough));
             case node_t::TEXT_10_6: text_10_6(state); break;
             case node_t::ANY_11_0: any_11_0(state); break;
-            case node_t::TEXT_11_0_0_0: text_11_0_0_0(state); break;
-            case node_t::BANG_11_0: bang_11_0(state); break;
-            case node_t::RANGE_11_2: range_11_2(state); break;
-            case node_t::UINT_11_3: uint_11_3(state); break;
-            case node_t::FUNC_11_4: func_11_4(state); break;
-            case node_t::TEXT_11_5: text_11_5(state); break;
+            case node_t::TEXT_11_0_0_0: if (!text_11_0_0_0(state) || state.node != node_t::BANG_11_0) break; __attribute__ ((fallthrough));
+            case node_t::BANG_11_0: if (!bang_11_0(state) || state.node != node_t::RANGE_11_2) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_11_2: if (!range_11_2(state) || state.node != node_t::UINT_11_3) break; __attribute__ ((fallthrough));
+            case node_t::UINT_11_3: if (!uint_11_3(state) || state.node != node_t::FUNC_11_4) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_11_4: if (!func_11_4(state) || state.node != node_t::TEXT_11_5) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_11_5: if (!text_11_5(state) || state.node != node_t::TEXT_11_6) break; __attribute__ ((fallthrough));
             case node_t::TEXT_11_6: text_11_6(state); break;
-            case node_t::RANGE_12_0: range_12_0(state); break;
-            case node_t::RANGE_12_1: range_12_1(state); break;
-            case node_t::TEXT_12_2: text_12_2(state); break;
+            case node_t::RANGE_12_0: if (!range_12_0(state) || state.node != node_t::RANGE_12_1) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_12_1: if (!range_12_1(state) || state.node != node_t::TEXT_12_2) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_12_2: if (!text_12_2(state) || state.node != node_t::TEXT_12_3) break; __attribute__ ((fallthrough));
             case node_t::TEXT_12_3: text_12_3(state); break;
-            case node_t::TEXT_13_0: text_13_0(state); break;
-            case node_t::TEXT_13_1: text_13_1(state); break;
-            case node_t::FUNC_13_2: func_13_2(state); break;
+            case node_t::TEXT_13_0: if (!text_13_0(state) || state.node != node_t::TEXT_13_1) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_13_1: if (!text_13_1(state) || state.node != node_t::FUNC_13_2) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_13_2: if (!func_13_2(state) || state.node != node_t::CASES_13_3) break; __attribute__ ((fallthrough));
             case node_t::CASES_13_3: cases_13_3(state); break;
-            case node_t::FUNC_14_0: func_14_0(state); break;
-            case node_t::DATA_14_1: data_14_1(state); break;
-            case node_t::FUNC_14_2: func_14_2(state); break;
+            case node_t::FUNC_14_0: if (!func_14_0(state) || state.node != node_t::DATA_14_1) break; __attribute__ ((fallthrough));
+            case node_t::DATA_14_1: if (!data_14_1(state) || state.node != node_t::FUNC_14_2) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_14_2: if (!func_14_2(state) || state.node != node_t::RET_14_3) break; __attribute__ ((fallthrough));
             case node_t::RET_14_3: ret_14_3(state); break;
             case node_t::RET_15_0: ret_15_0(state); break;
-            case node_t::RANGE_16_0: range_16_0(state); break;
-            case node_t::TEXT_16_1: text_16_1(state); break;
+            case node_t::RANGE_16_0: if (!range_16_0(state) || state.node != node_t::TEXT_16_1) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_16_1: if (!text_16_1(state) || state.node != node_t::TEXT_16_2) break; __attribute__ ((fallthrough));
             case node_t::TEXT_16_2: text_16_2(state); break;
             case node_t::NO_STATE:
             default: return;
@@ -242,6 +242,7 @@ inline bool httpReq::text_2_0_0_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -265,6 +266,7 @@ inline bool httpReq::text_2_0_1_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -288,6 +290,7 @@ inline bool httpReq::text_2_0_2_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -311,6 +314,7 @@ inline bool httpReq::text_2_0_3_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -334,6 +338,7 @@ inline bool httpReq::text_2_0_4_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -357,6 +362,7 @@ inline bool httpReq::text_2_0_5_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -380,6 +386,7 @@ inline bool httpReq::text_2_0_6_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -403,6 +410,7 @@ inline bool httpReq::text_2_0_7_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -426,6 +434,7 @@ inline bool httpReq::text_2_0_8_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -449,6 +458,7 @@ inline bool httpReq::text_2_0_9_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -472,6 +482,7 @@ inline bool httpReq::text_2_0_10_0(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -557,6 +568,7 @@ inline bool httpReq::text_3_1(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -765,6 +777,7 @@ inline bool httpReq::text_6_4(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -828,6 +841,7 @@ inline bool httpReq::text_6_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -915,6 +929,7 @@ inline bool httpReq::text_6_9(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -985,6 +1000,7 @@ inline bool httpReq::text_9_0(state_t & state, bool isCaseCall)
             sym |= 0x20;
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             bool ret = isCaseCall && state.consumed > 1;
             state.consumed = 0;
@@ -1250,6 +1266,7 @@ inline bool httpReq::text_9_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             return false;
         }
@@ -1294,6 +1311,7 @@ inline bool httpReq::text_10_0_0_0(state_t & state)
             sym |= 0x20;
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -1480,6 +1498,7 @@ inline bool httpReq::text_10_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             return false;
         }
@@ -1524,6 +1543,7 @@ inline bool httpReq::text_11_0_0_0(state_t & state)
             sym |= 0x20;
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }
@@ -1709,6 +1729,7 @@ inline bool httpReq::text_11_6(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             return false;
         }
@@ -1859,6 +1880,7 @@ inline bool httpReq::text_12_3(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             return false;
         }
@@ -1906,6 +1928,7 @@ inline bool httpReq::text_13_1(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::RANGE_16_0;
             return false;
         }
@@ -2099,6 +2122,7 @@ inline bool httpReq::text_16_2(state_t & state)
         uint8_t sym = (uint8_t)state.data[0];
         if (text[state.consumed++] != sym)
         {
+            state.consumed = 0;
             state.node = node_t::NO_STATE;
             return false;
         }

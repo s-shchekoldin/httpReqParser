@@ -17,6 +17,7 @@ struct httpReqResult
     std::string type;
     std::string url;
     uint64_t contentLength = 0;
+
     // Don't forget to declare:
     void payload(__attribute__((unused)) const char * data, __attribute__((unused)) unsigned len, __attribute__((unused)) bool isFirst, __attribute__((unused)) bool isLast);
 };
