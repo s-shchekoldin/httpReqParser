@@ -610,7 +610,7 @@ inline bool httpReq::range_6_0(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -657,33 +657,49 @@ inline bool httpReq::string_6_1(state_t & state)
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0x9][0x20]
     bool isFirstData = !state.consumed;
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -725,7 +741,7 @@ inline bool httpReq::range_6_2(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -800,7 +816,7 @@ inline bool httpReq::range_6_5(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -863,7 +879,7 @@ inline bool httpReq::range_6_7(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -974,10 +990,9 @@ inline bool httpReq::loop_8_1(state_t & state)
 inline bool httpReq::text_9_0(state_t & state, bool isCaseCall)
 {
     const static uint8_t text[] = { 0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
-    const static uint8_t text2[] = { 0x48, 0x4f, 0x53, 0x54, 0x3a}; // HOST:
     for(; state.data < state.end; state.data++)
     {
-        if (text[state.consumed] != uint8_t(state.data[0]) && text2[state.consumed] != uint8_t(state.data[0]))
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
         {
             state.node = node_t::RANGE_16_0;
             bool ret = isCaseCall && state.consumed;
@@ -1016,33 +1031,49 @@ inline bool httpReq::range_9_1(state_t & state)
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0x9][0x20]
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -1088,33 +1119,49 @@ inline bool httpReq::string_9_2(state_t & state)
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
     bool isFirstData = !state.consumed;
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -1165,33 +1212,49 @@ inline bool httpReq::range_9_4(state_t & state)
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -1274,10 +1337,9 @@ inline bool httpReq::any_10_0(state_t & state)
 inline bool httpReq::text_10_0_0_0(state_t & state)
 {
     const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 0x79, 0x70, 0x65, 0x3a}; // content-type:
-    const static uint8_t text2[] = { 0x43, 0x4f, 0x4e, 0x54, 0x45, 0x4e, 0x54, 0x2d, 0x54, 0x59, 0x50, 0x45, 0x3a}; // CONTENT-TYPE:
     for(; state.data < state.end; state.data++)
     {
-        if (text[state.consumed] != uint8_t(state.data[0]) && text2[state.consumed] != uint8_t(state.data[0]))
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
         {
             state.node = node_t::NO_STATE;
             state.consumed = 0;
@@ -1328,7 +1390,7 @@ inline bool httpReq::range_10_2(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -1375,33 +1437,49 @@ inline bool httpReq::string_10_3(state_t & state)
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
     bool isFirstData = !state.consumed;
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -1500,10 +1578,9 @@ inline bool httpReq::any_11_0(state_t & state)
 inline bool httpReq::text_11_0_0_0(state_t & state)
 {
     const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
-    const static uint8_t text2[] = { 0x43, 0x4f, 0x4e, 0x54, 0x45, 0x4e, 0x54, 0x2d, 0x4c, 0x45, 0x4e, 0x47, 0x54, 0x48, 0x3a}; // CONTENT-LENGTH:
     for(; state.data < state.end; state.data++)
     {
-        if (text[state.consumed] != uint8_t(state.data[0]) && text2[state.consumed] != uint8_t(state.data[0]))
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
         {
             state.node = node_t::NO_STATE;
             state.consumed = 0;
@@ -1554,7 +1631,7 @@ inline bool httpReq::range_11_2(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -1600,33 +1677,49 @@ inline bool httpReq::uint_11_3(state_t & state)
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
     bool isFirstData = !state.consumed;
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -1726,7 +1819,7 @@ inline bool httpReq::range_12_0(state_t & state)
     {
         unsigned stateDataCount = 1;
         for(unsigned i = 0; i < stateDataCount; i++)
-            if (exitSym[uint8_t(state.data[i])])
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
             {
                 state.data += i;
                 state.consumed += i;
@@ -1763,33 +1856,49 @@ inline bool httpReq::range_12_1(state_t & state)
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
@@ -1999,33 +2108,49 @@ inline bool httpReq::range_16_0(state_t & state)
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
     const char * beginData = state.data;
-    while(state.data < state.end)
+    while(state.data < state.end) [[likely]]
     {
-        if(&state.data[8] <= state.end)
+        if(&state.data[16] <= state.end)
         {
-            if (exitSym[uint8_t(state.data[0])])
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
-            else if (exitSym[uint8_t(state.data[1])])
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
                 state.data += 1;
-            else if (exitSym[uint8_t(state.data[2])])
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
                 state.data += 2;
-            else if (exitSym[uint8_t(state.data[3])])
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
                 state.data += 3;
-            else if (exitSym[uint8_t(state.data[4])])
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
                 state.data += 4;
-            else if (exitSym[uint8_t(state.data[5])])
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
                 state.data += 5;
-            else if (exitSym[uint8_t(state.data[6])])
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
                 state.data += 6;
-            else if (exitSym[uint8_t(state.data[7])])
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
             else
             {
-                state.data += 8;
+                state.data += 16;
                 continue;
             }
         }
-        else if (!exitSym[uint8_t(state.data[0])])
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
             continue;
