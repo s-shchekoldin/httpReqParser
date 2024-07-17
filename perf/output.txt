@@ -1,0 +1,86 @@
+g++ --version
+g++ (Debian 12.2.0-14) 12.2.0
+
+        Valgrind Native Code:
+== I   refs:      2,883,880,352
+== I1  misses:            2,241
+== LLi misses:            2,125
+== I1  miss rate:          0.00%
+== LLi miss rate:          0.00%
+==
+== D   refs:      1,321,644,245  (1,050,481,997 rd   + 271,162,248 wr)
+== D1  misses:           15,887  (       13,631 rd   +       2,256 wr)
+== LLd misses:            8,844  (        7,435 rd   +       1,409 wr)
+== D1  miss rate:           0.0% (          0.0%     +         0.0%  )
+== LLd miss rate:           0.0% (          0.0%     +         0.0%  )
+==
+== LL refs:              18,128  (       15,872 rd   +       2,256 wr)
+== LL misses:            10,969  (        9,560 rd   +       1,409 wr)
+== LL miss rate:            0.0% (          0.0%     +         0.0%  )
+==
+== Branches:        733,293,883  (  705,288,223 cond +  28,005,660 ind)
+== Mispredicts:      36,014,843  (   12,013,413 cond +  24,001,430 ind)
+== Mispred rate:            4.9% (          1.7%     +        85.7%   )
+
+        Valgrind Profile Code:
+== I   refs:      2,644,400,136
+== I1  misses:            2,197
+== LLi misses:            2,088
+== I1  miss rate:          0.00%
+== LLi miss rate:          0.00%
+==
+== D   refs:      1,261,654,902  (1,020,489,347 rd   + 241,165,555 wr)
+== D1  misses:           15,888  (       13,631 rd   +       2,257 wr)
+== LLd misses:            8,841  (        7,432 rd   +       1,409 wr)
+== D1  miss rate:           0.0% (          0.0%     +         0.0%  )
+== LLd miss rate:           0.0% (          0.0%     +         0.0%  )
+==
+== LL refs:              18,085  (       15,828 rd   +       2,257 wr)
+== LL misses:            10,929  (        9,520 rd   +       1,409 wr)
+== LL miss rate:            0.0% (          0.0%     +         0.0%  )
+==
+== Branches:        716,797,490  (  688,791,858 cond +  28,005,632 ind)
+== Mispredicts:      42,014,707  (   18,013,285 cond +  24,001,422 ind)
+== Mispred rate:            5.9% (          2.6%     +        85.7%   )
+
+        Valgrind Native Code-BOOST:
+== I   refs:      8,749,927,311
+== I1  misses:            2,483
+== LLi misses:            2,327
+== I1  miss rate:          0.00%
+== LLi miss rate:          0.00%
+==
+== D   refs:      2,632,663,679  (1,820,488,677 rd   + 812,175,002 wr)
+== D1  misses:           16,692  (       14,053 rd   +       2,639 wr)
+== LLd misses:            9,356  (        7,620 rd   +       1,736 wr)
+== D1  miss rate:           0.0% (          0.0%     +         0.0%  )
+== LLd miss rate:           0.0% (          0.0%     +         0.0%  )
+==
+== LL refs:              19,175  (       16,536 rd   +       2,639 wr)
+== LL misses:            11,683  (        9,947 rd   +       1,736 wr)
+== LL miss rate:            0.0% (          0.0%     +         0.0%  )
+==
+== Branches:      1,799,309,676  (1,749,303,957 cond +  50,005,719 ind)
+== Mispredicts:      60,016,138  (   60,014,679 cond +       1,459 ind)
+== Mispred rate:            3.3% (          3.4%     +         0.0%   )
+
+        Valgrind Profile Code-BOOST:
+== I   refs:      8,006,954,608
+== I1  misses:            2,481
+== LLi misses:            2,335
+== I1  miss rate:          0.00%
+== LLi miss rate:          0.00%
+==
+== D   refs:      2,295,676,320  (1,659,497,651 rd   + 636,178,669 wr)
+== D1  misses:           16,678  (       14,043 rd   +       2,635 wr)
+== LLd misses:            9,353  (        7,620 rd   +       1,733 wr)
+== D1  miss rate:           0.0% (          0.0%     +         0.0%  )
+== LLd miss rate:           0.0% (          0.0%     +         0.0%  )
+==
+== LL refs:              19,159  (       16,524 rd   +       2,635 wr)
+== LL misses:            11,688  (        9,955 rd   +       1,733 wr)
+== LL miss rate:            0.0% (          0.0%     +         0.0%  )
+==
+== Branches:      1,779,313,472  (1,742,307,758 cond +  37,005,714 ind)
+== Mispredicts:      67,015,917  (   67,014,460 cond +       1,457 ind)
+== Mispred rate:            3.8% (          3.8%     +         0.0%   )

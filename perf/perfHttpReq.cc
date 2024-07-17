@@ -1,0 +1,2157 @@
+// ==============================================================
+// Generated using https://www.vsyn.ru/
+// Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
+// ==============================================================
+
+#include "perfHttpReq.h"
+
+inline void perfHttpReq::parse(state_t & state)
+{
+    while(true)
+    {
+#ifdef DEBUG_MODE
+        printf("State%s: %s data: [%x, %x, %x, %x, %x]=%.*s\n", &state == &mainState ? "" : "*", state.name(),
+            uint8_t(&state.data[0] < state.end ? state.data[0] : 0),
+            uint8_t(&state.data[1] < state.end ? state.data[1] : 0),
+            uint8_t(&state.data[2] < state.end ? state.data[2] : 0),
+            uint8_t(&state.data[3] < state.end ? state.data[3] : 0),
+            uint8_t(&state.data[4] < state.end ? state.data[4] : 0),
+            10, state.data);
+#endif
+        node_t n = state.node;
+        const char * d = state.data;
+        switch(state.node)
+        {
+            case node_t::LOOP_1_0: loop_1_0(state); break;
+            case node_t::LABEL_1_0: if (!label_1_0(state) || state.node != node_t::LOOP_1_1) break; __attribute__ ((fallthrough));
+            case node_t::LOOP_1_1: loop_1_1(state); break;
+            case node_t::TEXT_2_0: if (!text_2_0(state, false) || state.node != node_t::GOTO_2_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_2_1: if (!goto_2_1(state) || state.node != node_t::GOTO_2_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_2_2: goto_2_2(state); break;
+            case node_t::TEXT_3_0: if (!text_3_0(state, false) || state.node != node_t::GOTO_3_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_3_1: if (!goto_3_1(state) || state.node != node_t::GOTO_3_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_3_2: goto_3_2(state); break;
+            case node_t::TEXT_4_0: if (!text_4_0(state) || state.node != node_t::CASES_4_1) break; __attribute__ ((fallthrough));
+            case node_t::CASES_4_1: cases_4_1(state); break;
+            case node_t::TEXT_5_0: if (!text_5_0(state, false) || state.node != node_t::GOTO_5_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_5_1: if (!goto_5_1(state) || state.node != node_t::GOTO_5_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_5_2: goto_5_2(state); break;
+            case node_t::TEXT_6_0: if (!text_6_0(state, false) || state.node != node_t::GOTO_6_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_6_1: if (!goto_6_1(state) || state.node != node_t::GOTO_6_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_6_2: goto_6_2(state); break;
+            case node_t::TEXT_7_0: if (!text_7_0(state, false) || state.node != node_t::GOTO_7_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_7_1: if (!goto_7_1(state) || state.node != node_t::GOTO_7_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_7_2: goto_7_2(state); break;
+            case node_t::TEXT_8_0: if (!text_8_0(state, false) || state.node != node_t::GOTO_8_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_8_1: if (!goto_8_1(state) || state.node != node_t::GOTO_8_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_8_2: goto_8_2(state); break;
+            case node_t::TEXT_9_0: if (!text_9_0(state, false) || state.node != node_t::GOTO_9_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_9_1: if (!goto_9_1(state) || state.node != node_t::GOTO_9_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_9_2: goto_9_2(state); break;
+            case node_t::TEXT_10_0: if (!text_10_0(state, false) || state.node != node_t::GOTO_10_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_10_1: if (!goto_10_1(state) || state.node != node_t::GOTO_10_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_10_2: goto_10_2(state); break;
+            case node_t::TEXT_11_0: if (!text_11_0(state, false) || state.node != node_t::GOTO_11_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_11_1: if (!goto_11_1(state) || state.node != node_t::GOTO_11_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_11_2: goto_11_2(state); break;
+            case node_t::TEXT_12_0: if (!text_12_0(state, false) || state.node != node_t::GOTO_12_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_12_1: if (!goto_12_1(state) || state.node != node_t::GOTO_12_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_12_2: goto_12_2(state); break;
+            case node_t::TEXT_13_0: if (!text_13_0(state, false) || state.node != node_t::GOTO_13_1) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_13_1: if (!goto_13_1(state) || state.node != node_t::GOTO_13_2) break; __attribute__ ((fallthrough));
+            case node_t::GOTO_13_2: goto_13_2(state); break;
+            case node_t::TEXT_14_0: if (!text_14_0(state) || state.node != node_t::TEXT_14_1) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_14_1: text_14_1(state); break;
+            case node_t::LOOP_16_0: loop_16_0(state); break;
+            case node_t::LABEL_16_0: if (!label_16_0(state) || state.node != node_t::RANGE_16_1) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_16_1: if (!range_16_1(state) || state.node != node_t::STRING_16_2) break; __attribute__ ((fallthrough));
+            case node_t::STRING_16_2: if (!string_16_2(state) || state.node != node_t::RANGE_16_3) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_16_3: if (!range_16_3(state) || state.node != node_t::TEXT_16_4) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_16_4: if (!text_16_4(state) || state.node != node_t::RANGE_16_5) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_16_5: if (!range_16_5(state) || state.node != node_t::TEXT_16_6) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_16_6: if (!text_16_6(state) || state.node != node_t::RANGE_16_7) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_16_7: if (!range_16_7(state) || state.node != node_t::TEXT_16_8) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_16_8: if (!text_16_8(state) || state.node != node_t::TEXT_16_9) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_16_9: if (!text_16_9(state) || state.node != node_t::RET_16_10) break; __attribute__ ((fallthrough));
+            case node_t::RET_16_10: ret_16_10(state); break;
+            case node_t::LOOP_18_0: loop_18_0(state); break;
+            case node_t::LABEL_18_0: if (!label_18_0(state) || state.node != node_t::LOOP_18_1) break; __attribute__ ((fallthrough));
+            case node_t::LOOP_18_1: loop_18_1(state); break;
+            case node_t::TEXT_19_0: if (!text_19_0(state, false) || state.node != node_t::RANGE_19_1) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_19_1: if (!range_19_1(state) || state.node != node_t::STRING_19_2) break; __attribute__ ((fallthrough));
+            case node_t::STRING_19_2: if (!string_19_2(state) || state.node != node_t::TEXT_19_3) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_19_3: if (!text_19_3(state) || state.node != node_t::TEXT_19_4) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_19_4: text_19_4(state); break;
+            case node_t::TEXT_20_0: if (!text_20_0(state, false) || state.node != node_t::RANGE_20_1) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_20_1: if (!range_20_1(state) || state.node != node_t::UINT_20_2) break; __attribute__ ((fallthrough));
+            case node_t::UINT_20_2: if (!uint_20_2(state) || state.node != node_t::TEXT_20_3) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_20_3: if (!text_20_3(state) || state.node != node_t::TEXT_20_4) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_20_4: text_20_4(state); break;
+            case node_t::RANGE_21_0: if (!range_21_0(state) || state.node != node_t::RANGE_21_1) break; __attribute__ ((fallthrough));
+            case node_t::RANGE_21_1: if (!range_21_1(state) || state.node != node_t::TEXT_21_2) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_21_2: if (!text_21_2(state) || state.node != node_t::TEXT_21_3) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_21_3: text_21_3(state); break;
+            case node_t::TEXT_22_0: if (!text_22_0(state) || state.node != node_t::TEXT_22_1) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_22_1: if (!text_22_1(state) || state.node != node_t::CASES_22_2) break; __attribute__ ((fallthrough));
+            case node_t::CASES_22_2: cases_22_2(state); break;
+            case node_t::FUNC_23_0: if (!func_23_0(state) || state.node != node_t::DATA_23_1) break; __attribute__ ((fallthrough));
+            case node_t::DATA_23_1: if (!data_23_1(state) || state.node != node_t::FUNC_23_2) break; __attribute__ ((fallthrough));
+            case node_t::FUNC_23_2: if (!func_23_2(state) || state.node != node_t::RET_23_3) break; __attribute__ ((fallthrough));
+            case node_t::RET_23_3: ret_23_3(state); break;
+            case node_t::RET_24_0: ret_24_0(state); break;
+            case node_t::RANGE_25_0: if (!range_25_0(state) || state.node != node_t::TEXT_25_1) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_25_1: if (!text_25_1(state) || state.node != node_t::TEXT_25_2) break; __attribute__ ((fallthrough));
+            case node_t::TEXT_25_2: text_25_2(state); break;
+            case node_t::NO_STATE:
+            default: return;
+        }; // switch
+        if (n == state.node && d == state.data)
+            break;
+    }
+}
+
+bool perfHttpReq::parse(const char * data, unsigned len)
+{
+    mainState.data = data;
+    mainState.end = &data[len];
+    parse(mainState);
+    return mainState.node != node_t::NO_STATE;
+}
+
+inline bool perfHttpReq::loop_1_0(state_t & state)
+{
+    return label_1_0(state);
+}
+
+inline bool perfHttpReq::label_1_0(state_t & state)
+{
+    state.node = node_t::LOOP_1_1;
+    return true;
+}
+
+inline bool perfHttpReq::loop_1_1(state_t & state)
+{
+    if (state.data == state.end)
+        return true;
+    state_t startState = state;
+    if (text_2_0(state, true)) // case_1
+        return true;
+    state = startState;
+    if (text_3_0(state, true)) // case_2
+        return true;
+    state = startState;
+    if (text_4_0(state)) // case_3
+        return true;
+    state = startState;
+    if (text_8_0(state, true)) // case_4
+        return true;
+    state = startState;
+    if (text_9_0(state, true)) // case_5
+        return true;
+    state = startState;
+    if (text_10_0(state, true)) // case_6
+        return true;
+    state = startState;
+    if (text_11_0(state, true)) // case_7
+        return true;
+    state = startState;
+    if (text_12_0(state, true)) // case_8
+        return true;
+    state = startState;
+    if (text_13_0(state, true)) // case_9
+        return true;
+    state = startState;
+    if (text_14_0(state)) // case_10
+        return true;
+    state = startState;
+    state.node = node_t::NO_STATE;
+    return true;
+}
+
+inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x67, 0x65, 0x74}; // get
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_2_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_2_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_2_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_2_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_2_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_2_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_3_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x68, 0x65, 0x61, 0x64}; // head
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_3_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_3_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_3_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_3_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_3_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_3_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_4_0(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (((uint8_t(0x50) ^ uint8_t(state.data[0]))) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::CASES_4_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_4_0;
+    return true;
+}
+
+inline bool perfHttpReq::cases_4_1(state_t & state)
+{
+    if (state.data == state.end)
+        return true;
+    state_t startState = state;
+    if (text_5_0(state, true)) // case_1
+        return true;
+    state = startState;
+    if (text_6_0(state, true)) // case_2
+        return true;
+    state = startState;
+    if (text_7_0(state, true)) // case_3
+        return true;
+    state = startState;
+    state.node = node_t::NO_STATE;
+    return true;
+}
+
+inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x6f, 0x73, 0x74}; // ost
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_5_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_5_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_5_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_5_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_5_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_5_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x75, 0x74}; // ut
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_6_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_6_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_6_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_6_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_6_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_6_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x61, 0x74, 0x63, 0x68}; // atch
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_7_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_7_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_7_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_7_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_7_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_7_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65}; // delete
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_8_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_8_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_8_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_8_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_8_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_8_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73}; // options
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_9_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_9_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_9_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_9_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_9_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_9_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74}; // connect
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_10_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_10_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_10_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_10_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_10_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_10_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x6c, 0x69, 0x6e, 0x6b}; // link
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_11_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_11_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_11_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_11_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_11_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_11_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x75, 0x6e, 0x6c, 0x69, 0x6e, 0x6b}; // unlink
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_12_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_12_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_12_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_12_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_12_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_12_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_13_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x74, 0x72, 0x61, 0x63, 0x65}; // trace
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::NO_STATE;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::GOTO_13_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_13_0;
+    return true;
+}
+
+inline bool perfHttpReq::goto_13_1(state_t & state)
+{
+    state.node = node_t::LABEL_16_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::GOTO_13_2;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_13_2;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::goto_13_2(state_t & state)
+{
+    state.node = node_t::LABEL_18_0;
+    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+        state.retStack[state.retStackCount++] = node_t::LOOP_1_1;
+    else
+    {
+        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+            state.retStack[i - 1] = state.retStack[i];
+        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_1;
+    }
+    return true;
+}
+
+inline bool perfHttpReq::text_14_0(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_14_1;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_14_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_14_0;
+    return true;
+}
+
+inline bool perfHttpReq::text_14_1(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::NO_STATE;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::LOOP_1_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_14_1;
+    return true;
+}
+
+inline bool perfHttpReq::loop_16_0(state_t & state)
+{
+    return label_16_0(state);
+}
+
+inline bool perfHttpReq::label_16_0(state_t & state)
+{
+    state.node = node_t::RANGE_16_1;
+    return true;
+}
+
+inline bool perfHttpReq::range_16_1(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0x9][0x20]
+    while(state.data < state.end)
+    {
+        unsigned stateDataCount = 1;
+        for(unsigned i = 0; i < stateDataCount; i++)
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
+            {
+                state.data += i;
+                state.consumed += i;
+                state.node = (state.consumed >= 1) ? node_t::STRING_16_2 : node_t::NO_STATE;
+                bool ret = (state.node == node_t::STRING_16_2);
+                state.consumed = 0;
+                return ret;
+            }
+        state.data += stateDataCount;
+        state.node = node_t::STRING_16_2;
+        return true;
+    }
+    state.node = node_t::RANGE_16_1;
+    return true;
+}
+
+inline void perfHttpReq::_string_16_2(const char * data, unsigned len, bool isFirst)
+{
+    if (isFirst)
+        perfHttpReqResult::url.clear();
+    else if ((perfHttpReqResult::url.length() + len) > 1024)
+        len = 1024 - perfHttpReqResult::url.length();
+    perfHttpReqResult::url.append(data, len);
+}
+
+inline bool perfHttpReq::string_16_2(state_t & state)
+{
+    const static bool exitSym[256] = {
+        false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+         true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0x9][0x20]
+    bool isFirstData = !state.consumed;
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        _string_16_2(beginData, unsigned(state.data - beginData), isFirstData);
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::RANGE_16_3 : node_t::NO_STATE;
+        bool ret = (state.node == node_t::RANGE_16_3);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    if (beginData < state.data)
+        _string_16_2(beginData, unsigned(state.data - beginData), isFirstData);
+    state.node = node_t::STRING_16_2;
+    return true;
+}
+
+inline bool perfHttpReq::range_16_3(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0x9][0x20]
+    while(state.data < state.end)
+    {
+        unsigned stateDataCount = 1;
+        for(unsigned i = 0; i < stateDataCount; i++)
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
+            {
+                state.data += i;
+                state.consumed += i;
+                state.node = (state.consumed >= 1) ? node_t::TEXT_16_4 : node_t::NO_STATE;
+                bool ret = (state.node == node_t::TEXT_16_4);
+                state.consumed = 0;
+                return ret;
+            }
+        state.data += stateDataCount;
+        state.node = node_t::TEXT_16_4;
+        return true;
+    }
+    state.node = node_t::RANGE_16_3;
+    return true;
+}
+
+inline bool perfHttpReq::text_16_4(state_t & state)
+{
+    const static uint8_t text[] = { 0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
+    for(; state.data < state.end; state.data++)
+    {
+        if (text[state.consumed] != uint8_t(state.data[0]))
+        {
+            state.node = node_t::NO_STATE;
+            state.consumed = 0;
+            return false;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::RANGE_16_5;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_16_4;
+    return true;
+}
+
+inline bool perfHttpReq::range_16_5(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
+    while(state.data < state.end)
+    {
+        unsigned stateDataCount = 1;
+        for(unsigned i = 0; i < stateDataCount; i++)
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
+            {
+                state.data += i;
+                state.consumed += i;
+                state.node = (state.consumed >= 1) ? node_t::TEXT_16_6 : node_t::NO_STATE;
+                bool ret = (state.node == node_t::TEXT_16_6);
+                state.consumed = 0;
+                return ret;
+            }
+        state.data += stateDataCount;
+        state.node = node_t::TEXT_16_6;
+        return true;
+    }
+    state.node = node_t::RANGE_16_5;
+    return true;
+}
+
+inline bool perfHttpReq::text_16_6(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x2E) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::NO_STATE;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::RANGE_16_7;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_16_6;
+    return true;
+}
+
+inline bool perfHttpReq::range_16_7(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
+    while(state.data < state.end)
+    {
+        unsigned stateDataCount = 1;
+        for(unsigned i = 0; i < stateDataCount; i++)
+            if (exitSym[uint8_t(state.data[i])]) [[unlikely]]
+            {
+                state.data += i;
+                state.consumed += i;
+                state.node = (state.consumed >= 1) ? node_t::TEXT_16_8 : node_t::NO_STATE;
+                bool ret = (state.node == node_t::TEXT_16_8);
+                state.consumed = 0;
+                return ret;
+            }
+        state.data += stateDataCount;
+        state.node = node_t::TEXT_16_8;
+        return true;
+    }
+    state.node = node_t::RANGE_16_7;
+    return true;
+}
+
+inline bool perfHttpReq::text_16_8(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_16_9;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_16_9;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_16_8;
+    return true;
+}
+
+inline bool perfHttpReq::text_16_9(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::NO_STATE;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::RET_16_10;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_16_9;
+    return true;
+}
+
+inline bool perfHttpReq::ret_16_10(state_t & state)
+{
+    state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
+    return state.node != node_t::NO_STATE;
+}
+
+inline bool perfHttpReq::loop_18_0(state_t & state)
+{
+    return label_18_0(state);
+}
+
+inline bool perfHttpReq::label_18_0(state_t & state)
+{
+    state.node = node_t::LOOP_18_1;
+    return true;
+}
+
+inline bool perfHttpReq::loop_18_1(state_t & state)
+{
+    if (state.data == state.end)
+        return true;
+    state_t startState = state;
+    if (text_19_0(state, true)) // case_1
+        return true;
+    state = startState;
+    if (text_20_0(state, true)) // case_2
+        return true;
+    state = startState;
+    if (range_21_0(state)) // case_3
+        return true;
+    state = startState;
+    if (text_22_0(state)) // case_4
+        return true;
+    state = startState;
+    state.node = node_t::RANGE_25_0;
+    return true;
+}
+
+inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::RANGE_25_0;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::RANGE_19_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_19_0;
+    return true;
+}
+
+inline bool perfHttpReq::range_19_1(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0x9][0x20]
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::STRING_19_2 : node_t::RANGE_25_0;
+        bool ret = (state.node == node_t::STRING_19_2);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    state.node = node_t::RANGE_19_1;
+    return true;
+}
+
+inline void perfHttpReq::_string_19_2(const char * data, unsigned len, bool isFirst)
+{
+    if (isFirst)
+        perfHttpReqResult::host.clear();
+    else if ((perfHttpReqResult::host.length() + len) > 64)
+        len = 64 - perfHttpReqResult::host.length();
+    perfHttpReqResult::host.append(data, len);
+}
+
+inline bool perfHttpReq::string_19_2(state_t & state)
+{
+    const static bool exitSym[256] = {
+        false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
+    bool isFirstData = !state.consumed;
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        _string_19_2(beginData, unsigned(state.data - beginData), isFirstData);
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::TEXT_19_3 : node_t::RANGE_25_0;
+        bool ret = (state.node == node_t::TEXT_19_3);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    if (beginData < state.data)
+        _string_19_2(beginData, unsigned(state.data - beginData), isFirstData);
+    state.node = node_t::STRING_19_2;
+    return true;
+}
+
+inline bool perfHttpReq::text_19_3(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_19_4;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_19_4;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_19_3;
+    return true;
+}
+
+inline bool perfHttpReq::text_19_4(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::RANGE_25_0;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::LOOP_18_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_19_4;
+    return true;
+}
+
+inline bool perfHttpReq::text_20_0(state_t & state, bool isCaseCall)
+{
+    const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
+    for(; state.data < state.end; state.data++)
+    {
+        if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
+        {
+            state.node = node_t::RANGE_25_0;
+            bool ret = isCaseCall && state.consumed;
+            state.consumed = 0;
+            return ret;
+        }
+        else if (++state.consumed >= sizeof(text))
+        {
+            state.data++;
+            state.consumed = 0;
+            state.node = node_t::RANGE_20_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_20_0;
+    return true;
+}
+
+inline bool perfHttpReq::range_20_1(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0x9][0x20]
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::UINT_20_2 : node_t::RANGE_25_0;
+        bool ret = (state.node == node_t::UINT_20_2);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    state.node = node_t::RANGE_20_1;
+    return true;
+}
+
+inline void perfHttpReq::_uint_20_2(const char * data, unsigned len, bool isFirst)
+{
+    if (isFirst)
+        perfHttpReqResult::content_length = 0;
+    for(const char * end = &data[len]; data < end; data++)
+        perfHttpReqResult::content_length = perfHttpReqResult::content_length*10 + *data - '0';
+}
+
+inline bool perfHttpReq::uint_20_2(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
+    bool isFirstData = !state.consumed;
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        _uint_20_2(beginData, unsigned(state.data - beginData), isFirstData);
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::TEXT_20_3 : node_t::RANGE_25_0;
+        bool ret = (state.node == node_t::TEXT_20_3);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    if (beginData < state.data)
+        _uint_20_2(beginData, unsigned(state.data - beginData), isFirstData);
+    state.node = node_t::UINT_20_2;
+    return true;
+}
+
+inline bool perfHttpReq::text_20_3(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_20_4;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_20_4;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_20_3;
+    return true;
+}
+
+inline bool perfHttpReq::text_20_4(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::RANGE_25_0;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::LOOP_18_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_20_4;
+    return true;
+}
+
+inline bool perfHttpReq::range_21_0(state_t & state)
+{
+    const static bool exitSym[256] = {
+         true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+        false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
+         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0x9][0x20]
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::RANGE_21_1 : node_t::RANGE_25_0;
+        bool ret = (state.node == node_t::RANGE_21_1);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    state.node = node_t::RANGE_21_0;
+    return true;
+}
+
+inline bool perfHttpReq::range_21_1(state_t & state)
+{
+    const static bool exitSym[256] = {
+        false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        state.node = node_t::TEXT_21_2;
+        bool ret = (state.node == node_t::TEXT_21_2);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    state.node = node_t::RANGE_21_1;
+    return true;
+}
+
+inline bool perfHttpReq::text_21_2(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_21_3;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_21_3;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_21_2;
+    return true;
+}
+
+inline bool perfHttpReq::text_21_3(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::RANGE_25_0;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::LOOP_18_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_21_3;
+    return true;
+}
+
+inline bool perfHttpReq::text_22_0(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_22_1;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_22_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_22_0;
+    return true;
+}
+
+inline bool perfHttpReq::text_22_1(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::RANGE_25_0;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::CASES_22_2;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_22_1;
+    return true;
+}
+
+inline bool perfHttpReq::cases_22_2(state_t & state)
+{
+    state_t startState = state;
+    if (func_23_0(state)) // case_1
+        return true;
+    state = startState;
+    if (ret_24_0(state)) // case_2
+        return true;
+    state = startState;
+    state.node = node_t::RANGE_25_0;
+    return true;
+}
+
+inline bool perfHttpReq::_func_23_0()
+{
+     return content_length; 
+    return true;
+}
+inline bool perfHttpReq::func_23_0(state_t & state)
+{
+    bool ret = _func_23_0();
+    state.node = ret ? node_t::DATA_23_1 : node_t::RANGE_25_0;
+    return ret;
+}
+
+inline bool perfHttpReq::data_23_1(state_t & state)
+{
+    bool isFirstData = !state.consumed;
+    const char * beginData = state.data;
+    if (!state.consumed)
+        state.node = node_t::DATA_23_1;
+    if (state.data == state.end)
+        return true;
+    else if (state.consumed + state.remainDataLen() >= content_length)
+    {
+        state.data += (content_length - state.consumed);
+        state.consumed = 0;
+        state.node = node_t::FUNC_23_2;
+        perfHttpReqResult::payload(beginData, unsigned(state.data - beginData), isFirstData, true);
+    } else {
+        state.consumed += state.remainDataLen();
+        state.data = state.end;
+        perfHttpReqResult::payload(beginData, unsigned(state.data - beginData), isFirstData, false);
+    }
+    return true;
+}
+
+inline bool perfHttpReq::_func_23_2()
+{
+     content_length = 0; 
+    return true;
+}
+inline bool perfHttpReq::func_23_2(state_t & state)
+{
+    bool ret = _func_23_2();
+    state.node = ret ? node_t::RET_23_3 : node_t::RANGE_25_0;
+    return ret;
+}
+
+inline bool perfHttpReq::ret_23_3(state_t & state)
+{
+    state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
+    return state.node != node_t::NO_STATE;
+}
+
+inline bool perfHttpReq::ret_24_0(state_t & state)
+{
+    state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
+    return state.node != node_t::NO_STATE;
+}
+
+inline bool perfHttpReq::range_25_0(state_t & state)
+{
+    const static bool exitSym[256] = {
+        false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}; // ^[0xa][0xd]
+    const char * beginData = state.data;
+    while(state.data < state.end) [[likely]]
+    {
+        if(&state.data[16] <= state.end)
+        {
+            if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
+                state.data += 0;
+            else if (exitSym[uint8_t(state.data[1])]) [[unlikely]]
+                state.data += 1;
+            else if (exitSym[uint8_t(state.data[2])]) [[unlikely]]
+                state.data += 2;
+            else if (exitSym[uint8_t(state.data[3])]) [[unlikely]]
+                state.data += 3;
+            else if (exitSym[uint8_t(state.data[4])]) [[unlikely]]
+                state.data += 4;
+            else if (exitSym[uint8_t(state.data[5])]) [[unlikely]]
+                state.data += 5;
+            else if (exitSym[uint8_t(state.data[6])]) [[unlikely]]
+                state.data += 6;
+            else if (exitSym[uint8_t(state.data[7])]) [[unlikely]]
+                state.data += 7;
+            else if (exitSym[uint8_t(state.data[8])]) [[unlikely]]
+                state.data += 8;
+            else if (exitSym[uint8_t(state.data[9])]) [[unlikely]]
+                state.data += 9;
+            else if (exitSym[uint8_t(state.data[10])]) [[unlikely]]
+                state.data += 10;
+            else if (exitSym[uint8_t(state.data[11])]) [[unlikely]]
+                state.data += 11;
+            else if (exitSym[uint8_t(state.data[12])]) [[unlikely]]
+                state.data += 12;
+            else if (exitSym[uint8_t(state.data[13])]) [[unlikely]]
+                state.data += 13;
+            else if (exitSym[uint8_t(state.data[14])]) [[unlikely]]
+                state.data += 14;
+            else if (exitSym[uint8_t(state.data[15])]) [[unlikely]]
+                state.data += 15;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+        else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
+        {
+            state.data++;
+            continue;
+        }
+        state.consumed += unsigned(state.data - beginData);
+        state.node = (state.consumed >= 1) ? node_t::TEXT_25_1 : node_t::NO_STATE;
+        bool ret = (state.node == node_t::TEXT_25_1);
+        state.consumed = 0;
+        return ret;
+    }
+    state.consumed += unsigned(state.data - beginData);
+    state.node = node_t::RANGE_25_0;
+    return true;
+}
+
+inline bool perfHttpReq::text_25_1(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0D) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::TEXT_25_2;
+            return true;
+        } else {
+            state.data++;
+            state.node = node_t::TEXT_25_2;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_25_1;
+    return true;
+}
+
+inline bool perfHttpReq::text_25_2(state_t & state)
+{
+    if(state.data < state.end)
+    {
+        if (uint8_t(0x0A) != uint8_t(state.data[0]))
+        {
+            state.node = node_t::NO_STATE;
+            return false;
+        } else {
+            state.data++;
+            state.node = node_t::LOOP_18_1;
+            return true;
+        }
+    }
+    state.node = node_t::TEXT_25_2;
+    return true;
+}
+
+void perfHttpReq::reset()
+{
+    perfHttpReqResult::content_length = 0;
+    perfHttpReqResult::host.clear();
+    perfHttpReqResult::url.clear();
+    perfHttpReq::mainState = perfHttpReq::state_t();
+}
+
+const char * perfHttpReq::state_t::name() const
+{
+    switch(node)
+    {
+        case node_t::LOOP_1_0: return "LOOP_1_0";
+        case node_t::LABEL_1_0: return "LABEL_1_0";
+        case node_t::LOOP_1_1: return "LOOP_1_1";
+        case node_t::TEXT_2_0: return "TEXT_2_0";
+        case node_t::GOTO_2_1: return "GOTO_2_1";
+        case node_t::GOTO_2_2: return "GOTO_2_2";
+        case node_t::TEXT_3_0: return "TEXT_3_0";
+        case node_t::GOTO_3_1: return "GOTO_3_1";
+        case node_t::GOTO_3_2: return "GOTO_3_2";
+        case node_t::TEXT_4_0: return "TEXT_4_0";
+        case node_t::CASES_4_1: return "CASES_4_1";
+        case node_t::TEXT_5_0: return "TEXT_5_0";
+        case node_t::GOTO_5_1: return "GOTO_5_1";
+        case node_t::GOTO_5_2: return "GOTO_5_2";
+        case node_t::TEXT_6_0: return "TEXT_6_0";
+        case node_t::GOTO_6_1: return "GOTO_6_1";
+        case node_t::GOTO_6_2: return "GOTO_6_2";
+        case node_t::TEXT_7_0: return "TEXT_7_0";
+        case node_t::GOTO_7_1: return "GOTO_7_1";
+        case node_t::GOTO_7_2: return "GOTO_7_2";
+        case node_t::TEXT_8_0: return "TEXT_8_0";
+        case node_t::GOTO_8_1: return "GOTO_8_1";
+        case node_t::GOTO_8_2: return "GOTO_8_2";
+        case node_t::TEXT_9_0: return "TEXT_9_0";
+        case node_t::GOTO_9_1: return "GOTO_9_1";
+        case node_t::GOTO_9_2: return "GOTO_9_2";
+        case node_t::TEXT_10_0: return "TEXT_10_0";
+        case node_t::GOTO_10_1: return "GOTO_10_1";
+        case node_t::GOTO_10_2: return "GOTO_10_2";
+        case node_t::TEXT_11_0: return "TEXT_11_0";
+        case node_t::GOTO_11_1: return "GOTO_11_1";
+        case node_t::GOTO_11_2: return "GOTO_11_2";
+        case node_t::TEXT_12_0: return "TEXT_12_0";
+        case node_t::GOTO_12_1: return "GOTO_12_1";
+        case node_t::GOTO_12_2: return "GOTO_12_2";
+        case node_t::TEXT_13_0: return "TEXT_13_0";
+        case node_t::GOTO_13_1: return "GOTO_13_1";
+        case node_t::GOTO_13_2: return "GOTO_13_2";
+        case node_t::TEXT_14_0: return "TEXT_14_0";
+        case node_t::TEXT_14_1: return "TEXT_14_1";
+        case node_t::LOOP_16_0: return "LOOP_16_0";
+        case node_t::LABEL_16_0: return "LABEL_16_0";
+        case node_t::RANGE_16_1: return "RANGE_16_1";
+        case node_t::STRING_16_2: return "STRING_16_2";
+        case node_t::RANGE_16_3: return "RANGE_16_3";
+        case node_t::TEXT_16_4: return "TEXT_16_4";
+        case node_t::RANGE_16_5: return "RANGE_16_5";
+        case node_t::TEXT_16_6: return "TEXT_16_6";
+        case node_t::RANGE_16_7: return "RANGE_16_7";
+        case node_t::TEXT_16_8: return "TEXT_16_8";
+        case node_t::TEXT_16_9: return "TEXT_16_9";
+        case node_t::RET_16_10: return "RET_16_10";
+        case node_t::LOOP_18_0: return "LOOP_18_0";
+        case node_t::LABEL_18_0: return "LABEL_18_0";
+        case node_t::LOOP_18_1: return "LOOP_18_1";
+        case node_t::TEXT_19_0: return "TEXT_19_0";
+        case node_t::RANGE_19_1: return "RANGE_19_1";
+        case node_t::STRING_19_2: return "STRING_19_2";
+        case node_t::TEXT_19_3: return "TEXT_19_3";
+        case node_t::TEXT_19_4: return "TEXT_19_4";
+        case node_t::TEXT_20_0: return "TEXT_20_0";
+        case node_t::RANGE_20_1: return "RANGE_20_1";
+        case node_t::UINT_20_2: return "UINT_20_2";
+        case node_t::TEXT_20_3: return "TEXT_20_3";
+        case node_t::TEXT_20_4: return "TEXT_20_4";
+        case node_t::RANGE_21_0: return "RANGE_21_0";
+        case node_t::RANGE_21_1: return "RANGE_21_1";
+        case node_t::TEXT_21_2: return "TEXT_21_2";
+        case node_t::TEXT_21_3: return "TEXT_21_3";
+        case node_t::TEXT_22_0: return "TEXT_22_0";
+        case node_t::TEXT_22_1: return "TEXT_22_1";
+        case node_t::CASES_22_2: return "CASES_22_2";
+        case node_t::FUNC_23_0: return "FUNC_23_0";
+        case node_t::DATA_23_1: return "DATA_23_1";
+        case node_t::FUNC_23_2: return "FUNC_23_2";
+        case node_t::RET_23_3: return "RET_23_3";
+        case node_t::RET_24_0: return "RET_24_0";
+        case node_t::RANGE_25_0: return "RANGE_25_0";
+        case node_t::TEXT_25_1: return "TEXT_25_1";
+        case node_t::TEXT_25_2: return "TEXT_25_2";
+        case node_t::NO_STATE: return "NO_STATE";
+        default: return "unknown";
+    };
+}
+
