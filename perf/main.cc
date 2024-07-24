@@ -7,9 +7,12 @@
 #include <boost/beast/http.hpp>
 #include <boost/beast/http/parser.hpp>
 
-#ifndef REPEAT_COUT
-#define REPEAT_COUT (20*1000*1000)
+#ifdef REPEAT_COUNT
+uint64_t repeatCount = REPEAT_COUNT;
+#else
+uint64_t repeatCount = 10*1000*1000;
 #endif
+
 
 void perfHttpReqResult::payload(__attribute__((unused)) const char * data, __attribute__((unused)) unsigned len, __attribute__((unused)) bool isFirst, __attribute__((unused)) bool isLast)
 {
@@ -23,7 +26,7 @@ int main()
     uint64_t reqCount = 0;
     uint64_t totalBytes = 0;
     auto startTime = std::chrono::high_resolution_clock::now();
-    for(uint64_t i = 0; i < REPEAT_COUT; i++)
+    for(uint64_t i = 0; i < repeatCount; i++)
     {
         reqCount++;
         totalBytes += input.length();
@@ -47,7 +50,7 @@ int main()
     uint64_t usec = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
     if (usec == 0)
     {
-        printf("Warning! increase REPEAT_COUT=%lu\n", REPEAT_COUT);
+        printf("Warning! increase repeatCount=%lu\n", repeatCount);
         return 0;
     }
     printf("\t\t\tRESULT: usec=%lu, Mbites/sec=%lu ReqPerSeq: %lu TotalBytes: %lu\r\n",

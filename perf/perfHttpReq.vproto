@@ -1,0 +1,24 @@
+'GET' call:HTTP_URL call:HTTP_READ_HEADERS
+'HEAD' call:HTTP_URL call:HTTP_READ_HEADERS
+'P' \
+    'OST' call:HTTP_URL call:HTTP_READ_HEADERS
+    'UT' call:HTTP_URL call:HTTP_READ_HEADERS
+    'ATCH' call:HTTP_URL call:HTTP_READ_HEADERS
+'DELETE' call:HTTP_URL call:HTTP_READ_HEADERS
+'OPTIONS' call:HTTP_URL call:HTTP_READ_HEADERS
+'CONNECT' call:HTTP_URL call:HTTP_READ_HEADERS
+'LINK' call:HTTP_URL call:HTTP_READ_HEADERS
+'UNLINK' call:HTTP_URL call:HTTP_READ_HEADERS
+'TRACE' call:HTTP_URL call:HTTP_READ_HEADERS
+"\r"? "\n"
+
+label:HTTP_URL [ \t] [^ \t]->string:url(init=1024) [ \t] "HTTP/" [0-9] "." [0-9] "\r"? "\n" return
+
+label:HTTP_READ_HEADERS
+    'Host:' [ \t]+ [^\r\n]->string:host(init=64) "\r"? "\n"
+    'Content-Length:' [ \t]+ u64:content_length "\r"? "\n"
+    [ \t]+ [^\r\n]* "\r"? "\n"
+    "\r"? "\n" \
+        { return content_length; } data:payload(max=content_length) { content_length = 0; } return
+        return
+    catch: [^\r\n]+ "\r"? "\n"
