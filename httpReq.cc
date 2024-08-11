@@ -1,10 +1,14 @@
 // ==============================================================
-// Date: 2024-08-06 19:58:42 GMT
-// Generated using vProto(2024.08.06)         https://www.vsyn.ru
+// Date: 2024-08-11 17:23:56 GMT
+// Generated using vProto(2024.08.11)         https://www.vsyn.ru
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
 #include "httpReq.h"
+// To enable SSE4.2, use the compiler flag '-msse4.2' or '-march=native' (if the CPU supports it)
+#ifdef __SSE4_2__
+#include <immintrin.h>
+#endif
 
 inline void httpReq::parse(state_t & state)
 {
@@ -633,6 +637,21 @@ inline bool httpReq::string_5_1(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
+#ifdef __SSE4_2__
+        if(&state.data[16] <= state.end)
+        {
+            const __m128i s = _mm_set_epi8(0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20);
+            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT);
+            if (r < 16)
+                state.data += r;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+#else // __SSE4_2__
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -673,6 +692,7 @@ inline bool httpReq::string_5_1(state_t & state)
                 continue;
             }
         }
+#endif // __SSE4_2__
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -986,6 +1006,21 @@ inline bool httpReq::range_8_1(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
+#ifdef __SSE4_2__
+        if(&state.data[16] <= state.end)
+        {
+            const __m128i s = _mm_set_epi8(0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20);
+            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT | _SIDD_NEGATIVE_POLARITY);
+            if (r < 16)
+                state.data += r;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+#else // __SSE4_2__
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1026,6 +1061,7 @@ inline bool httpReq::range_8_1(state_t & state)
                 continue;
             }
         }
+#endif // __SSE4_2__
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1073,6 +1109,21 @@ inline bool httpReq::string_8_2(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
+#ifdef __SSE4_2__
+        if(&state.data[16] <= state.end)
+        {
+            const __m128i s = _mm_set_epi8(0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D);
+            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT);
+            if (r < 16)
+                state.data += r;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+#else // __SSE4_2__
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1113,6 +1164,7 @@ inline bool httpReq::string_8_2(state_t & state)
                 continue;
             }
         }
+#endif // __SSE4_2__
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1378,6 +1430,21 @@ inline bool httpReq::string_9_3(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
+#ifdef __SSE4_2__
+        if(&state.data[16] <= state.end)
+        {
+            const __m128i s = _mm_set_epi8(0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D);
+            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT);
+            if (r < 16)
+                state.data += r;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+#else // __SSE4_2__
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1418,6 +1485,7 @@ inline bool httpReq::string_9_3(state_t & state)
                 continue;
             }
         }
+#endif // __SSE4_2__
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1605,6 +1673,21 @@ inline bool httpReq::uint_10_3(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
+#ifdef __SSE4_2__
+        if(&state.data[16] <= state.end)
+        {
+            const __m128i s = _mm_set_epi8(0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35);
+            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT | _SIDD_NEGATIVE_POLARITY);
+            if (r < 16)
+                state.data += r;
+            else
+            {
+                state.data += 16;
+                continue;
+            }
+        }
+#else // __SSE4_2__
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1645,6 +1728,7 @@ inline bool httpReq::uint_10_3(state_t & state)
                 continue;
             }
         }
+#endif // __SSE4_2__
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;

@@ -17,7 +17,7 @@ label:HTTP_URL [ \t] [^ \t]->string:url(init=1024) [ \t] "HTTP/" [0-9] "." [0-9]
 label:HTTP_READ_HEADERS
     'Host:' [ \t]+ [^\r\n]->string:host(init=64) "\r"? "\n"
     'Content-Length:' [ \t]+ u64:content_length "\r"? "\n"
-    [ \t]+ [^\r\n]* "\r"? "\n"
+    [ \t] [^\r\n]* "\r"? "\n"
     "\r"? "\n" \
         { return content_length; } data:payload(max=content_length) { content_length = 0; } return
         return

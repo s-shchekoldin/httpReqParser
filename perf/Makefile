@@ -1,6 +1,7 @@
 
 TARGET = perfHttpReq
-LDFLAGS = -g -O3 -I/home/boost_1_85_0 -pthread
+LDFLAGS = -g -O3 -I/home/boost_1_85_0 -pthread -msse4.2
+#-march=native
 
 ifdef boost
     LDFLAGS += -DTEST_BOOST_HTTP
