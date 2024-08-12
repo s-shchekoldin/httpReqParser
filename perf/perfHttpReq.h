@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2024-08-11 17:24:14 GMT
-// Generated using vProto(2024.08.11)         https://www.vsyn.ru
+// Date: 2024-08-12 19:13:28 GMT
+// Generated using vProto(2024.08.12)         https://www.vsyn.ru
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 

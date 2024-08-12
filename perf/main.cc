@@ -4,8 +4,11 @@
 #include <iostream>
 
 #include "perfHttpReq.h"
+
+#ifdef TEST_BOOST_HTTP
 #include <boost/beast/http.hpp>
 #include <boost/beast/http/parser.hpp>
+#endif
 
 #ifdef REPEAT_COUNT
 uint64_t repeatCount = REPEAT_COUNT;
