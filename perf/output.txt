@@ -43,6 +43,49 @@ g++ (Debian 12.2.0-14) 12.2.0
 == Mispredicts:      38,014,682  (   16,013,262 cond +  22,001,420 ind)
 == Mispred rate:            5.3% (          2.3%     +        81.5%   )
 
+        Valgrind Native Code SSE4.2:
+==
+== I   refs:      1,541,876,761
+== I1  misses:            2,216
+== LLi misses:            2,098
+== I1  miss rate:          0.00%
+== LLi miss rate:          0.00%
+==
+== D   refs:        478,643,038  (274,481,104 rd   + 204,161,934 wr)
+== D1  misses:           15,830  (     13,576 rd   +       2,254 wr)
+== LLd misses:            8,801  (      7,396 rd   +       1,405 wr)
+== D1  miss rate:           0.0% (        0.0%     +         0.0%  )
+== LLd miss rate:           0.0% (        0.0%     +         0.0%  )
+==
+== LL refs:              18,046  (     15,792 rd   +       2,254 wr)
+== LL misses:            10,899  (      9,494 rd   +       1,405 wr)
+== LL miss rate:            0.0% (        0.0%     +         0.0%  )
+==
+== Branches:        354,293,314  (327,287,672 cond +  27,005,642 ind)
+== Mispredicts:      29,014,753  (  7,013,327 cond +  22,001,426 ind)
+== Mispred rate:            8.2% (        2.1%     +        81.5%   )
+
+        Valgrind Profile Code SSE4.2:
+== I   refs:      1,468,896,665
+== I1  misses:            2,186
+== LLi misses:            2,076
+== I1  miss rate:          0.00%
+== LLi miss rate:          0.00%
+==
+== D   refs:        472,653,687  (271,488,448 rd   + 201,165,239 wr)
+== D1  misses:           15,809  (     13,556 rd   +       2,253 wr)
+== LLd misses:            8,800  (      7,397 rd   +       1,403 wr)
+== D1  miss rate:           0.0% (        0.0%     +         0.0%  )
+== LLd miss rate:           0.0% (        0.0%     +         0.0%  )
+==
+== LL refs:              17,995  (     15,742 rd   +       2,253 wr)
+== LL misses:            10,876  (      9,473 rd   +       1,403 wr)
+== LL miss rate:            0.0% (        0.0%     +         0.0%  )
+==
+== Branches:        348,296,949  (321,291,330 cond +  27,005,619 ind)
+== Mispredicts:      33,014,684  ( 11,013,266 cond +  22,001,418 ind)
+== Mispred rate:            9.5% (        3.4%     +        81.5%   )
+
         Valgrind Native Code-BOOST:
 == I   refs:      8,749,927,311
 == I1  misses:            2,483
@@ -84,3 +127,4 @@ g++ (Debian 12.2.0-14) 12.2.0
 == Branches:      1,779,313,472  (1,742,307,758 cond +  37,005,714 ind)
 == Mispredicts:      67,015,917  (   67,014,460 cond +       1,457 ind)
 == Mispred rate:            3.8% (          3.8%     +         0.0%   )
+
