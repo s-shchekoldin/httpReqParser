@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2024-08-12 19:25:03 GMT
-// Generated using vProto(2024.08.12)         https://www.vsyn.ru
+// Date: 2024-08-17 10:59:32 GMT
+// Generated using vProto(2024.08.17)         https://www.vsyn.ru
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -2008,13 +2008,10 @@ inline bool httpReq::text_12_1(state_t & state)
 
 inline bool httpReq::cases_12_2(state_t & state)
 {
-    state_t startState = state;
     if (func_13_0(state)) // case_1
         return true;
-    state = startState;
     if (ret_14_0(state)) // case_2
         return true;
-    state = startState;
     state.node = node_t::RANGE_15_0;
     return true;
 }

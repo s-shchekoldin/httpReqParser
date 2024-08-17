@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2024-08-12 19:13:28 GMT
-// Generated using vProto(2024.08.12)         https://www.vsyn.ru
+// Date: 2024-08-17 10:59:52 GMT
+// Generated using vProto(2024.08.17)         https://www.vsyn.ru
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -125,37 +125,26 @@ inline bool perfHttpReq::loop_1_0(state_t & state)
 {
     if (state.data == state.end)
         return true;
-    state_t startState = state;
     if (text_1_0(state, true)) // case_1
         return true;
-    state = startState;
     if (text_2_0(state, true)) // case_2
         return true;
-    state = startState;
     if (text_3_0(state)) // case_3
         return true;
-    state = startState;
     if (text_7_0(state, true)) // case_4
         return true;
-    state = startState;
     if (text_8_0(state, true)) // case_5
         return true;
-    state = startState;
     if (text_9_0(state, true)) // case_6
         return true;
-    state = startState;
     if (text_10_0(state, true)) // case_7
         return true;
-    state = startState;
     if (text_11_0(state, true)) // case_8
         return true;
-    state = startState;
     if (text_12_0(state, true)) // case_9
         return true;
-    state = startState;
     if (text_13_0(state)) // case_10
         return true;
-    state = startState;
     state.node = node_t::NO_STATE;
     return true;
 }
@@ -286,16 +275,12 @@ inline bool perfHttpReq::cases_3_1(state_t & state)
 {
     if (state.data == state.end)
         return true;
-    state_t startState = state;
     if (text_4_0(state, true)) // case_1
         return true;
-    state = startState;
     if (text_5_0(state, true)) // case_2
         return true;
-    state = startState;
     if (text_6_0(state, true)) // case_3
         return true;
-    state = startState;
     state.node = node_t::NO_STATE;
     return true;
 }
@@ -1176,19 +1161,14 @@ inline bool perfHttpReq::loop_17_1(state_t & state)
 {
     if (state.data == state.end)
         return true;
-    state_t startState = state;
     if (text_18_0(state, true)) // case_1
         return true;
-    state = startState;
     if (text_19_0(state, true)) // case_2
         return true;
-    state = startState;
     if (range_20_0(state)) // case_3
         return true;
-    state = startState;
     if (text_21_0(state)) // case_4
         return true;
-    state = startState;
     state.node = node_t::RANGE_24_0;
     return true;
 }
@@ -1920,13 +1900,10 @@ inline bool perfHttpReq::text_21_1(state_t & state)
 
 inline bool perfHttpReq::cases_21_2(state_t & state)
 {
-    state_t startState = state;
     if (func_22_0(state)) // case_1
         return true;
-    state = startState;
     if (ret_23_0(state)) // case_2
         return true;
-    state = startState;
     state.node = node_t::RANGE_24_0;
     return true;
 }
