@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2024-08-17 12:08:56 GMT
-// Generated using vProto(2024.08.17)         https://www.vsyn.ru
+// Date: 2025-07-20 10:34:01 GMT
+// Generated using vProto(2025.07.20)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -2035,7 +2035,7 @@ inline bool httpReq::data_13_1(state_t & state)
         state.node = node_t::DATA_13_1;
     if (state.data == state.end)
         return true;
-    else if (state.consumed + state.remainDataLen() >= contentLength)
+    else if (int64_t(state.consumed + state.remainDataLen()) >= int64_t(contentLength))
     {
         state.data += (contentLength - state.consumed);
         httpReqResult::payload(beginData, unsigned(state.data - beginData), !state.consumed, true);
