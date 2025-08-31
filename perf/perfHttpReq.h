@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2024-08-17 10:59:52 GMT
-// Generated using vProto(2024.08.17)         https://www.vsyn.ru
+// Date: 2025-08-31 19:53:25 GMT
+// Generated using vProto(2025.08.31)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -8,9 +8,8 @@
 #define PERFHTTPREQ_H
 #pragma once
 
-#include <string>
-#include <vector>
 #include <cstdint>
+#include <string>
 
 struct perfHttpReqResult
 {
@@ -19,11 +18,12 @@ struct perfHttpReqResult
     uint64_t content_length = 0;
 
     // Don't forget to declare:
-    void payload(__attribute__((unused)) const char * data, __attribute__((unused)) unsigned len, __attribute__((unused)) bool isFirst, __attribute__((unused)) bool isLast);
+    void payload([[maybe_unused]] const char * data, [[maybe_unused]] unsigned len, [[maybe_unused]] bool isFirst, [[maybe_unused]] bool isLast);
 };
 
 struct perfHttpReq : perfHttpReqResult
 {
+    template<class... Args> explicit perfHttpReq(Args ... args) : perfHttpReqResult(args ...) {}
     bool parse(const char * data, unsigned len);
     bool parse(const std::string & data) { return parse(data.data(), data.length()); }
     void reset();

@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2024-08-17 10:59:52 GMT
-// Generated using vProto(2024.08.17)         https://www.vsyn.ru
+// Date: 2025-08-31 19:53:25 GMT
+// Generated using vProto(2025.08.31)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -8,6 +8,10 @@
 // To enable SSE4.2, use the compiler flag '-msse4.2' or '-march=native' (if the CPU supports it)
 #ifdef __SSE4_2__
 #include <immintrin.h>
+#endif
+// To enable SSE2, use the compiler flag '-msse2' or '-march=native' (if the CPU supports it)
+#ifdef __SSE2__
+#include <emmintrin.h>
 #endif
 
 inline void perfHttpReq::parse(state_t & state)
@@ -834,6 +838,7 @@ inline bool perfHttpReq::range_15_1(state_t & state)
         state.node = node_t::STRING_15_2;
         return true;
     }
+    state.consumed += unsigned(state.data - beginData);
     state.node = node_t::RANGE_15_1;
     return true;
 }
@@ -869,21 +874,37 @@ inline bool perfHttpReq::string_15_2(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
-#ifdef __SSE4_2__
+#ifdef __AVX2__
+        if(&state.data[32] <= state.end)
+        {
+            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+            uint32_t r = _mm256_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctzl(r);
+            else
+            {
+                state.data += 32;
+                continue;
+            }
+        }
+#elif __SSE2__
         if(&state.data[16] <= state.end)
         {
-            const __m128i s = _mm_set_epi8(0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20);
             const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT);
-            if (r < 16)
-                state.data += r;
+            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+            uint16_t r = _mm_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctz(r);
             else
             {
                 state.data += 16;
                 continue;
             }
         }
-#else // __SSE4_2__
+#else
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -924,7 +945,7 @@ inline bool perfHttpReq::string_15_2(state_t & state)
                 continue;
             }
         }
-#endif // __SSE4_2__
+#endif
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -983,6 +1004,7 @@ inline bool perfHttpReq::range_15_3(state_t & state)
         state.node = node_t::TEXT_15_4;
         return true;
     }
+    state.consumed += unsigned(state.data - beginData);
     state.node = node_t::RANGE_15_3;
     return true;
 }
@@ -1044,6 +1066,7 @@ inline bool perfHttpReq::range_15_5(state_t & state)
         state.node = node_t::TEXT_15_6;
         return true;
     }
+    state.consumed += unsigned(state.data - beginData);
     state.node = node_t::RANGE_15_5;
     return true;
 }
@@ -1100,6 +1123,7 @@ inline bool perfHttpReq::range_15_7(state_t & state)
         state.node = node_t::TEXT_15_8;
         return true;
     }
+    state.consumed += unsigned(state.data - beginData);
     state.node = node_t::RANGE_15_7;
     return true;
 }
@@ -1219,21 +1243,37 @@ inline bool perfHttpReq::range_18_1(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
-#ifdef __SSE4_2__
+#ifdef __AVX2__
+        if(&state.data[32] <= state.end)
+        {
+            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+            uint32_t r = ~_mm256_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctzl(r);
+            else
+            {
+                state.data += 32;
+                continue;
+            }
+        }
+#elif __SSE2__
         if(&state.data[16] <= state.end)
         {
-            const __m128i s = _mm_set_epi8(0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20);
             const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT | _SIDD_NEGATIVE_POLARITY);
-            if (r < 16)
-                state.data += r;
+            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+            uint16_t r = ~_mm_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctz(r);
             else
             {
                 state.data += 16;
                 continue;
             }
         }
-#else // __SSE4_2__
+#else
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1274,7 +1314,7 @@ inline bool perfHttpReq::range_18_1(state_t & state)
                 continue;
             }
         }
-#endif // __SSE4_2__
+#endif
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1327,21 +1367,37 @@ inline bool perfHttpReq::string_18_2(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
-#ifdef __SSE4_2__
+#ifdef __AVX2__
+        if(&state.data[32] <= state.end)
+        {
+            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
+            uint32_t r = _mm256_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctzl(r);
+            else
+            {
+                state.data += 32;
+                continue;
+            }
+        }
+#elif __SSE2__
         if(&state.data[16] <= state.end)
         {
-            const __m128i s = _mm_set_epi8(0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D);
             const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT);
-            if (r < 16)
-                state.data += r;
+            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
+            uint16_t r = _mm_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctz(r);
             else
             {
                 state.data += 16;
                 continue;
             }
         }
-#else // __SSE4_2__
+#else
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1382,7 +1438,7 @@ inline bool perfHttpReq::string_18_2(state_t & state)
                 continue;
             }
         }
-#endif // __SSE4_2__
+#endif
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1489,21 +1545,37 @@ inline bool perfHttpReq::range_19_1(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
-#ifdef __SSE4_2__
+#ifdef __AVX2__
+        if(&state.data[32] <= state.end)
+        {
+            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+            uint32_t r = ~_mm256_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctzl(r);
+            else
+            {
+                state.data += 32;
+                continue;
+            }
+        }
+#elif __SSE2__
         if(&state.data[16] <= state.end)
         {
-            const __m128i s = _mm_set_epi8(0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20, 0x09, 0x20);
             const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT | _SIDD_NEGATIVE_POLARITY);
-            if (r < 16)
-                state.data += r;
+            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+            uint16_t r = ~_mm_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctz(r);
             else
             {
                 state.data += 16;
                 continue;
             }
         }
-#else // __SSE4_2__
+#else
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1544,7 +1616,7 @@ inline bool perfHttpReq::range_19_1(state_t & state)
                 continue;
             }
         }
-#endif // __SSE4_2__
+#endif
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1599,9 +1671,9 @@ inline bool perfHttpReq::uint_19_2(state_t & state)
 #ifdef __SSE4_2__
         if(&state.data[16] <= state.end)
         {
-            const __m128i s = _mm_set_epi8(0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35);
             const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT | _SIDD_NEGATIVE_POLARITY);
+            const __m128i s0 = _mm_setr_epi8(0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+            int r = _mm_cmpestri(s0, 10, d, 16, _SIDD_UBYTE_OPS | _SIDD_LEAST_SIGNIFICANT | _SIDD_CMP_EQUAL_ANY | _SIDD_NEGATIVE_POLARITY);
             if (r < 16)
                 state.data += r;
             else
@@ -1610,7 +1682,7 @@ inline bool perfHttpReq::uint_19_2(state_t & state)
                 continue;
             }
         }
-#else // __SSE4_2__
+#else
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -1651,7 +1723,7 @@ inline bool perfHttpReq::uint_19_2(state_t & state)
                 continue;
             }
         }
-#endif // __SSE4_2__
+#endif
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
@@ -1746,6 +1818,7 @@ inline bool perfHttpReq::range_20_0(state_t & state)
         state.node = node_t::RANGE_20_1;
         return true;
     }
+    state.consumed += unsigned(state.data - beginData);
     state.node = node_t::RANGE_20_0;
     return true;
 }
@@ -1927,7 +2000,7 @@ inline bool perfHttpReq::data_22_1(state_t & state)
         state.node = node_t::DATA_22_1;
     if (state.data == state.end)
         return true;
-    else if (state.consumed + state.remainDataLen() >= content_length)
+    else if (int64_t(state.consumed + state.remainDataLen()) >= int64_t(content_length))
     {
         state.data += (content_length - state.consumed);
         perfHttpReqResult::payload(beginData, unsigned(state.data - beginData), !state.consumed, true);
@@ -1987,21 +2060,37 @@ inline bool perfHttpReq::range_24_0(state_t & state)
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
     {
-#ifdef __SSE4_2__
+#ifdef __AVX2__
+        if(&state.data[32] <= state.end)
+        {
+            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
+            uint32_t r = _mm256_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctzl(r);
+            else
+            {
+                state.data += 32;
+                continue;
+            }
+        }
+#elif __SSE2__
         if(&state.data[16] <= state.end)
         {
-            const __m128i s = _mm_set_epi8(0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D, 0x0A, 0x0D);
             const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            int r =  _mm_cmpistri(s, d, _SIDD_UBYTE_OPS | _SIDD_CMP_EQUAL_ANY | _SIDD_LEAST_SIGNIFICANT);
-            if (r < 16)
-                state.data += r;
+            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
+            uint16_t r = _mm_movemask_epi8(m);
+            if (r)
+                state.data += __builtin_ctz(r);
             else
             {
                 state.data += 16;
                 continue;
             }
         }
-#else // __SSE4_2__
+#else
         if(&state.data[16] <= state.end)
         {
             if (exitSym[uint8_t(state.data[0])]) [[unlikely]]
@@ -2042,7 +2131,7 @@ inline bool perfHttpReq::range_24_0(state_t & state)
                 continue;
             }
         }
-#endif // __SSE4_2__
+#endif
         else if (!exitSym[uint8_t(state.data[0])]) [[unlikely]]
         {
             state.data++;
