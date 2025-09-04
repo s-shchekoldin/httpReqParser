@@ -1,7 +1,7 @@
 
 TARGET = httpReqParser
 
-FLAGS = -g -O3 -msse4.2 -Wall -Wextra -Werror -Werror=pedantic
+FLAGS = -g -O3 -march=native -Wall -Wextra -Werror -Werror=pedantic
 
 all:
 	g++ $(FLAGS) -I./ httpReq.cc main.cc -o $(TARGET) -DDEBUG_MODE2

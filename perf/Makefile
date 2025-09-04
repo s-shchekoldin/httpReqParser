@@ -1,6 +1,7 @@
 
 TARGET = perfHttpReq
-LDFLAGS = -g -O3 -msse4.2
+LDFLAGS = -g -O3 -march=native
+#-msse4.2
 #-march=native
 
 ifdef boost
@@ -31,4 +32,4 @@ all:
 	valgrind --tool=cachegrind --cache-sim=yes --branch-sim=yes ./$(TARGET)
 
 clean:
-	rm -f $(TARGET) cachegrind.out.*
+	rm -f $(TARGET) cachegrind.out.* *.dot
