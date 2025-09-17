@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-09-04 06:13:49 GMT
-// Generated using vProto(2025.09.04)        https://www.cgen.dev
+// Date: 2025-09-17 08:30:45 GMT
+// Generated using vProto(2025.09.17)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -164,7 +164,7 @@ inline bool perfHttpReq::loop_1_0(state_t & state)
 
 inline bool perfHttpReq::text_1_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x67, 0x65, 0x74}; // get
+    const static std::array<uint8_t, 3> text = {0x67, 0x65, 0x74}; // get
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -174,7 +174,7 @@ inline bool perfHttpReq::text_1_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -189,13 +189,13 @@ inline bool perfHttpReq::text_1_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_1_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_1_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_1_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_1_2;
     }
     return true;
 }
@@ -203,20 +203,20 @@ inline bool perfHttpReq::goto_1_1(state_t & state)
 inline bool perfHttpReq::goto_1_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x68, 0x65, 0x61, 0x64}; // head
+    const static std::array<uint8_t, 4> text = {0x68, 0x65, 0x61, 0x64}; // head
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -226,7 +226,7 @@ inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -241,13 +241,13 @@ inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_2_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_2_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_2_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_2_2;
     }
     return true;
 }
@@ -255,13 +255,13 @@ inline bool perfHttpReq::goto_2_1(state_t & state)
 inline bool perfHttpReq::goto_2_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
@@ -300,7 +300,7 @@ inline bool perfHttpReq::cases_3_1(state_t & state)
 
 inline bool perfHttpReq::text_4_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x6f, 0x73, 0x74}; // ost
+    const static std::array<uint8_t, 3> text = {0x6f, 0x73, 0x74}; // ost
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -310,7 +310,7 @@ inline bool perfHttpReq::text_4_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -325,13 +325,13 @@ inline bool perfHttpReq::text_4_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_4_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_4_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_4_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_4_2;
     }
     return true;
 }
@@ -339,20 +339,20 @@ inline bool perfHttpReq::goto_4_1(state_t & state)
 inline bool perfHttpReq::goto_4_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x75, 0x74}; // ut
+    const static std::array<uint8_t, 2> text = {0x75, 0x74}; // ut
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -362,7 +362,7 @@ inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -377,13 +377,13 @@ inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_5_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_5_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_5_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_5_2;
     }
     return true;
 }
@@ -391,20 +391,20 @@ inline bool perfHttpReq::goto_5_1(state_t & state)
 inline bool perfHttpReq::goto_5_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x61, 0x74, 0x63, 0x68}; // atch
+    const static std::array<uint8_t, 4> text = {0x61, 0x74, 0x63, 0x68}; // atch
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -414,7 +414,7 @@ inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -429,13 +429,13 @@ inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_6_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_6_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_6_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_6_2;
     }
     return true;
 }
@@ -443,20 +443,20 @@ inline bool perfHttpReq::goto_6_1(state_t & state)
 inline bool perfHttpReq::goto_6_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65}; // delete
+    const static std::array<uint8_t, 6> text = {0x64, 0x65, 0x6c, 0x65, 0x74, 0x65}; // delete
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -466,7 +466,7 @@ inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -481,13 +481,13 @@ inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_7_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_7_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_7_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_7_2;
     }
     return true;
 }
@@ -495,20 +495,20 @@ inline bool perfHttpReq::goto_7_1(state_t & state)
 inline bool perfHttpReq::goto_7_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73}; // options
+    const static std::array<uint8_t, 7> text = {0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73}; // options
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -518,7 +518,7 @@ inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -533,13 +533,13 @@ inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_8_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_8_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_8_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_8_2;
     }
     return true;
 }
@@ -547,20 +547,20 @@ inline bool perfHttpReq::goto_8_1(state_t & state)
 inline bool perfHttpReq::goto_8_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74}; // connect
+    const static std::array<uint8_t, 7> text = {0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74}; // connect
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -570,7 +570,7 @@ inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -585,13 +585,13 @@ inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_9_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_9_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_9_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_9_2;
     }
     return true;
 }
@@ -599,20 +599,20 @@ inline bool perfHttpReq::goto_9_1(state_t & state)
 inline bool perfHttpReq::goto_9_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x6c, 0x69, 0x6e, 0x6b}; // link
+    const static std::array<uint8_t, 4> text = {0x6c, 0x69, 0x6e, 0x6b}; // link
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -622,7 +622,7 @@ inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -637,13 +637,13 @@ inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_10_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_10_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_10_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_10_2;
     }
     return true;
 }
@@ -651,20 +651,20 @@ inline bool perfHttpReq::goto_10_1(state_t & state)
 inline bool perfHttpReq::goto_10_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x75, 0x6e, 0x6c, 0x69, 0x6e, 0x6b}; // unlink
+    const static std::array<uint8_t, 6> text = {0x75, 0x6e, 0x6c, 0x69, 0x6e, 0x6b}; // unlink
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -674,7 +674,7 @@ inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -689,13 +689,13 @@ inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_11_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_11_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_11_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_11_2;
     }
     return true;
 }
@@ -703,20 +703,20 @@ inline bool perfHttpReq::goto_11_1(state_t & state)
 inline bool perfHttpReq::goto_11_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
 
 inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x74, 0x72, 0x61, 0x63, 0x65}; // trace
+    const static std::array<uint8_t, 5> text = {0x74, 0x72, 0x61, 0x63, 0x65}; // trace
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -726,7 +726,7 @@ inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -741,13 +741,13 @@ inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall)
 inline bool perfHttpReq::goto_12_1(state_t & state)
 {
     state.node = node_t::LABEL_15_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_12_2;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_12_2;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_12_2;
     }
     return true;
 }
@@ -755,13 +755,13 @@ inline bool perfHttpReq::goto_12_1(state_t & state)
 inline bool perfHttpReq::goto_12_2(state_t & state)
 {
     state.node = node_t::LABEL_17_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::LOOP_1_0;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::LOOP_1_0;
+        state.retStack[state.retStack.size() - 1] = node_t::LOOP_1_0;
     }
     return true;
 }
@@ -815,7 +815,7 @@ inline bool perfHttpReq::label_15_0(state_t & state)
 
 inline bool perfHttpReq::range_15_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -863,7 +863,7 @@ void perfHttpReq::_string_15_2(const char * data, unsigned len, uint64_t consume
 
 inline bool perfHttpReq::string_15_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
          true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -981,7 +981,7 @@ inline bool perfHttpReq::string_15_2(state_t & state)
 
 inline bool perfHttpReq::range_15_3(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1020,7 +1020,7 @@ inline bool perfHttpReq::range_15_3(state_t & state)
 
 inline bool perfHttpReq::text_15_4(state_t & state)
 {
-    const static uint8_t text[] = { 0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
+    const static std::array<uint8_t, 5> text = {0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -1029,7 +1029,7 @@ inline bool perfHttpReq::text_15_4(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -1043,7 +1043,7 @@ inline bool perfHttpReq::text_15_4(state_t & state)
 
 inline bool perfHttpReq::range_15_5(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1100,7 +1100,7 @@ inline bool perfHttpReq::text_15_6(state_t & state)
 
 inline bool perfHttpReq::range_15_7(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1208,7 +1208,7 @@ inline bool perfHttpReq::loop_17_1(state_t & state)
 
 inline bool perfHttpReq::text_18_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
+    const static std::array<uint8_t, 5> text = {0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -1218,7 +1218,7 @@ inline bool perfHttpReq::text_18_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -1232,7 +1232,7 @@ inline bool perfHttpReq::text_18_0(state_t & state, bool isCaseCall)
 
 inline bool perfHttpReq::range_18_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1356,7 +1356,7 @@ void perfHttpReq::_string_18_2(const char * data, unsigned len, uint64_t consume
 
 inline bool perfHttpReq::string_18_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -1510,7 +1510,7 @@ inline bool perfHttpReq::text_18_4(state_t & state)
 
 inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
+    const static std::array<uint8_t, 15> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -1520,7 +1520,7 @@ inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -1534,7 +1534,7 @@ inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall)
 
 inline bool perfHttpReq::range_19_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1657,7 +1657,7 @@ void perfHttpReq::_uint_19_2(const char * data, unsigned len, uint64_t consumed)
 
 inline bool perfHttpReq::uint_19_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1779,7 +1779,7 @@ inline bool perfHttpReq::text_19_4(state_t & state)
 
 inline bool perfHttpReq::range_20_0(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1818,7 +1818,7 @@ inline bool perfHttpReq::range_20_0(state_t & state)
 
 inline bool perfHttpReq::range_20_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -2033,7 +2033,7 @@ inline bool perfHttpReq::ret_23_0(state_t & state)
 
 inline bool perfHttpReq::range_24_0(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 

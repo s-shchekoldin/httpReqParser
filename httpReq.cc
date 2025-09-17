@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-09-04 06:13:49 GMT
-// Generated using vProto(2025.09.04)        https://www.cgen.dev
+// Date: 2025-09-17 08:30:45 GMT
+// Generated using vProto(2025.09.17)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -233,7 +233,7 @@ inline bool httpReq::any_1_0(state_t & state)
 
 inline bool httpReq::text_1_0_0_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x47, 0x45, 0x54}; // get
+    const static std::array<uint8_t, 3> text = {0x47, 0x45, 0x54}; // get
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -242,7 +242,7 @@ inline bool httpReq::text_1_0_0_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -256,7 +256,7 @@ inline bool httpReq::text_1_0_0_0(state_t & state)
 
 inline bool httpReq::text_1_0_1_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x48, 0x45, 0x41, 0x44}; // head
+    const static std::array<uint8_t, 4> text = {0x48, 0x45, 0x41, 0x44}; // head
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -265,7 +265,7 @@ inline bool httpReq::text_1_0_1_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -279,7 +279,7 @@ inline bool httpReq::text_1_0_1_0(state_t & state)
 
 inline bool httpReq::text_1_0_2_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x50, 0x55, 0x54}; // put
+    const static std::array<uint8_t, 3> text = {0x50, 0x55, 0x54}; // put
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -288,7 +288,7 @@ inline bool httpReq::text_1_0_2_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -302,7 +302,7 @@ inline bool httpReq::text_1_0_2_0(state_t & state)
 
 inline bool httpReq::text_1_0_3_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x50, 0x41, 0x54, 0x43, 0x48}; // patch
+    const static std::array<uint8_t, 5> text = {0x50, 0x41, 0x54, 0x43, 0x48}; // patch
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -311,7 +311,7 @@ inline bool httpReq::text_1_0_3_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -325,7 +325,7 @@ inline bool httpReq::text_1_0_3_0(state_t & state)
 
 inline bool httpReq::text_1_0_4_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x44, 0x45, 0x4c, 0x45, 0x54, 0x45}; // delete
+    const static std::array<uint8_t, 6> text = {0x44, 0x45, 0x4c, 0x45, 0x54, 0x45}; // delete
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -334,7 +334,7 @@ inline bool httpReq::text_1_0_4_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -348,7 +348,7 @@ inline bool httpReq::text_1_0_4_0(state_t & state)
 
 inline bool httpReq::text_1_0_5_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x4f, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x53}; // options
+    const static std::array<uint8_t, 7> text = {0x4f, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x53}; // options
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -357,7 +357,7 @@ inline bool httpReq::text_1_0_5_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -371,7 +371,7 @@ inline bool httpReq::text_1_0_5_0(state_t & state)
 
 inline bool httpReq::text_1_0_6_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x43, 0x4f, 0x4e, 0x4e, 0x45, 0x43, 0x54}; // connect
+    const static std::array<uint8_t, 7> text = {0x43, 0x4f, 0x4e, 0x4e, 0x45, 0x43, 0x54}; // connect
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -380,7 +380,7 @@ inline bool httpReq::text_1_0_6_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -394,7 +394,7 @@ inline bool httpReq::text_1_0_6_0(state_t & state)
 
 inline bool httpReq::text_1_0_7_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x4c, 0x49, 0x4e, 0x4b}; // link
+    const static std::array<uint8_t, 4> text = {0x4c, 0x49, 0x4e, 0x4b}; // link
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -403,7 +403,7 @@ inline bool httpReq::text_1_0_7_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -417,7 +417,7 @@ inline bool httpReq::text_1_0_7_0(state_t & state)
 
 inline bool httpReq::text_1_0_8_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x55, 0x4e, 0x4c, 0x49, 0x4e, 0x4b}; // unlink
+    const static std::array<uint8_t, 6> text = {0x55, 0x4e, 0x4c, 0x49, 0x4e, 0x4b}; // unlink
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -426,7 +426,7 @@ inline bool httpReq::text_1_0_8_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -440,7 +440,7 @@ inline bool httpReq::text_1_0_8_0(state_t & state)
 
 inline bool httpReq::text_1_0_9_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x54, 0x52, 0x41, 0x43, 0x45}; // trace
+    const static std::array<uint8_t, 5> text = {0x54, 0x52, 0x41, 0x43, 0x45}; // trace
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -449,7 +449,7 @@ inline bool httpReq::text_1_0_9_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -463,7 +463,7 @@ inline bool httpReq::text_1_0_9_0(state_t & state)
 
 inline bool httpReq::text_1_0_10_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x50, 0x4f, 0x53, 0x54}; // post
+    const static std::array<uint8_t, 4> text = {0x50, 0x4f, 0x53, 0x54}; // post
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -472,7 +472,7 @@ inline bool httpReq::text_1_0_10_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -497,13 +497,13 @@ inline bool httpReq::bang_1_0(state_t & state)
 inline bool httpReq::goto_1_2(state_t & state)
 {
     state.node = node_t::LABEL_3_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::GOTO_1_3;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::GOTO_1_3;
+        state.retStack[state.retStack.size() - 1] = node_t::GOTO_1_3;
     }
     return true;
 }
@@ -511,13 +511,13 @@ inline bool httpReq::goto_1_2(state_t & state)
 inline bool httpReq::goto_1_3(state_t & state)
 {
     state.node = node_t::LABEL_6_0;
-    if (state.retStackCount < sizeof(state.retStack)/sizeof(state.retStack[0]))
+    if (state.retStackCount < state.retStack.size())
         state.retStack[state.retStackCount++] = node_t::RESET_1_4;
     else
     {
-        for(unsigned i = 1; i < sizeof(state.retStack)/sizeof(state.retStack[0]); i++)
+        for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[sizeof(state.retStack)/sizeof(state.retStack[0]) - 1] = node_t::RESET_1_4;
+        state.retStack[state.retStack.size() - 1] = node_t::RESET_1_4;
     }
     return true;
 }
@@ -560,7 +560,7 @@ inline bool httpReq::loop_3_1(state_t & state)
 
 inline bool httpReq::range_4_0(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -608,7 +608,7 @@ void httpReq::_string_4_1(const char * data, unsigned len, uint64_t consumed)
 
 inline bool httpReq::string_4_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
          true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -726,7 +726,7 @@ inline bool httpReq::string_4_1(state_t & state)
 
 inline bool httpReq::range_4_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -777,7 +777,7 @@ inline bool httpReq::func_4_3(state_t & state)
 
 inline bool httpReq::text_4_4(state_t & state)
 {
-    const static uint8_t text[] = { 0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
+    const static std::array<uint8_t, 5> text = {0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
     for(; state.data < state.end; state.data++)
     {
         if (text[state.consumed] != uint8_t(state.data[0]))
@@ -786,7 +786,7 @@ inline bool httpReq::text_4_4(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -800,7 +800,7 @@ inline bool httpReq::text_4_4(state_t & state)
 
 inline bool httpReq::range_4_5(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -857,7 +857,7 @@ inline bool httpReq::text_4_6(state_t & state)
 
 inline bool httpReq::range_4_7(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -977,7 +977,7 @@ inline bool httpReq::loop_6_1(state_t & state)
 
 inline bool httpReq::text_7_0(state_t & state, bool isCaseCall)
 {
-    const static uint8_t text[] = { 0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
+    const static std::array<uint8_t, 5> text = {0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -987,7 +987,7 @@ inline bool httpReq::text_7_0(state_t & state, bool isCaseCall)
             state.consumed = 0;
             return ret;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -1001,7 +1001,7 @@ inline bool httpReq::text_7_0(state_t & state, bool isCaseCall)
 
 inline bool httpReq::range_7_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1125,7 +1125,7 @@ void httpReq::_string_7_2(const char * data, unsigned len, uint64_t consumed)
 
 inline bool httpReq::string_7_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -1310,7 +1310,7 @@ inline bool httpReq::any_8_0(state_t & state)
 
 inline bool httpReq::text_8_0_0_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 0x79, 0x70, 0x65, 0x3a}; // content-type:
+    const static std::array<uint8_t, 13> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 0x79, 0x70, 0x65, 0x3a}; // content-type:
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -1319,7 +1319,7 @@ inline bool httpReq::text_8_0_0_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -1343,7 +1343,7 @@ inline bool httpReq::bang_8_0(state_t & state)
 
 inline bool httpReq::range_8_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1467,7 +1467,7 @@ void httpReq::_string_8_3(const char * data, unsigned len, uint64_t consumed)
 
 inline bool httpReq::string_8_3(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -1652,7 +1652,7 @@ inline bool httpReq::any_9_0(state_t & state)
 
 inline bool httpReq::text_9_0_0_0(state_t & state)
 {
-    const static uint8_t text[] = { 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
+    const static std::array<uint8_t, 15> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
     for(; state.data < state.end; state.data++)
     {
         if ((text[state.consumed] ^ uint8_t(state.data[0])) & 0xDF)
@@ -1661,7 +1661,7 @@ inline bool httpReq::text_9_0_0_0(state_t & state)
             state.consumed = 0;
             return false;
         }
-        else if (++state.consumed >= sizeof(text))
+        else if (++state.consumed >= text.size())
         {
             state.data++;
             state.consumed = 0;
@@ -1685,7 +1685,7 @@ inline bool httpReq::bang_9_0(state_t & state)
 
 inline bool httpReq::range_9_2(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1808,7 +1808,7 @@ void httpReq::_uint_9_3(const char * data, unsigned len, uint64_t consumed)
 
 inline bool httpReq::uint_9_3(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1942,7 +1942,7 @@ inline bool httpReq::text_9_6(state_t & state)
 
 inline bool httpReq::range_10_0(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
         false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1981,7 +1981,7 @@ inline bool httpReq::range_10_0(state_t & state)
 
 inline bool httpReq::range_10_1(state_t & state)
 {
-    const static bool exitSym[256] = {
+    const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
