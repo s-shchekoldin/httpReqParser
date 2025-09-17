@@ -1,5 +1,5 @@
 // ==============================================================
-// Date: 2025-09-17 08:30:45 GMT
+// Date: 2025-09-17 18:46:08 GMT
 // Generated using vProto(2025.09.17)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
@@ -53,9 +53,9 @@ inline void httpReq::parse(state_t & state)
             case node_t::TEXT_1_0_8_0: text_1_0_8_0(state); break;
             case node_t::TEXT_1_0_9_0: text_1_0_9_0(state); break;
             case node_t::TEXT_1_0_10_0: if (!text_1_0_10_0(state) || state.node != node_t::BANG_1_0) break; [[fallthrough]];
-            case node_t::BANG_1_0: if (!bang_1_0(state) || state.node != node_t::GOTO_1_2) break; [[fallthrough]];
-            case node_t::GOTO_1_2: if (!goto_1_2(state) || state.node != node_t::GOTO_1_3) break; [[fallthrough]];
-            case node_t::GOTO_1_3: if (!goto_1_3(state) || state.node != node_t::RESET_1_4) break; [[fallthrough]];
+            case node_t::BANG_1_0: if (!bang_1_0(state) || state.node != node_t::CALL_1_2) break; [[fallthrough]];
+            case node_t::CALL_1_2: if (!call_1_2(state) || state.node != node_t::CALL_1_3) break; [[fallthrough]];
+            case node_t::CALL_1_3: if (!call_1_3(state) || state.node != node_t::RESET_1_4) break; [[fallthrough]];
             case node_t::RESET_1_4: reset_1_4(state); break;
             case node_t::LOOP_3_0: loop_3_0(state); break;
             case node_t::LABEL_3_0: if (!label_3_0(state) || state.node != node_t::LOOP_3_1) break; [[fallthrough]];
@@ -103,7 +103,7 @@ inline void httpReq::parse(state_t & state)
             case node_t::TEXT_11_0: if (!text_11_0(state) || state.node != node_t::TEXT_11_1) break; [[fallthrough]];
             case node_t::TEXT_11_1: if (!text_11_1(state) || state.node != node_t::CASES_11_2) break; [[fallthrough]];
             case node_t::CASES_11_2: cases_11_2(state); break;
-            case node_t::FUNC_12_0: if (!func_12_0(state) || state.node != node_t::DATA_12_1) break; [[fallthrough]];
+            case node_t::IF_12_0: if (!if_12_0(state) || state.node != node_t::DATA_12_1) break; [[fallthrough]];
             case node_t::DATA_12_1: if (!data_12_1(state) || state.node != node_t::RET_12_2) break; [[fallthrough]];
             case node_t::RET_12_2: ret_12_2(state); break;
             case node_t::RET_13_0: ret_13_0(state); break;
@@ -148,7 +148,7 @@ inline bool httpReq::loop_1_0(state_t & state)
     if (state.data == state.end)
         return true;
     state_t startState = state;
-    if (any_1_0(state) && state.node == node_t::BANG_1_0 && bang_1_0(state) && state.node == node_t::GOTO_1_2) // case_1
+    if (any_1_0(state) && state.node == node_t::BANG_1_0 && bang_1_0(state) && state.node == node_t::CALL_1_2) // case_1
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
@@ -486,7 +486,7 @@ inline bool httpReq::text_1_0_10_0(state_t & state)
 
 inline bool httpReq::bang_1_0(state_t & state)
 {
-    state.node = node_t::GOTO_1_2;
+    state.node = node_t::CALL_1_2;
     if (&mainState != &state)
         mainState = state;
     for(auto it = prlState.begin(); it != prlState.end(); it++)
@@ -494,21 +494,21 @@ inline bool httpReq::bang_1_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::goto_1_2(state_t & state)
+inline bool httpReq::call_1_2(state_t & state)
 {
     state.node = node_t::LABEL_3_0;
     if (state.retStackCount < state.retStack.size())
-        state.retStack[state.retStackCount++] = node_t::GOTO_1_3;
+        state.retStack[state.retStackCount++] = node_t::CALL_1_3;
     else
     {
         for(unsigned i = 1; i < state.retStack.size(); i++)
             state.retStack[i - 1] = state.retStack[i];
-        state.retStack[state.retStack.size() - 1] = node_t::GOTO_1_3;
+        state.retStack[state.retStack.size() - 1] = node_t::CALL_1_3;
     }
     return true;
 }
 
-inline bool httpReq::goto_1_3(state_t & state)
+inline bool httpReq::call_1_3(state_t & state)
 {
     state.node = node_t::LABEL_6_0;
     if (state.retStackCount < state.retStack.size())
@@ -770,9 +770,13 @@ inline bool httpReq::_func_4_3()
 }
 inline bool httpReq::func_4_3(state_t & state)
 {
-    bool ret = _func_4_3();
-    state.node = ret ? node_t::TEXT_4_4 : node_t::NO_STATE;
-    return ret;
+    if (_func_4_3())
+    {
+        state.node = node_t::TEXT_4_4;
+        return true;
+    }
+    state.node = node_t::NO_STATE;
+    return false;
 }
 
 inline bool httpReq::text_4_4(state_t & state)
@@ -1248,9 +1252,13 @@ inline bool httpReq::_func_7_3()
 }
 inline bool httpReq::func_7_3(state_t & state)
 {
-    bool ret = _func_7_3();
-    state.node = ret ? node_t::TEXT_7_4 : node_t::RANGE_14_0;
-    return ret;
+    if (_func_7_3())
+    {
+        state.node = node_t::TEXT_7_4;
+        return true;
+    }
+    state.node = node_t::RANGE_14_0;
+    return false;
 }
 
 inline bool httpReq::text_7_4(state_t & state)
@@ -1590,9 +1598,13 @@ inline bool httpReq::_func_8_4()
 }
 inline bool httpReq::func_8_4(state_t & state)
 {
-    bool ret = _func_8_4();
-    state.node = ret ? node_t::TEXT_8_5 : node_t::RANGE_14_0;
-    return ret;
+    if (_func_8_4())
+    {
+        state.node = node_t::TEXT_8_5;
+        return true;
+    }
+    state.node = node_t::RANGE_14_0;
+    return false;
 }
 
 inline bool httpReq::text_8_5(state_t & state)
@@ -1899,9 +1911,13 @@ inline bool httpReq::_func_9_4()
 }
 inline bool httpReq::func_9_4(state_t & state)
 {
-    bool ret = _func_9_4();
-    state.node = ret ? node_t::TEXT_9_5 : node_t::RANGE_14_0;
-    return ret;
+    if (_func_9_4())
+    {
+        state.node = node_t::TEXT_9_5;
+        return true;
+    }
+    state.node = node_t::RANGE_14_0;
+    return false;
 }
 
 inline bool httpReq::text_9_5(state_t & state)
@@ -2129,7 +2145,7 @@ inline bool httpReq::text_11_1(state_t & state)
 
 inline bool httpReq::cases_11_2(state_t & state)
 {
-    if (func_12_0(state)) // case_1
+    if (if_12_0(state)) // case_1
         return true;
     if (ret_13_0(state)) // case_2
         return true;
@@ -2137,16 +2153,15 @@ inline bool httpReq::cases_11_2(state_t & state)
     return true;
 }
 
-inline bool httpReq::_func_12_0()
+inline bool httpReq::if_12_0(state_t & state)
 {
-     return contentLength; 
-    return true;
-}
-inline bool httpReq::func_12_0(state_t & state)
-{
-    bool ret = _func_12_0();
-    state.node = ret ? node_t::DATA_12_1 : node_t::RANGE_14_0;
-    return ret;
+    if (contentLength)
+    {
+        state.node = node_t::DATA_12_1;
+        return true;
+    }
+    state.node = node_t::RANGE_14_0;
+    return false;
 }
 
 inline bool httpReq::data_12_1(state_t & state)
@@ -2324,8 +2339,8 @@ const char * httpReq::state_t::name() const
         case node_t::TEXT_1_0_9_0: return "TEXT_1_0_9_0";
         case node_t::TEXT_1_0_10_0: return "TEXT_1_0_10_0";
         case node_t::BANG_1_0: return "BANG_1_0";
-        case node_t::GOTO_1_2: return "GOTO_1_2";
-        case node_t::GOTO_1_3: return "GOTO_1_3";
+        case node_t::CALL_1_2: return "CALL_1_2";
+        case node_t::CALL_1_3: return "CALL_1_3";
         case node_t::RESET_1_4: return "RESET_1_4";
         case node_t::LOOP_3_0: return "LOOP_3_0";
         case node_t::LABEL_3_0: return "LABEL_3_0";
@@ -2373,7 +2388,7 @@ const char * httpReq::state_t::name() const
         case node_t::TEXT_11_0: return "TEXT_11_0";
         case node_t::TEXT_11_1: return "TEXT_11_1";
         case node_t::CASES_11_2: return "CASES_11_2";
-        case node_t::FUNC_12_0: return "FUNC_12_0";
+        case node_t::IF_12_0: return "IF_12_0";
         case node_t::DATA_12_1: return "DATA_12_1";
         case node_t::RET_12_2: return "RET_12_2";
         case node_t::RET_13_0: return "RET_13_0";

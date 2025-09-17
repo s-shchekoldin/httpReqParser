@@ -9,6 +9,6 @@ label:HEADERS
     <'Content-Length:'> [ \t]+ u64:contentLength             { printf("LENGTH: %zu\n", contentLength); } "\r"? "\n"
     [ \t] [^\r\n]* "\r"? "\n"
     "\r"? "\n" \
-        { return contentLength; } data:payload(max=contentLength) return
+        if {contentLength} data:payload(max=contentLength) return
         return
     catch: [^\n]+ "\n"

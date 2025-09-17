@@ -1,5 +1,5 @@
 // ==============================================================
-// Date: 2025-09-17 08:30:45 GMT
+// Date: 2025-09-17 18:46:08 GMT
 // Generated using vProto(2025.09.17)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
@@ -35,18 +35,18 @@ private:
     enum class node_t
     {
         LOOP_1_0, // line_1
-            TEXT_1_0, GOTO_1_1, GOTO_1_2, 
-            TEXT_2_0, GOTO_2_1, GOTO_2_2, 
+            TEXT_1_0, CALL_1_1, CALL_1_2, 
+            TEXT_2_0, CALL_2_1, CALL_2_2, 
             TEXT_3_0, CASES_3_1,
-                TEXT_4_0, GOTO_4_1, GOTO_4_2, 
-                TEXT_5_0, GOTO_5_1, GOTO_5_2, 
-                TEXT_6_0, GOTO_6_1, GOTO_6_2, 
-            TEXT_7_0, GOTO_7_1, GOTO_7_2, 
-            TEXT_8_0, GOTO_8_1, GOTO_8_2, 
-            TEXT_9_0, GOTO_9_1, GOTO_9_2, 
-            TEXT_10_0, GOTO_10_1, GOTO_10_2, 
-            TEXT_11_0, GOTO_11_1, GOTO_11_2, 
-            TEXT_12_0, GOTO_12_1, GOTO_12_2, 
+                TEXT_4_0, CALL_4_1, CALL_4_2, 
+                TEXT_5_0, CALL_5_1, CALL_5_2, 
+                TEXT_6_0, CALL_6_1, CALL_6_2, 
+            TEXT_7_0, CALL_7_1, CALL_7_2, 
+            TEXT_8_0, CALL_8_1, CALL_8_2, 
+            TEXT_9_0, CALL_9_1, CALL_9_2, 
+            TEXT_10_0, CALL_10_1, CALL_10_2, 
+            TEXT_11_0, CALL_11_1, CALL_11_2, 
+            TEXT_12_0, CALL_12_1, CALL_12_2, 
             TEXT_13_0, TEXT_13_1, 
         LOOP_15_0, // line_15
             LABEL_15_0, RANGE_15_1, STRING_15_2, RANGE_15_3, TEXT_15_4, RANGE_15_5, TEXT_15_6, RANGE_15_7, TEXT_15_8, TEXT_15_9, RET_15_10, 
@@ -79,40 +79,40 @@ private:
     void parse(state_t & state);
     bool loop_1_0(state_t & state);
     bool text_1_0(state_t & state, bool isCaseCall);
-    bool goto_1_1(state_t & state);
-    bool goto_1_2(state_t & state);
+    bool call_1_1(state_t & state);
+    bool call_1_2(state_t & state);
     bool text_2_0(state_t & state, bool isCaseCall);
-    bool goto_2_1(state_t & state);
-    bool goto_2_2(state_t & state);
+    bool call_2_1(state_t & state);
+    bool call_2_2(state_t & state);
     bool text_3_0(state_t & state);
     bool cases_3_1(state_t & state);
     bool text_4_0(state_t & state, bool isCaseCall);
-    bool goto_4_1(state_t & state);
-    bool goto_4_2(state_t & state);
+    bool call_4_1(state_t & state);
+    bool call_4_2(state_t & state);
     bool text_5_0(state_t & state, bool isCaseCall);
-    bool goto_5_1(state_t & state);
-    bool goto_5_2(state_t & state);
+    bool call_5_1(state_t & state);
+    bool call_5_2(state_t & state);
     bool text_6_0(state_t & state, bool isCaseCall);
-    bool goto_6_1(state_t & state);
-    bool goto_6_2(state_t & state);
+    bool call_6_1(state_t & state);
+    bool call_6_2(state_t & state);
     bool text_7_0(state_t & state, bool isCaseCall);
-    bool goto_7_1(state_t & state);
-    bool goto_7_2(state_t & state);
+    bool call_7_1(state_t & state);
+    bool call_7_2(state_t & state);
     bool text_8_0(state_t & state, bool isCaseCall);
-    bool goto_8_1(state_t & state);
-    bool goto_8_2(state_t & state);
+    bool call_8_1(state_t & state);
+    bool call_8_2(state_t & state);
     bool text_9_0(state_t & state, bool isCaseCall);
-    bool goto_9_1(state_t & state);
-    bool goto_9_2(state_t & state);
+    bool call_9_1(state_t & state);
+    bool call_9_2(state_t & state);
     bool text_10_0(state_t & state, bool isCaseCall);
-    bool goto_10_1(state_t & state);
-    bool goto_10_2(state_t & state);
+    bool call_10_1(state_t & state);
+    bool call_10_2(state_t & state);
     bool text_11_0(state_t & state, bool isCaseCall);
-    bool goto_11_1(state_t & state);
-    bool goto_11_2(state_t & state);
+    bool call_11_1(state_t & state);
+    bool call_11_2(state_t & state);
     bool text_12_0(state_t & state, bool isCaseCall);
-    bool goto_12_1(state_t & state);
-    bool goto_12_2(state_t & state);
+    bool call_12_1(state_t & state);
+    bool call_12_2(state_t & state);
     bool text_13_0(state_t & state);
     bool text_13_1(state_t & state);
     bool loop_15_0(state_t & state);
