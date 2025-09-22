@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-09-17 18:46:08 GMT
-// Generated using vProto(2025.09.17)        https://www.cgen.dev
+// Date: 2025-09-22 18:01:21 GMT
+// Generated using vProto(2025.09.22)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -231,7 +231,7 @@ inline bool httpReq::any_1_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_0_0(state_t & state)
+inline bool httpReq::text_1_0_0_0(state_t & state) const
 {
     const static std::array<uint8_t, 3> text = {0x47, 0x45, 0x54}; // get
     for(; state.data < state.end; state.data++)
@@ -254,7 +254,7 @@ inline bool httpReq::text_1_0_0_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_1_0(state_t & state)
+inline bool httpReq::text_1_0_1_0(state_t & state) const
 {
     const static std::array<uint8_t, 4> text = {0x48, 0x45, 0x41, 0x44}; // head
     for(; state.data < state.end; state.data++)
@@ -277,7 +277,7 @@ inline bool httpReq::text_1_0_1_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_2_0(state_t & state)
+inline bool httpReq::text_1_0_2_0(state_t & state) const
 {
     const static std::array<uint8_t, 3> text = {0x50, 0x55, 0x54}; // put
     for(; state.data < state.end; state.data++)
@@ -300,7 +300,7 @@ inline bool httpReq::text_1_0_2_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_3_0(state_t & state)
+inline bool httpReq::text_1_0_3_0(state_t & state) const
 {
     const static std::array<uint8_t, 5> text = {0x50, 0x41, 0x54, 0x43, 0x48}; // patch
     for(; state.data < state.end; state.data++)
@@ -323,7 +323,7 @@ inline bool httpReq::text_1_0_3_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_4_0(state_t & state)
+inline bool httpReq::text_1_0_4_0(state_t & state) const
 {
     const static std::array<uint8_t, 6> text = {0x44, 0x45, 0x4c, 0x45, 0x54, 0x45}; // delete
     for(; state.data < state.end; state.data++)
@@ -346,7 +346,7 @@ inline bool httpReq::text_1_0_4_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_5_0(state_t & state)
+inline bool httpReq::text_1_0_5_0(state_t & state) const
 {
     const static std::array<uint8_t, 7> text = {0x4f, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x53}; // options
     for(; state.data < state.end; state.data++)
@@ -369,7 +369,7 @@ inline bool httpReq::text_1_0_5_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_6_0(state_t & state)
+inline bool httpReq::text_1_0_6_0(state_t & state) const
 {
     const static std::array<uint8_t, 7> text = {0x43, 0x4f, 0x4e, 0x4e, 0x45, 0x43, 0x54}; // connect
     for(; state.data < state.end; state.data++)
@@ -392,7 +392,7 @@ inline bool httpReq::text_1_0_6_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_7_0(state_t & state)
+inline bool httpReq::text_1_0_7_0(state_t & state) const
 {
     const static std::array<uint8_t, 4> text = {0x4c, 0x49, 0x4e, 0x4b}; // link
     for(; state.data < state.end; state.data++)
@@ -415,7 +415,7 @@ inline bool httpReq::text_1_0_7_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_8_0(state_t & state)
+inline bool httpReq::text_1_0_8_0(state_t & state) const
 {
     const static std::array<uint8_t, 6> text = {0x55, 0x4e, 0x4c, 0x49, 0x4e, 0x4b}; // unlink
     for(; state.data < state.end; state.data++)
@@ -438,7 +438,7 @@ inline bool httpReq::text_1_0_8_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_9_0(state_t & state)
+inline bool httpReq::text_1_0_9_0(state_t & state) const
 {
     const static std::array<uint8_t, 5> text = {0x54, 0x52, 0x41, 0x43, 0x45}; // trace
     for(; state.data < state.end; state.data++)
@@ -461,7 +461,7 @@ inline bool httpReq::text_1_0_9_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_1_0_10_0(state_t & state)
+inline bool httpReq::text_1_0_10_0(state_t & state) const
 {
     const static std::array<uint8_t, 4> text = {0x50, 0x4f, 0x53, 0x54}; // post
     for(; state.data < state.end; state.data++)
@@ -494,7 +494,7 @@ inline bool httpReq::bang_1_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::call_1_2(state_t & state)
+inline bool httpReq::call_1_2(state_t & state) const
 {
     state.node = node_t::LABEL_3_0;
     if (state.retStackCount < state.retStack.size())
@@ -508,7 +508,7 @@ inline bool httpReq::call_1_2(state_t & state)
     return true;
 }
 
-inline bool httpReq::call_1_3(state_t & state)
+inline bool httpReq::call_1_3(state_t & state) const
 {
     state.node = node_t::LABEL_6_0;
     if (state.retStackCount < state.retStack.size())
@@ -542,23 +542,23 @@ inline bool httpReq::reset_1_4(state_t & state)
     return true;
 }
 
-inline bool httpReq::loop_3_0(state_t & state)
+inline bool httpReq::loop_3_0(state_t & state) const
 {
     return label_3_0(state);
 }
 
-inline bool httpReq::label_3_0(state_t & state)
+inline bool httpReq::label_3_0(state_t & state) const
 {
     state.node = node_t::LOOP_3_1;
     return true;
 }
 
-inline bool httpReq::loop_3_1(state_t & state)
+inline bool httpReq::loop_3_1(state_t & state) const
 {
     return range_4_0(state);
 }
 
-inline bool httpReq::range_4_0(state_t & state)
+inline bool httpReq::range_4_0(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -724,7 +724,7 @@ inline bool httpReq::string_4_1(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_4_2(state_t & state)
+inline bool httpReq::range_4_2(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -779,7 +779,7 @@ inline bool httpReq::func_4_3(state_t & state)
     return false;
 }
 
-inline bool httpReq::text_4_4(state_t & state)
+inline bool httpReq::text_4_4(state_t & state) const
 {
     const static std::array<uint8_t, 5> text = {0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
     for(; state.data < state.end; state.data++)
@@ -802,7 +802,7 @@ inline bool httpReq::text_4_4(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_4_5(state_t & state)
+inline bool httpReq::range_4_5(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -841,7 +841,7 @@ inline bool httpReq::range_4_5(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_4_6(state_t & state)
+inline bool httpReq::text_4_6(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -859,7 +859,7 @@ inline bool httpReq::text_4_6(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_4_7(state_t & state)
+inline bool httpReq::range_4_7(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -898,7 +898,7 @@ inline bool httpReq::range_4_7(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_4_8(state_t & state)
+inline bool httpReq::text_4_8(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -916,7 +916,7 @@ inline bool httpReq::text_4_8(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_4_9(state_t & state)
+inline bool httpReq::text_4_9(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -934,18 +934,18 @@ inline bool httpReq::text_4_9(state_t & state)
     return true;
 }
 
-inline bool httpReq::ret_4_10(state_t & state)
+inline bool httpReq::ret_4_10(state_t & state) const
 {
     state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
     return state.node != node_t::NO_STATE;
 }
 
-inline bool httpReq::loop_6_0(state_t & state)
+inline bool httpReq::loop_6_0(state_t & state) const
 {
     return label_6_0(state);
 }
 
-inline bool httpReq::label_6_0(state_t & state)
+inline bool httpReq::label_6_0(state_t & state) const
 {
     state.node = node_t::LOOP_6_1;
     return true;
@@ -979,7 +979,7 @@ inline bool httpReq::loop_6_1(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_7_0(state_t & state, bool isCaseCall)
+inline bool httpReq::text_7_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 5> text = {0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
     for(; state.data < state.end; state.data++)
@@ -1003,7 +1003,7 @@ inline bool httpReq::text_7_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool httpReq::range_7_1(state_t & state)
+inline bool httpReq::range_7_1(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1261,7 +1261,7 @@ inline bool httpReq::func_7_3(state_t & state)
     return false;
 }
 
-inline bool httpReq::text_7_4(state_t & state)
+inline bool httpReq::text_7_4(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1279,7 +1279,7 @@ inline bool httpReq::text_7_4(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_7_5(state_t & state)
+inline bool httpReq::text_7_5(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1316,7 +1316,7 @@ inline bool httpReq::any_8_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_8_0_0_0(state_t & state)
+inline bool httpReq::text_8_0_0_0(state_t & state) const
 {
     const static std::array<uint8_t, 13> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 0x79, 0x70, 0x65, 0x3a}; // content-type:
     for(; state.data < state.end; state.data++)
@@ -1349,7 +1349,7 @@ inline bool httpReq::bang_8_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_8_2(state_t & state)
+inline bool httpReq::range_8_2(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1607,7 +1607,7 @@ inline bool httpReq::func_8_4(state_t & state)
     return false;
 }
 
-inline bool httpReq::text_8_5(state_t & state)
+inline bool httpReq::text_8_5(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1625,7 +1625,7 @@ inline bool httpReq::text_8_5(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_8_6(state_t & state)
+inline bool httpReq::text_8_6(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1662,7 +1662,7 @@ inline bool httpReq::any_9_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_9_0_0_0(state_t & state)
+inline bool httpReq::text_9_0_0_0(state_t & state) const
 {
     const static std::array<uint8_t, 15> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
     for(; state.data < state.end; state.data++)
@@ -1695,7 +1695,7 @@ inline bool httpReq::bang_9_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_9_2(state_t & state)
+inline bool httpReq::range_9_2(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1920,7 +1920,7 @@ inline bool httpReq::func_9_4(state_t & state)
     return false;
 }
 
-inline bool httpReq::text_9_5(state_t & state)
+inline bool httpReq::text_9_5(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1938,7 +1938,7 @@ inline bool httpReq::text_9_5(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_9_6(state_t & state)
+inline bool httpReq::text_9_6(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1956,7 +1956,7 @@ inline bool httpReq::text_9_6(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_10_0(state_t & state)
+inline bool httpReq::range_10_0(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1995,7 +1995,7 @@ inline bool httpReq::range_10_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::range_10_1(state_t & state)
+inline bool httpReq::range_10_1(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -2071,7 +2071,7 @@ inline bool httpReq::range_10_1(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_10_2(state_t & state)
+inline bool httpReq::text_10_2(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -2089,7 +2089,7 @@ inline bool httpReq::text_10_2(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_10_3(state_t & state)
+inline bool httpReq::text_10_3(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -2107,7 +2107,7 @@ inline bool httpReq::text_10_3(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_11_0(state_t & state)
+inline bool httpReq::text_11_0(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -2125,7 +2125,7 @@ inline bool httpReq::text_11_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_11_1(state_t & state)
+inline bool httpReq::text_11_1(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -2143,7 +2143,7 @@ inline bool httpReq::text_11_1(state_t & state)
     return true;
 }
 
-inline bool httpReq::cases_11_2(state_t & state)
+inline bool httpReq::cases_11_2(state_t & state) const
 {
     if (if_12_0(state)) // case_1
         return true;
@@ -2153,7 +2153,7 @@ inline bool httpReq::cases_11_2(state_t & state)
     return true;
 }
 
-inline bool httpReq::if_12_0(state_t & state)
+inline bool httpReq::if_12_0(state_t & state) const
 {
     if (contentLength)
     {
@@ -2185,19 +2185,19 @@ inline bool httpReq::data_12_1(state_t & state)
     return true;
 }
 
-inline bool httpReq::ret_12_2(state_t & state)
+inline bool httpReq::ret_12_2(state_t & state) const
 {
     state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
     return state.node != node_t::NO_STATE;
 }
 
-inline bool httpReq::ret_13_0(state_t & state)
+inline bool httpReq::ret_13_0(state_t & state) const
 {
     state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
     return state.node != node_t::NO_STATE;
 }
 
-inline bool httpReq::range_14_0(state_t & state)
+inline bool httpReq::range_14_0(state_t & state) const
 {
     const char * beginData = state.data;
     while(state.data < state.end) [[likely]]
@@ -2293,7 +2293,7 @@ inline bool httpReq::range_14_0(state_t & state)
     return true;
 }
 
-inline bool httpReq::text_14_1(state_t & state)
+inline bool httpReq::text_14_1(state_t & state) const
 {
     if(state.data < state.end)
     {

@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-09-17 18:46:08 GMT
-// Generated using vProto(2025.09.17)        https://www.cgen.dev
+// Date: 2025-09-22 18:01:21 GMT
+// Generated using vProto(2025.09.22)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -134,7 +134,7 @@ bool perfHttpReq::parse(const char * data, unsigned len)
     return mainState.node != node_t::NO_STATE;
 }
 
-inline bool perfHttpReq::loop_1_0(state_t & state)
+inline bool perfHttpReq::loop_1_0(state_t & state) const
 {
     if (state.data == state.end)
         return true;
@@ -162,7 +162,7 @@ inline bool perfHttpReq::loop_1_0(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_1_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_1_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 3> text = {0x67, 0x65, 0x74}; // get
     for(; state.data < state.end; state.data++)
@@ -186,7 +186,7 @@ inline bool perfHttpReq::text_1_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_1_1(state_t & state)
+inline bool perfHttpReq::call_1_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -200,7 +200,7 @@ inline bool perfHttpReq::call_1_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_1_2(state_t & state)
+inline bool perfHttpReq::call_1_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -214,7 +214,7 @@ inline bool perfHttpReq::call_1_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 4> text = {0x68, 0x65, 0x61, 0x64}; // head
     for(; state.data < state.end; state.data++)
@@ -238,7 +238,7 @@ inline bool perfHttpReq::text_2_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_2_1(state_t & state)
+inline bool perfHttpReq::call_2_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -252,7 +252,7 @@ inline bool perfHttpReq::call_2_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_2_2(state_t & state)
+inline bool perfHttpReq::call_2_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -266,7 +266,7 @@ inline bool perfHttpReq::call_2_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_3_0(state_t & state)
+inline bool perfHttpReq::text_3_0(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -284,7 +284,7 @@ inline bool perfHttpReq::text_3_0(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::cases_3_1(state_t & state)
+inline bool perfHttpReq::cases_3_1(state_t & state) const
 {
     if (state.data == state.end)
         return true;
@@ -298,7 +298,7 @@ inline bool perfHttpReq::cases_3_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_4_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_4_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 3> text = {0x6f, 0x73, 0x74}; // ost
     for(; state.data < state.end; state.data++)
@@ -322,7 +322,7 @@ inline bool perfHttpReq::text_4_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_4_1(state_t & state)
+inline bool perfHttpReq::call_4_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -336,7 +336,7 @@ inline bool perfHttpReq::call_4_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_4_2(state_t & state)
+inline bool perfHttpReq::call_4_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -350,7 +350,7 @@ inline bool perfHttpReq::call_4_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 2> text = {0x75, 0x74}; // ut
     for(; state.data < state.end; state.data++)
@@ -374,7 +374,7 @@ inline bool perfHttpReq::text_5_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_5_1(state_t & state)
+inline bool perfHttpReq::call_5_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -388,7 +388,7 @@ inline bool perfHttpReq::call_5_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_5_2(state_t & state)
+inline bool perfHttpReq::call_5_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -402,7 +402,7 @@ inline bool perfHttpReq::call_5_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 4> text = {0x61, 0x74, 0x63, 0x68}; // atch
     for(; state.data < state.end; state.data++)
@@ -426,7 +426,7 @@ inline bool perfHttpReq::text_6_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_6_1(state_t & state)
+inline bool perfHttpReq::call_6_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -440,7 +440,7 @@ inline bool perfHttpReq::call_6_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_6_2(state_t & state)
+inline bool perfHttpReq::call_6_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -454,7 +454,7 @@ inline bool perfHttpReq::call_6_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 6> text = {0x64, 0x65, 0x6c, 0x65, 0x74, 0x65}; // delete
     for(; state.data < state.end; state.data++)
@@ -478,7 +478,7 @@ inline bool perfHttpReq::text_7_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_7_1(state_t & state)
+inline bool perfHttpReq::call_7_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -492,7 +492,7 @@ inline bool perfHttpReq::call_7_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_7_2(state_t & state)
+inline bool perfHttpReq::call_7_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -506,7 +506,7 @@ inline bool perfHttpReq::call_7_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 7> text = {0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73}; // options
     for(; state.data < state.end; state.data++)
@@ -530,7 +530,7 @@ inline bool perfHttpReq::text_8_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_8_1(state_t & state)
+inline bool perfHttpReq::call_8_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -544,7 +544,7 @@ inline bool perfHttpReq::call_8_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_8_2(state_t & state)
+inline bool perfHttpReq::call_8_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -558,7 +558,7 @@ inline bool perfHttpReq::call_8_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 7> text = {0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74}; // connect
     for(; state.data < state.end; state.data++)
@@ -582,7 +582,7 @@ inline bool perfHttpReq::text_9_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_9_1(state_t & state)
+inline bool perfHttpReq::call_9_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -596,7 +596,7 @@ inline bool perfHttpReq::call_9_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_9_2(state_t & state)
+inline bool perfHttpReq::call_9_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -610,7 +610,7 @@ inline bool perfHttpReq::call_9_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 4> text = {0x6c, 0x69, 0x6e, 0x6b}; // link
     for(; state.data < state.end; state.data++)
@@ -634,7 +634,7 @@ inline bool perfHttpReq::text_10_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_10_1(state_t & state)
+inline bool perfHttpReq::call_10_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -648,7 +648,7 @@ inline bool perfHttpReq::call_10_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_10_2(state_t & state)
+inline bool perfHttpReq::call_10_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -662,7 +662,7 @@ inline bool perfHttpReq::call_10_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 6> text = {0x75, 0x6e, 0x6c, 0x69, 0x6e, 0x6b}; // unlink
     for(; state.data < state.end; state.data++)
@@ -686,7 +686,7 @@ inline bool perfHttpReq::text_11_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_11_1(state_t & state)
+inline bool perfHttpReq::call_11_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -700,7 +700,7 @@ inline bool perfHttpReq::call_11_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_11_2(state_t & state)
+inline bool perfHttpReq::call_11_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -714,7 +714,7 @@ inline bool perfHttpReq::call_11_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 5> text = {0x74, 0x72, 0x61, 0x63, 0x65}; // trace
     for(; state.data < state.end; state.data++)
@@ -738,7 +738,7 @@ inline bool perfHttpReq::text_12_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::call_12_1(state_t & state)
+inline bool perfHttpReq::call_12_1(state_t & state) const
 {
     state.node = node_t::LABEL_15_0;
     if (state.retStackCount < state.retStack.size())
@@ -752,7 +752,7 @@ inline bool perfHttpReq::call_12_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::call_12_2(state_t & state)
+inline bool perfHttpReq::call_12_2(state_t & state) const
 {
     state.node = node_t::LABEL_17_0;
     if (state.retStackCount < state.retStack.size())
@@ -766,7 +766,7 @@ inline bool perfHttpReq::call_12_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_13_0(state_t & state)
+inline bool perfHttpReq::text_13_0(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -784,7 +784,7 @@ inline bool perfHttpReq::text_13_0(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_13_1(state_t & state)
+inline bool perfHttpReq::text_13_1(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -802,18 +802,18 @@ inline bool perfHttpReq::text_13_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::loop_15_0(state_t & state)
+inline bool perfHttpReq::loop_15_0(state_t & state) const
 {
     return label_15_0(state);
 }
 
-inline bool perfHttpReq::label_15_0(state_t & state)
+inline bool perfHttpReq::label_15_0(state_t & state) const
 {
     state.node = node_t::RANGE_15_1;
     return true;
 }
 
-inline bool perfHttpReq::range_15_1(state_t & state)
+inline bool perfHttpReq::range_15_1(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -979,7 +979,7 @@ inline bool perfHttpReq::string_15_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::range_15_3(state_t & state)
+inline bool perfHttpReq::range_15_3(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1018,7 +1018,7 @@ inline bool perfHttpReq::range_15_3(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_15_4(state_t & state)
+inline bool perfHttpReq::text_15_4(state_t & state) const
 {
     const static std::array<uint8_t, 5> text = {0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
     for(; state.data < state.end; state.data++)
@@ -1041,7 +1041,7 @@ inline bool perfHttpReq::text_15_4(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::range_15_5(state_t & state)
+inline bool perfHttpReq::range_15_5(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1080,7 +1080,7 @@ inline bool perfHttpReq::range_15_5(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_15_6(state_t & state)
+inline bool perfHttpReq::text_15_6(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1098,7 +1098,7 @@ inline bool perfHttpReq::text_15_6(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::range_15_7(state_t & state)
+inline bool perfHttpReq::range_15_7(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1137,7 +1137,7 @@ inline bool perfHttpReq::range_15_7(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_15_8(state_t & state)
+inline bool perfHttpReq::text_15_8(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1155,7 +1155,7 @@ inline bool perfHttpReq::text_15_8(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_15_9(state_t & state)
+inline bool perfHttpReq::text_15_9(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1173,24 +1173,24 @@ inline bool perfHttpReq::text_15_9(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::ret_15_10(state_t & state)
+inline bool perfHttpReq::ret_15_10(state_t & state) const
 {
     state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
     return state.node != node_t::NO_STATE;
 }
 
-inline bool perfHttpReq::loop_17_0(state_t & state)
+inline bool perfHttpReq::loop_17_0(state_t & state) const
 {
     return label_17_0(state);
 }
 
-inline bool perfHttpReq::label_17_0(state_t & state)
+inline bool perfHttpReq::label_17_0(state_t & state) const
 {
     state.node = node_t::LOOP_17_1;
     return true;
 }
 
-inline bool perfHttpReq::loop_17_1(state_t & state)
+inline bool perfHttpReq::loop_17_1(state_t & state) const
 {
     if (state.data == state.end)
         return true;
@@ -1206,7 +1206,7 @@ inline bool perfHttpReq::loop_17_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_18_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_18_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 5> text = {0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
     for(; state.data < state.end; state.data++)
@@ -1230,7 +1230,7 @@ inline bool perfHttpReq::text_18_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::range_18_1(state_t & state)
+inline bool perfHttpReq::range_18_1(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1472,7 +1472,7 @@ inline bool perfHttpReq::string_18_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_18_3(state_t & state)
+inline bool perfHttpReq::text_18_3(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1490,7 +1490,7 @@ inline bool perfHttpReq::text_18_3(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_18_4(state_t & state)
+inline bool perfHttpReq::text_18_4(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1508,7 +1508,7 @@ inline bool perfHttpReq::text_18_4(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall)
+inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall) const
 {
     const static std::array<uint8_t, 15> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
     for(; state.data < state.end; state.data++)
@@ -1532,7 +1532,7 @@ inline bool perfHttpReq::text_19_0(state_t & state, bool isCaseCall)
     return true;
 }
 
-inline bool perfHttpReq::range_19_1(state_t & state)
+inline bool perfHttpReq::range_19_1(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1741,7 +1741,7 @@ inline bool perfHttpReq::uint_19_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_19_3(state_t & state)
+inline bool perfHttpReq::text_19_3(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1759,7 +1759,7 @@ inline bool perfHttpReq::text_19_3(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_19_4(state_t & state)
+inline bool perfHttpReq::text_19_4(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1777,7 +1777,7 @@ inline bool perfHttpReq::text_19_4(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::range_20_0(state_t & state)
+inline bool perfHttpReq::range_20_0(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1816,7 +1816,7 @@ inline bool perfHttpReq::range_20_0(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::range_20_1(state_t & state)
+inline bool perfHttpReq::range_20_1(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -1892,7 +1892,7 @@ inline bool perfHttpReq::range_20_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_20_2(state_t & state)
+inline bool perfHttpReq::text_20_2(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1910,7 +1910,7 @@ inline bool perfHttpReq::text_20_2(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_20_3(state_t & state)
+inline bool perfHttpReq::text_20_3(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1928,7 +1928,7 @@ inline bool perfHttpReq::text_20_3(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_21_0(state_t & state)
+inline bool perfHttpReq::text_21_0(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -1946,7 +1946,7 @@ inline bool perfHttpReq::text_21_0(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_21_1(state_t & state)
+inline bool perfHttpReq::text_21_1(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -2027,19 +2027,19 @@ inline bool perfHttpReq::func_22_2(state_t & state)
     return false;
 }
 
-inline bool perfHttpReq::ret_22_3(state_t & state)
+inline bool perfHttpReq::ret_22_3(state_t & state) const
 {
     state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
     return state.node != node_t::NO_STATE;
 }
 
-inline bool perfHttpReq::ret_23_0(state_t & state)
+inline bool perfHttpReq::ret_23_0(state_t & state) const
 {
     state.node = state.retStackCount ? state.retStack[--state.retStackCount] : node_t::NO_STATE;
     return state.node != node_t::NO_STATE;
 }
 
-inline bool perfHttpReq::range_24_0(state_t & state)
+inline bool perfHttpReq::range_24_0(state_t & state) const
 {
     const static std::array<bool, 256> exitSym = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -2154,7 +2154,7 @@ inline bool perfHttpReq::range_24_0(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_24_1(state_t & state)
+inline bool perfHttpReq::text_24_1(state_t & state) const
 {
     if(state.data < state.end)
     {
@@ -2172,7 +2172,7 @@ inline bool perfHttpReq::text_24_1(state_t & state)
     return true;
 }
 
-inline bool perfHttpReq::text_24_2(state_t & state)
+inline bool perfHttpReq::text_24_2(state_t & state) const
 {
     if(state.data < state.end)
     {
