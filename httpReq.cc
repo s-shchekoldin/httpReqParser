@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-09-22 18:01:21 GMT
-// Generated using vProto(2025.09.22)        https://www.cgen.dev
+// Date: 2025-11-11 05:24:04 GMT
+// Generated using vProto(2025.11.11)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -121,24 +121,34 @@ bool httpReq::parse(const char * data, unsigned len)
 {
     mainState.data = data;
     mainState.end = &data[len];
-    for(unsigned i = 0; i < prlState.size(); i++)
+    for(auto & p : prlState)
     {
-        prlState[i].data = data;
-        prlState[i].end = &data[len];
+        p.data = data;
+        p.end = &data[len];
     }
     for(bool repeatParse = true; repeatParse; )
     {
         repeatParse = false;
-        for(unsigned i = 0; i <= prlState.size(); i++)
+        unsigned oNum = 0;;
+        for(unsigned i = 0; i < prlState.size(); i++)
         {
-            state_t & state = i < prlState.size() ? prlState[i] : mainState;
-            if (state.node == node_t::NO_STATE || !state.remainDataLen())
-                continue;
-            repeatParse = true;
-            parse(state);
+            if (prlState[i].remainDataLen())
+            {
+                state_t state = prlState[i];
+                parse(state);
+                if (state.node == node_t::NO_STATE)
+                    continue;
+                repeatParse = true;
+                prlState[oNum] = state;
+            }
+            else if (i != oNum)
+                prlState[oNum] = prlState[i];
+            oNum++;
         }
-        for(auto it = prlState.begin(); it != prlState.end(); )
-            it = (it->node == node_t::NO_STATE) ? prlState.erase(it) : ++it;
+        prlState.resize(oNum);
+        parse(mainState);
+        if (mainState.node != node_t::NO_STATE && mainState.remainDataLen())
+            repeatParse = true;
     }
     return mainState.node != node_t::NO_STATE || !prlState.empty();
 }
@@ -488,9 +498,11 @@ inline bool httpReq::bang_1_0(state_t & state)
 {
     state.node = node_t::CALL_1_2;
     if (&mainState != &state)
+    {
         mainState = state;
-    for(auto it = prlState.begin(); it != prlState.end(); it++)
-        it->node = node_t::NO_STATE;
+        state.node = node_t::NO_STATE;
+    }
+    prlState.clear();
     return true;
 }
 
@@ -526,17 +538,9 @@ inline bool httpReq::reset_1_4(state_t & state)
 {
     const char * d = state.data;
     const char * e = state.end;
-    if (&mainState == &state)
-    {
-        httpReq::reset();
-    } else {
-        std::vector<state_t> pTmp;
-        pTmp.swap(prlState);
-        httpReq::reset();
-        pTmp.swap(prlState);
-        for(auto it = prlState.begin(); it != prlState.end(); it++)
-            it->node = node_t::NO_STATE;
-    }
+    if (&mainState != &state)
+        state.node = node_t::NO_STATE;
+    httpReq::reset();
     mainState.data = d;
     mainState.end = e;
     return true;
@@ -1343,9 +1347,11 @@ inline bool httpReq::bang_8_0(state_t & state)
 {
     state.node = node_t::RANGE_8_2;
     if (&mainState != &state)
+    {
         mainState = state;
-    for(auto it = prlState.begin(); it != prlState.end(); it++)
-        it->node = node_t::NO_STATE;
+        state.node = node_t::NO_STATE;
+    }
+    prlState.clear();
     return true;
 }
 
@@ -1689,9 +1695,11 @@ inline bool httpReq::bang_9_0(state_t & state)
 {
     state.node = node_t::RANGE_9_2;
     if (&mainState != &state)
+    {
         mainState = state;
-    for(auto it = prlState.begin(); it != prlState.end(); it++)
-        it->node = node_t::NO_STATE;
+        state.node = node_t::NO_STATE;
+    }
+    prlState.clear();
     return true;
 }
 
