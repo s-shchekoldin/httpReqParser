@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-11-11 05:24:04 GMT
-// Generated using vProto(2025.11.11)        https://www.cgen.dev
+// Date: 2025-11-16 07:23:23 GMT
+// Generated using vProto(2025.11.16)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -155,21 +155,7 @@ bool httpReq::parse(const char * data, unsigned len)
 
 inline bool httpReq::loop_1_0(state_t & state)
 {
-    if (state.data == state.end)
-        return true;
-    state_t startState = state;
-    if (any_1_0(state) && state.node == node_t::BANG_1_0 && bang_1_0(state) && state.node == node_t::CALL_1_2) // case_1
-        return true;
-    else if (state.node != node_t::NO_STATE)
-        prlState.push_back(state);
-    state = startState;
-    state.node = node_t::NO_STATE;
-    if (&mainState == &state && prlState.size() == 1)
-    {
-        mainState = prlState[0];
-        prlState.clear();
-    }
-    return true;
+    return any_1_0(state);
 }
 
 inline bool httpReq::any_1_0(state_t & state)
@@ -177,68 +163,73 @@ inline bool httpReq::any_1_0(state_t & state)
     if (state.data == state.end)
         return true;
     state_t startState = state;
-    if (text_1_0_0_0(state) && state.node == node_t::BANG_1_0) // case_1
+    // case_1: TEXT_1_0_0_0
+    if (text_1_0_0_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_1_0(state) && state.node == node_t::BANG_1_0) // case_2
+    // case_2: TEXT_1_0_1_0
+    if (text_1_0_1_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_2_0(state) && state.node == node_t::BANG_1_0) // case_3
+    // case_3: TEXT_1_0_2_0
+    if (text_1_0_2_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_3_0(state) && state.node == node_t::BANG_1_0) // case_4
+    // case_4: TEXT_1_0_3_0
+    if (text_1_0_3_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_4_0(state) && state.node == node_t::BANG_1_0) // case_5
+    // case_5: TEXT_1_0_4_0
+    if (text_1_0_4_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_5_0(state) && state.node == node_t::BANG_1_0) // case_6
+    // case_6: TEXT_1_0_5_0
+    if (text_1_0_5_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_6_0(state) && state.node == node_t::BANG_1_0) // case_7
+    // case_7: TEXT_1_0_6_0
+    if (text_1_0_6_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_7_0(state) && state.node == node_t::BANG_1_0) // case_8
+    // case_8: TEXT_1_0_7_0
+    if (text_1_0_7_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_8_0(state) && state.node == node_t::BANG_1_0) // case_9
+    // case_9: TEXT_1_0_8_0
+    if (text_1_0_8_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_9_0(state) && state.node == node_t::BANG_1_0) // case_10
+    // case_10: TEXT_1_0_9_0
+    if (text_1_0_9_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
     state = startState;
-    if (text_1_0_10_0(state) && state.node == node_t::BANG_1_0) // case_11
+    // case_11: TEXT_1_0_10_0
+    if (text_1_0_10_0(state) && state.node == node_t::BANG_1_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
-    state = startState;
     state.node = node_t::NO_STATE;
-    if (&mainState == &state && prlState.size() == 1)
-    {
-        mainState = prlState[0];
-        prlState.clear();
-    }
-    return true;
+    return false;
 }
 
 inline bool httpReq::text_1_0_0_0(state_t & state) const
@@ -959,26 +950,19 @@ inline bool httpReq::loop_6_1(state_t & state)
 {
     if (state.data == state.end)
         return true;
-    state_t startState = state;
     if (text_7_0(state, true)) // case_1
         return true;
-    state = startState;
-    if (any_8_0(state) && state.node == node_t::BANG_8_0 && bang_8_0(state) && state.node == node_t::RANGE_8_2) // case_2
+    state_t startState = state;
+    if (any_8_0(state)) // case_2
         return true;
-    else if (state.node != node_t::NO_STATE)
-        prlState.push_back(state);
     state = startState;
-    if (any_9_0(state) && state.node == node_t::BANG_9_0 && bang_9_0(state) && state.node == node_t::RANGE_9_2) // case_3
+    if (any_9_0(state)) // case_3
         return true;
-    else if (state.node != node_t::NO_STATE)
-        prlState.push_back(state);
     state = startState;
     if (range_10_0(state)) // case_4
         return true;
-    state = startState;
     if (text_11_0(state)) // case_5
         return true;
-    state = startState;
     state.node = node_t::RANGE_14_0;
     return true;
 }
@@ -1305,19 +1289,13 @@ inline bool httpReq::any_8_0(state_t & state)
 {
     if (state.data == state.end)
         return true;
-    state_t startState = state;
-    if (text_8_0_0_0(state) && state.node == node_t::BANG_8_0) // case_1
+    // case_1: TEXT_8_0_0_0
+    if (text_8_0_0_0(state) && state.node == node_t::BANG_8_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
-    state = startState;
-    state.node = node_t::NO_STATE;
-    if (&mainState == &state && prlState.size() == 1)
-    {
-        mainState = prlState[0];
-        prlState.clear();
-    }
-    return true;
+    state.node = node_t::RANGE_14_0;
+    return false;
 }
 
 inline bool httpReq::text_8_0_0_0(state_t & state) const
@@ -1653,19 +1631,13 @@ inline bool httpReq::any_9_0(state_t & state)
 {
     if (state.data == state.end)
         return true;
-    state_t startState = state;
-    if (text_9_0_0_0(state) && state.node == node_t::BANG_9_0) // case_1
+    // case_1: TEXT_9_0_0_0
+    if (text_9_0_0_0(state) && state.node == node_t::BANG_9_0)
         return true;
     else if (state.node != node_t::NO_STATE)
         prlState.push_back(state);
-    state = startState;
-    state.node = node_t::NO_STATE;
-    if (&mainState == &state && prlState.size() == 1)
-    {
-        mainState = prlState[0];
-        prlState.clear();
-    }
-    return true;
+    state.node = node_t::RANGE_14_0;
+    return false;
 }
 
 inline bool httpReq::text_9_0_0_0(state_t & state) const

@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-11-11 05:24:04 GMT
-// Generated using vProto(2025.11.11)        https://www.cgen.dev
+// Date: 2025-11-16 07:23:23 GMT
+// Generated using vProto(2025.11.16)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -38,36 +38,36 @@ private:
     {
         LOOP_1_0, // line_1
             ANY_1_0,
-                    TEXT_1_0_0_0, 
-                    TEXT_1_0_1_0, 
-                    TEXT_1_0_2_0, 
-                    TEXT_1_0_3_0, 
-                    TEXT_1_0_4_0, 
-                    TEXT_1_0_5_0, 
-                    TEXT_1_0_6_0, 
-                    TEXT_1_0_7_0, 
-                    TEXT_1_0_8_0, 
-                    TEXT_1_0_9_0, 
-                    TEXT_1_0_10_0, 
-                    BANG_1_0, CALL_1_2, CALL_1_3, RESET_1_4, 
+                    TEXT_1_0_0_0,
+                    TEXT_1_0_1_0,
+                    TEXT_1_0_2_0,
+                    TEXT_1_0_3_0,
+                    TEXT_1_0_4_0,
+                    TEXT_1_0_5_0,
+                    TEXT_1_0_6_0,
+                    TEXT_1_0_7_0,
+                    TEXT_1_0_8_0,
+                    TEXT_1_0_9_0,
+                    TEXT_1_0_10_0,
+                    BANG_1_0, CALL_1_2, CALL_1_3, RESET_1_4,
         LOOP_3_0, // line_3
             LABEL_3_0, LOOP_3_1,
-                RANGE_4_0, STRING_4_1, RANGE_4_2, FUNC_4_3, TEXT_4_4, RANGE_4_5, TEXT_4_6, RANGE_4_7, TEXT_4_8, TEXT_4_9, RET_4_10, 
+                RANGE_4_0, STRING_4_1, RANGE_4_2, FUNC_4_3, TEXT_4_4, RANGE_4_5, TEXT_4_6, RANGE_4_7, TEXT_4_8, TEXT_4_9, RET_4_10,
         LOOP_6_0, // line_6
             LABEL_6_0, LOOP_6_1,
-                TEXT_7_0, RANGE_7_1, STRING_7_2, FUNC_7_3, TEXT_7_4, TEXT_7_5, 
+                TEXT_7_0, RANGE_7_1, STRING_7_2, FUNC_7_3, TEXT_7_4, TEXT_7_5,
                 ANY_8_0,
-                    TEXT_8_0_0_0, 
-                        BANG_8_0, RANGE_8_2, STRING_8_3, FUNC_8_4, TEXT_8_5, TEXT_8_6, 
+                    TEXT_8_0_0_0,
+                        BANG_8_0, RANGE_8_2, STRING_8_3, FUNC_8_4, TEXT_8_5, TEXT_8_6,
                 ANY_9_0,
-                    TEXT_9_0_0_0, 
-                        BANG_9_0, RANGE_9_2, UINT_9_3, FUNC_9_4, TEXT_9_5, TEXT_9_6, 
-                RANGE_10_0, RANGE_10_1, TEXT_10_2, TEXT_10_3, 
+                    TEXT_9_0_0_0,
+                        BANG_9_0, RANGE_9_2, UINT_9_3, FUNC_9_4, TEXT_9_5, TEXT_9_6,
+                RANGE_10_0, RANGE_10_1, TEXT_10_2, TEXT_10_3,
                 TEXT_11_0, TEXT_11_1, CASES_11_2,
-                    IF_12_0, DATA_12_1, RET_12_2, 
-                    RET_13_0, 
+                    IF_12_0, DATA_12_1, RET_12_2,
+                    RET_13_0,
                  // catch:
-                RANGE_14_0, TEXT_14_1, 
+                RANGE_14_0, TEXT_14_1,
         NO_STATE
     };
     struct state_t

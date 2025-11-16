@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-11-11 05:24:04 GMT
-// Generated using vProto(2025.11.11)        https://www.cgen.dev
+// Date: 2025-11-16 07:23:23 GMT
+// Generated using vProto(2025.11.16)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -35,31 +35,31 @@ private:
     enum class node_t
     {
         LOOP_1_0, // line_1
-            TEXT_1_0, CALL_1_1, CALL_1_2, 
-            TEXT_2_0, CALL_2_1, CALL_2_2, 
+            TEXT_1_0, CALL_1_1, CALL_1_2,
+            TEXT_2_0, CALL_2_1, CALL_2_2,
             TEXT_3_0, CASES_3_1,
-                TEXT_4_0, CALL_4_1, CALL_4_2, 
-                TEXT_5_0, CALL_5_1, CALL_5_2, 
-                TEXT_6_0, CALL_6_1, CALL_6_2, 
-            TEXT_7_0, CALL_7_1, CALL_7_2, 
-            TEXT_8_0, CALL_8_1, CALL_8_2, 
-            TEXT_9_0, CALL_9_1, CALL_9_2, 
-            TEXT_10_0, CALL_10_1, CALL_10_2, 
-            TEXT_11_0, CALL_11_1, CALL_11_2, 
-            TEXT_12_0, CALL_12_1, CALL_12_2, 
-            TEXT_13_0, TEXT_13_1, 
+                TEXT_4_0, CALL_4_1, CALL_4_2,
+                TEXT_5_0, CALL_5_1, CALL_5_2,
+                TEXT_6_0, CALL_6_1, CALL_6_2,
+            TEXT_7_0, CALL_7_1, CALL_7_2,
+            TEXT_8_0, CALL_8_1, CALL_8_2,
+            TEXT_9_0, CALL_9_1, CALL_9_2,
+            TEXT_10_0, CALL_10_1, CALL_10_2,
+            TEXT_11_0, CALL_11_1, CALL_11_2,
+            TEXT_12_0, CALL_12_1, CALL_12_2,
+            TEXT_13_0, TEXT_13_1,
         LOOP_15_0, // line_15
-            LABEL_15_0, RANGE_15_1, STRING_15_2, RANGE_15_3, TEXT_15_4, RANGE_15_5, TEXT_15_6, RANGE_15_7, TEXT_15_8, TEXT_15_9, RET_15_10, 
+            LABEL_15_0, RANGE_15_1, STRING_15_2, RANGE_15_3, TEXT_15_4, RANGE_15_5, TEXT_15_6, RANGE_15_7, TEXT_15_8, TEXT_15_9, RET_15_10,
         LOOP_17_0, // line_17
             LABEL_17_0, LOOP_17_1,
-                TEXT_18_0, RANGE_18_1, STRING_18_2, TEXT_18_3, TEXT_18_4, 
-                TEXT_19_0, RANGE_19_1, UINT_19_2, TEXT_19_3, TEXT_19_4, 
-                RANGE_20_0, RANGE_20_1, TEXT_20_2, TEXT_20_3, 
+                TEXT_18_0, RANGE_18_1, STRING_18_2, TEXT_18_3, TEXT_18_4,
+                TEXT_19_0, RANGE_19_1, UINT_19_2, TEXT_19_3, TEXT_19_4,
+                RANGE_20_0, RANGE_20_1, TEXT_20_2, TEXT_20_3,
                 TEXT_21_0, TEXT_21_1, CASES_21_2,
-                    FUNC_22_0, DATA_22_1, FUNC_22_2, RET_22_3, 
-                    RET_23_0, 
+                    FUNC_22_0, DATA_22_1, FUNC_22_2, RET_22_3,
+                    RET_23_0,
                  // catch:
-                RANGE_24_0, TEXT_24_1, TEXT_24_2, 
+                RANGE_24_0, TEXT_24_1, TEXT_24_2,
         NO_STATE
     };
     struct state_t
