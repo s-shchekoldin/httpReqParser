@@ -27,4 +27,4 @@ make uninstall
 ### Example of usage
 - **Include** "httpReq.h" or "perfHttpReq.h" (#include "httpReq.h")
 - **Declare** user functions from "httpReqResult" or "perfHttpReqResult" (section "Don't forget to declare" from .h file)
-- **Add Link Library** -lhttpReq or -lperfHttpReq (libhttpReq.a libperfHttpReq.a)
+- **Add Linking Library** -lhttpReq or -lperfHttpReq (libhttpReq.a libperfHttpReq.a)
