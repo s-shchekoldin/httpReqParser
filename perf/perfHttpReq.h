@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2025-11-16 07:24:00 GMT
-// Generated using vProto(2025.11.16)        https://www.cgen.dev
+// Date: 2026-01-21 18:12:37 GMT
+// Generated using vProto(2026.01.21)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -25,140 +25,139 @@ struct perfHttpReqResult
 
 struct perfHttpReq : perfHttpReqResult
 {
-    template<class... Args> explicit perfHttpReq(Args ... args) : perfHttpReqResult(args ...) {}
+    template<class... Args> explicit perfHttpReq(Args && ... args) : perfHttpReqResult(args ...) {}
     bool parse(const char * data, unsigned len);
     bool parse(const std::string & data) { return parse(data.data(), data.length()); }
+    bool empty() const { return mstate.node == NodeT::NoState; }
     void reset();
-    bool empty() const { return mainState.node == node_t::NO_STATE; }
 
 private:
-    enum class node_t
+    enum class NodeT
     {
-        LOOP_1_0, // line_1
-            TEXT_1_0, CALL_1_1, CALL_1_2,
-            TEXT_2_0, CALL_2_1, CALL_2_2,
-            TEXT_3_0, CASES_3_1,
-                TEXT_4_0, CALL_4_1, CALL_4_2,
-                TEXT_5_0, CALL_5_1, CALL_5_2,
-                TEXT_6_0, CALL_6_1, CALL_6_2,
-            TEXT_7_0, CALL_7_1, CALL_7_2,
-            TEXT_8_0, CALL_8_1, CALL_8_2,
-            TEXT_9_0, CALL_9_1, CALL_9_2,
-            TEXT_10_0, CALL_10_1, CALL_10_2,
-            TEXT_11_0, CALL_11_1, CALL_11_2,
-            TEXT_12_0, CALL_12_1, CALL_12_2,
-            TEXT_13_0, TEXT_13_1,
-        LOOP_15_0, // line_15
-            LABEL_15_0, RANGE_15_1, STRING_15_2, RANGE_15_3, TEXT_15_4, RANGE_15_5, TEXT_15_6, RANGE_15_7, TEXT_15_8, TEXT_15_9, RET_15_10,
-        LOOP_17_0, // line_17
-            LABEL_17_0, LOOP_17_1,
-                TEXT_18_0, RANGE_18_1, STRING_18_2, TEXT_18_3, TEXT_18_4,
-                TEXT_19_0, RANGE_19_1, UINT_19_2, TEXT_19_3, TEXT_19_4,
-                RANGE_20_0, RANGE_20_1, TEXT_20_2, TEXT_20_3,
-                TEXT_21_0, TEXT_21_1, CASES_21_2,
-                    FUNC_22_0, DATA_22_1, FUNC_22_2, RET_22_3,
-                    RET_23_0,
+        Loop1_0, // line_1
+            Text1_0, Call1_1, Call1_2,
+            Text2_0, Call2_1, Call2_2,
+            Text3_0, Cases3_1,
+                Text4_0, Call4_1, Call4_2,
+                Text5_0, Call5_1, Call5_2,
+                Text6_0, Call6_1, Call6_2,
+            Text7_0, Call7_1, Call7_2,
+            Text8_0, Call8_1, Call8_2,
+            Text9_0, Call9_1, Call9_2,
+            Text10_0, Call10_1, Call10_2,
+            Text11_0, Call11_1, Call11_2,
+            Text12_0, Call12_1, Call12_2,
+            Text13_0, Text13_1,
+        Loop15_0, // line_15
+            Label15_0, Range15_1, String15_2, Range15_3, Text15_4, Range15_5, Text15_6, Range15_7, Text15_8, Text15_9, Ret15_10,
+        Loop17_0, // line_17
+            Label17_0, Loop17_1,
+                Text18_0, Range18_1, String18_2, Text18_3, Text18_4,
+                Text19_0, Range19_1, Uint19_2, Text19_3, Text19_4,
+                Range20_0, Range20_1, Text20_2, Text20_3,
+                Text21_0, Text21_1, Cases21_2,
+                    Func22_0, Data22_1, Func22_2, Ret22_3,
+                    Ret23_0,
                  // catch:
-                RANGE_24_0, TEXT_24_1, TEXT_24_2,
-        NO_STATE
+                Range24_0, Text24_1, Text24_2,
+        NoState
     };
-    struct state_t
+    struct StateT
     {
         const char * data = nullptr;
         const char * end = nullptr;
         uint64_t consumed = 0;
-        node_t node = node_t::LOOP_1_0;
-        unsigned retStackCount = 0;
-        std::array<node_t, 2> retStack;
-
-        unsigned remainDataLen() const { return (unsigned)(end - data); }
+        NodeT node = NodeT::Loop1_0;
+        unsigned rcount = 0;
+        std::array<NodeT, 2> rstack;
+        unsigned remain() const { return unsigned(end - data); }
         const char * name() const;
     };
-    state_t mainState;
+    StateT mstate;
 
-    void parse(state_t & state);
-    bool loop_1_0(state_t & state) const;
-    bool text_1_0(state_t & state, bool isCaseCall) const;
-    bool call_1_1(state_t & state) const;
-    bool call_1_2(state_t & state) const;
-    bool text_2_0(state_t & state, bool isCaseCall) const;
-    bool call_2_1(state_t & state) const;
-    bool call_2_2(state_t & state) const;
-    bool text_3_0(state_t & state) const;
-    bool cases_3_1(state_t & state) const;
-    bool text_4_0(state_t & state, bool isCaseCall) const;
-    bool call_4_1(state_t & state) const;
-    bool call_4_2(state_t & state) const;
-    bool text_5_0(state_t & state, bool isCaseCall) const;
-    bool call_5_1(state_t & state) const;
-    bool call_5_2(state_t & state) const;
-    bool text_6_0(state_t & state, bool isCaseCall) const;
-    bool call_6_1(state_t & state) const;
-    bool call_6_2(state_t & state) const;
-    bool text_7_0(state_t & state, bool isCaseCall) const;
-    bool call_7_1(state_t & state) const;
-    bool call_7_2(state_t & state) const;
-    bool text_8_0(state_t & state, bool isCaseCall) const;
-    bool call_8_1(state_t & state) const;
-    bool call_8_2(state_t & state) const;
-    bool text_9_0(state_t & state, bool isCaseCall) const;
-    bool call_9_1(state_t & state) const;
-    bool call_9_2(state_t & state) const;
-    bool text_10_0(state_t & state, bool isCaseCall) const;
-    bool call_10_1(state_t & state) const;
-    bool call_10_2(state_t & state) const;
-    bool text_11_0(state_t & state, bool isCaseCall) const;
-    bool call_11_1(state_t & state) const;
-    bool call_11_2(state_t & state) const;
-    bool text_12_0(state_t & state, bool isCaseCall) const;
-    bool call_12_1(state_t & state) const;
-    bool call_12_2(state_t & state) const;
-    bool text_13_0(state_t & state) const;
-    bool text_13_1(state_t & state) const;
-    bool loop_15_0(state_t & state) const;
-    bool label_15_0(state_t & state) const;
-    bool range_15_1(state_t & state) const;
-    bool string_15_2(state_t & state);
-    void _string_15_2(const char * data, unsigned len, uint64_t consumed);
-    bool range_15_3(state_t & state) const;
-    bool text_15_4(state_t & state) const;
-    bool range_15_5(state_t & state) const;
-    bool text_15_6(state_t & state) const;
-    bool range_15_7(state_t & state) const;
-    bool text_15_8(state_t & state) const;
-    bool text_15_9(state_t & state) const;
-    bool ret_15_10(state_t & state) const;
-    bool loop_17_0(state_t & state) const;
-    bool label_17_0(state_t & state) const;
-    bool loop_17_1(state_t & state) const;
-    bool text_18_0(state_t & state, bool isCaseCall) const;
-    bool range_18_1(state_t & state) const;
-    bool string_18_2(state_t & state);
-    void _string_18_2(const char * data, unsigned len, uint64_t consumed);
-    bool text_18_3(state_t & state) const;
-    bool text_18_4(state_t & state) const;
-    bool text_19_0(state_t & state, bool isCaseCall) const;
-    bool range_19_1(state_t & state) const;
-    bool uint_19_2(state_t & state);
-    void _uint_19_2(const char * data, unsigned len, uint64_t consumed);
-    bool text_19_3(state_t & state) const;
-    bool text_19_4(state_t & state) const;
-    bool range_20_0(state_t & state) const;
-    bool range_20_1(state_t & state) const;
-    bool text_20_2(state_t & state) const;
-    bool text_20_3(state_t & state) const;
-    bool text_21_0(state_t & state) const;
-    bool text_21_1(state_t & state) const;
-    bool cases_21_2(state_t & state);
-    bool func_22_0(state_t & state);
-    bool _func_22_0();
-    bool data_22_1(state_t & state);
-    bool func_22_2(state_t & state);
-    bool _func_22_2();
-    bool ret_22_3(state_t & state) const;
-    bool ret_23_0(state_t & state) const;
-    bool range_24_0(state_t & state) const;
-    bool text_24_1(state_t & state) const;
-    bool text_24_2(state_t & state) const;
+    void parse(StateT & state);
+    bool loop1_0(StateT & state) const;
+    bool text1_0(StateT & state, bool is_branch) const;
+    bool call1_1(StateT & state) const;
+    bool call1_2(StateT & state) const;
+    bool text2_0(StateT & state, bool is_branch) const;
+    bool call2_1(StateT & state) const;
+    bool call2_2(StateT & state) const;
+    bool text3_0(StateT & state) const;
+    bool cases3_1(StateT & state) const;
+    bool text4_0(StateT & state, bool is_branch) const;
+    bool call4_1(StateT & state) const;
+    bool call4_2(StateT & state) const;
+    bool text5_0(StateT & state, bool is_branch) const;
+    bool call5_1(StateT & state) const;
+    bool call5_2(StateT & state) const;
+    bool text6_0(StateT & state, bool is_branch) const;
+    bool call6_1(StateT & state) const;
+    bool call6_2(StateT & state) const;
+    bool text7_0(StateT & state, bool is_branch) const;
+    bool call7_1(StateT & state) const;
+    bool call7_2(StateT & state) const;
+    bool text8_0(StateT & state, bool is_branch) const;
+    bool call8_1(StateT & state) const;
+    bool call8_2(StateT & state) const;
+    bool text9_0(StateT & state, bool is_branch) const;
+    bool call9_1(StateT & state) const;
+    bool call9_2(StateT & state) const;
+    bool text10_0(StateT & state, bool is_branch) const;
+    bool call10_1(StateT & state) const;
+    bool call10_2(StateT & state) const;
+    bool text11_0(StateT & state, bool is_branch) const;
+    bool call11_1(StateT & state) const;
+    bool call11_2(StateT & state) const;
+    bool text12_0(StateT & state, bool is_branch) const;
+    bool call12_1(StateT & state) const;
+    bool call12_2(StateT & state) const;
+    bool text13_0(StateT & state) const;
+    bool text13_1(StateT & state) const;
+    bool loop15_0(StateT & state) const;
+    bool label15_0(StateT & state) const;
+    bool range15_1(StateT & state) const;
+    bool string15_2(StateT & state);
+    void string15_2(const char * data, unsigned len, uint64_t consumed);
+    bool range15_3(StateT & state) const;
+    bool text15_4(StateT & state) const;
+    bool range15_5(StateT & state) const;
+    bool text15_6(StateT & state) const;
+    bool range15_7(StateT & state) const;
+    bool text15_8(StateT & state) const;
+    bool text15_9(StateT & state) const;
+    bool ret15_10(StateT & state) const;
+    bool loop17_0(StateT & state) const;
+    bool label17_0(StateT & state) const;
+    bool loop17_1(StateT & state) const;
+    bool text18_0(StateT & state, bool is_branch) const;
+    bool range18_1(StateT & state) const;
+    bool string18_2(StateT & state);
+    void string18_2(const char * data, unsigned len, uint64_t consumed);
+    bool text18_3(StateT & state) const;
+    bool text18_4(StateT & state) const;
+    bool text19_0(StateT & state, bool is_branch) const;
+    bool range19_1(StateT & state) const;
+    bool uint19_2(StateT & state);
+    void uint19_2(const char * data, unsigned len, uint64_t consumed);
+    bool text19_3(StateT & state) const;
+    bool text19_4(StateT & state) const;
+    bool range20_0(StateT & state) const;
+    bool range20_1(StateT & state) const;
+    bool text20_2(StateT & state) const;
+    bool text20_3(StateT & state) const;
+    bool text21_0(StateT & state) const;
+    bool text21_1(StateT & state) const;
+    bool cases21_2(StateT & state);
+    bool func22_0(StateT & state);
+    bool func22_0();
+    bool data22_1(StateT & state);
+    bool func22_2(StateT & state);
+    bool func22_2();
+    bool ret22_3(StateT & state) const;
+    bool ret23_0(StateT & state) const;
+    bool range24_0(StateT & state) const;
+    bool text24_1(StateT & state) const;
+    bool text24_2(StateT & state) const;
 };
 #endif
