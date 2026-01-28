@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-01-21 18:12:37 GMT
-// Generated using vProto(2026.01.21)        https://www.cgen.dev
+// Date: 2026-01-28 20:26:22 GMT
+// Generated using vProto(2026.01.28)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -25,7 +25,7 @@ struct perfHttpReqResult
 
 struct perfHttpReq : perfHttpReqResult
 {
-    template<class... Args> explicit perfHttpReq(Args && ... args) : perfHttpReqResult(args ...) {}
+    template<class... Args> explicit perfHttpReq(Args && ... args) : perfHttpReqResult(std::forward<Args>(args)...) {}
     bool parse(const char * data, unsigned len);
     bool parse(const std::string & data) { return parse(data.data(), data.length()); }
     bool empty() const { return mstate.node == NodeT::NoState; }
