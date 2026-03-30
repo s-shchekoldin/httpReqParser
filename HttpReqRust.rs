@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-02-21 15:24:22 GMT
-// Generated using vProto(2026.02.21)        https://www.cgen.dev
+// Date: 2026-03-30 13:32:26 GMT
+// Generated using vProto(2026.03.30)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -173,14 +173,14 @@ impl <T: HttpReqRustResultTrait> HttpReqRust<T> {
     pub fn new() -> Self { Self{ output: T::new(), vstate: vec![StateT::new()] } }
     pub fn empty(&self) -> bool { self.vstate.is_empty() }
     pub fn reset(&mut self) {
-        self.reset_output();
-        self.vstate = vec![StateT::new()];
-    }
-    pub fn reset_output(&mut self) {
         *self.output.c_length() = 0;
         *self.output.c_type()= String::new();
         *self.output.host()= String::new();
         *self.output.url()= String::new();
+        for v in & mut self.vstate {
+            v.node = NodeT::NoState;
+        }
+        self.vstate.push(StateT::new());
     }
     pub fn parse(&mut self, data : &[u8]) -> bool {
         for v in & mut self.vstate {
@@ -653,15 +653,11 @@ impl <T: HttpReqRustResultTrait> HttpReqRust<T> {
         return true;
     }
     fn reset1_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        self.reset_output();
-        for v in & mut self.vstate {
-            v.node = NodeT::NoState;
-        }
         state.node = NodeT::NoState;
+        self.reset();
         let c = self.vstate.len();
-        self.vstate.push(StateT::new());
-        self.vstate[c].left = state.left;
-        self.vstate[c].right = state.right;
+        self.vstate[c-1].left = state.left;
+        self.vstate[c-1].right = state.right;
         return true;
     }
     fn loop3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {

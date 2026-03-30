@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-01-28 20:26:22 GMT
-// Generated using vProto(2026.01.28)        https://www.cgen.dev
+// Date: 2026-03-30 13:32:26 GMT
+// Generated using vProto(2026.03.30)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -129,28 +129,31 @@ bool httpReq::parse(const char * data, unsigned len)
     for(bool reparse = true; reparse; )
     {
         reparse = false;
-        unsigned outflow = 0;;
-        for(unsigned i = 0; i < pstate.size(); i++)
+        unsigned d_flow = 0;
+        for(unsigned s_flow = 0; s_flow < pstate.size(); s_flow++)
         {
-            if (pstate[i].remain())
+            if (pstate[s_flow].node == NodeT::NoState)
+                continue;
+            else if (!pstate[s_flow].remain())
             {
-                StateT state = pstate[i];
-                parse(state);
-                if (state.node == NodeT::NoState)
-                    continue;
+                if (s_flow != d_flow)
+                    pstate[d_flow] = pstate[s_flow];
+                d_flow++;
+            } else {
                 reparse = true;
-                pstate[outflow] = state;
+                StateT state = pstate[s_flow];
+                parse(state);
+                if (state.node != NodeT::NoState)
+                    pstate[d_flow++] = state;
             }
-            else if (i != outflow)
-                pstate[outflow] = pstate[i];
-            outflow++;
         }
-        pstate.resize(outflow);
+        if (d_flow < pstate.size())
+            pstate.resize(d_flow);
         parse(mstate);
         if (mstate.node != NodeT::NoState && mstate.remain())
             reparse = true;
     }
-    return mstate.node != NodeT::NoState || !pstate.empty();
+    return !empty();
 }
 
 inline bool httpReq::loop1_0(StateT & state)
@@ -487,13 +490,15 @@ inline bool httpReq::text1_0_10_0(StateT & state) const
 
 inline bool httpReq::bang1_0(StateT & state)
 {
-    state.node = NodeT::Call1_2;
+    for(auto & p : pstate)
+        p.node = NodeT::NoState;
     if (&mstate != &state)
     {
         mstate = state;
         state.node = NodeT::NoState;
+    } else {
+        state.node = NodeT::Call1_2;
     }
-    pstate.clear();
     return true;
 }
 
@@ -529,8 +534,7 @@ inline bool httpReq::reset1_4(StateT & state)
 {
     const char * d = state.data;
     const char * e = state.end;
-    if (&mstate != &state)
-        state.node = NodeT::NoState;
+    state.node = NodeT::NoState;
     httpReq::reset();
     mstate.data = d;
     mstate.end = e;
@@ -1323,13 +1327,15 @@ inline bool httpReq::text8_0_0_0(StateT & state) const
 
 inline bool httpReq::bang8_0(StateT & state)
 {
-    state.node = NodeT::Range8_2;
+    for(auto & p : pstate)
+        p.node = NodeT::NoState;
     if (&mstate != &state)
     {
         mstate = state;
         state.node = NodeT::NoState;
+    } else {
+        state.node = NodeT::Range8_2;
     }
-    pstate.clear();
     return true;
 }
 
@@ -1665,13 +1671,15 @@ inline bool httpReq::text9_0_0_0(StateT & state) const
 
 inline bool httpReq::bang9_0(StateT & state)
 {
-    state.node = NodeT::Range9_2;
+    for(auto & p : pstate)
+        p.node = NodeT::NoState;
     if (&mstate != &state)
     {
         mstate = state;
         state.node = NodeT::NoState;
+    } else {
+        state.node = NodeT::Range9_2;
     }
-    pstate.clear();
     return true;
 }
 
@@ -2298,7 +2306,8 @@ void httpReq::reset()
     httpReqResult::type.clear();
     httpReqResult::url.clear();
     httpReq::mstate = httpReq::StateT();
-    httpReq::pstate.clear();
+    for(auto & p : pstate)
+        p.node = NodeT::NoState;
 }
 
 const char * httpReq::StateT::name() const
