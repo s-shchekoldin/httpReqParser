@@ -1,13 +1,13 @@
 // ==============================================================
-// Date: 2026-03-30 13:41:45 GMT
-// Generated using vProto(2026.03.30)        https://www.cgen.dev
+// Date: 2026-04-15 19:12:27 GMT
+// Generated using vProto(2026.04.15)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
 // Example usage:
-// let mut m = crate::HttpReqRust::HttpReqRust::<HttpReqRust::HttpReqRustResult>::new();
+// let mut m = crate::HttpReqRust::HttpReqRust::<HttpReqRust::HttpReqRustExample>::new();
 // m.parse(&byte_slice);
-// If necessary, override HttpReqRust::HttpReqRustResult and its trait as well
+// If necessary, override HttpReqRust::HttpReqRustExample and its trait as well
 
 
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
@@ -48,105 +48,43 @@ enum NodeT {
     Loop16_0, // line_16
     NoState
 }
+impl std::fmt::Display for NodeT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 #[derive(Debug, Copy, Clone)]
 pub struct StateT {
+    node: NodeT,
     left: usize,
     right: usize,
     consumed: usize,
     rcount: usize,
     rstack: [NodeT; 2],
-    node: NodeT
 }
 impl StateT {
-    pub fn new() -> Self { Self{ left: 0, right: 0, consumed: 0, rcount: 0, rstack: [NodeT::NoState; 2], node: NodeT::Loop1_0 } }
+    pub fn new() -> Self { Self{ node: NodeT::Loop1_0, left: 0, right: 0, consumed: 0, rcount: 0, rstack: [NodeT::NoState; 2] } }
     pub fn remain(&self) -> usize { self.right - self.left }
-    pub fn name(&self) -> String {
-        match self.node {
-            NodeT::Loop1_0 => { return "Loop1_0".to_string(); }
-            NodeT::Any1_0 => { return "Any1_0".to_string(); }
-            NodeT::Text1_0_0_0 => { return "Text1_0_0_0".to_string(); }
-            NodeT::Text1_0_1_0 => { return "Text1_0_1_0".to_string(); }
-            NodeT::Text1_0_2_0 => { return "Text1_0_2_0".to_string(); }
-            NodeT::Text1_0_3_0 => { return "Text1_0_3_0".to_string(); }
-            NodeT::Text1_0_4_0 => { return "Text1_0_4_0".to_string(); }
-            NodeT::Text1_0_5_0 => { return "Text1_0_5_0".to_string(); }
-            NodeT::Text1_0_6_0 => { return "Text1_0_6_0".to_string(); }
-            NodeT::Text1_0_7_0 => { return "Text1_0_7_0".to_string(); }
-            NodeT::Text1_0_8_0 => { return "Text1_0_8_0".to_string(); }
-            NodeT::Text1_0_9_0 => { return "Text1_0_9_0".to_string(); }
-            NodeT::Text1_0_10_0 => { return "Text1_0_10_0".to_string(); }
-            NodeT::Bang1_0 => { return "Bang1_0".to_string(); }
-            NodeT::Call1_2 => { return "Call1_2".to_string(); }
-            NodeT::Call1_3 => { return "Call1_3".to_string(); }
-            NodeT::Reset1_4 => { return "Reset1_4".to_string(); }
-            NodeT::Loop3_0 => { return "Loop3_0".to_string(); }
-            NodeT::Label3_0 => { return "Label3_0".to_string(); }
-            NodeT::Loop3_1 => { return "Loop3_1".to_string(); }
-            NodeT::Range4_0 => { return "Range4_0".to_string(); }
-            NodeT::String4_1 => { return "String4_1".to_string(); }
-            NodeT::Range4_2 => { return "Range4_2".to_string(); }
-            NodeT::Func4_3 => { return "Func4_3".to_string(); }
-            NodeT::Text4_4 => { return "Text4_4".to_string(); }
-            NodeT::Range4_5 => { return "Range4_5".to_string(); }
-            NodeT::Text4_6 => { return "Text4_6".to_string(); }
-            NodeT::Range4_7 => { return "Range4_7".to_string(); }
-            NodeT::Text4_8 => { return "Text4_8".to_string(); }
-            NodeT::Text4_9 => { return "Text4_9".to_string(); }
-            NodeT::Ret4_10 => { return "Ret4_10".to_string(); }
-            NodeT::Loop6_0 => { return "Loop6_0".to_string(); }
-            NodeT::Label6_0 => { return "Label6_0".to_string(); }
-            NodeT::Loop6_1 => { return "Loop6_1".to_string(); }
-            NodeT::Text7_0 => { return "Text7_0".to_string(); }
-            NodeT::Range7_1 => { return "Range7_1".to_string(); }
-            NodeT::String7_2 => { return "String7_2".to_string(); }
-            NodeT::Func7_3 => { return "Func7_3".to_string(); }
-            NodeT::Text7_4 => { return "Text7_4".to_string(); }
-            NodeT::Text7_5 => { return "Text7_5".to_string(); }
-            NodeT::Any8_0 => { return "Any8_0".to_string(); }
-            NodeT::Text8_0_0_0 => { return "Text8_0_0_0".to_string(); }
-            NodeT::Bang8_0 => { return "Bang8_0".to_string(); }
-            NodeT::Range8_2 => { return "Range8_2".to_string(); }
-            NodeT::String8_3 => { return "String8_3".to_string(); }
-            NodeT::Func8_4 => { return "Func8_4".to_string(); }
-            NodeT::Text8_5 => { return "Text8_5".to_string(); }
-            NodeT::Text8_6 => { return "Text8_6".to_string(); }
-            NodeT::Any9_0 => { return "Any9_0".to_string(); }
-            NodeT::Text9_0_0_0 => { return "Text9_0_0_0".to_string(); }
-            NodeT::Bang9_0 => { return "Bang9_0".to_string(); }
-            NodeT::Range9_2 => { return "Range9_2".to_string(); }
-            NodeT::Uint9_3 => { return "Uint9_3".to_string(); }
-            NodeT::Func9_4 => { return "Func9_4".to_string(); }
-            NodeT::Text9_5 => { return "Text9_5".to_string(); }
-            NodeT::Text9_6 => { return "Text9_6".to_string(); }
-            NodeT::Range10_0 => { return "Range10_0".to_string(); }
-            NodeT::Range10_1 => { return "Range10_1".to_string(); }
-            NodeT::Text10_2 => { return "Text10_2".to_string(); }
-            NodeT::Text10_3 => { return "Text10_3".to_string(); }
-            NodeT::Text11_0 => { return "Text11_0".to_string(); }
-            NodeT::Text11_1 => { return "Text11_1".to_string(); }
-            NodeT::Cases11_2 => { return "Cases11_2".to_string(); }
-            NodeT::Func12_0 => { return "Func12_0".to_string(); }
-            NodeT::Data12_1 => { return "Data12_1".to_string(); }
-            NodeT::Ret12_2 => { return "Ret12_2".to_string(); }
-            NodeT::Ret13_0 => { return "Ret13_0".to_string(); }
-            NodeT::Range14_0 => { return "Range14_0".to_string(); }
-            NodeT::Text14_1 => { return "Text14_1".to_string(); }
-            NodeT::Loop16_0 => { return "Loop16_0".to_string(); }
-            _ => { return "NoState".to_string(); }
-        }; // match
+}
+impl std::fmt::Display for StateT {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} remain:{}({}->{}) consumed:{}", self.node, self.remain(), self.left, self.right, self.consumed)
     }
 }
 
-pub trait HttpReqRustResultTrait {
+pub trait HttpReqRustTrait {
     fn new() -> Self;
+    // field accessors:
     fn c_length(&mut self) -> &mut u64;
     fn c_type(&mut self) -> &mut String;
     fn host(&mut self) -> &mut String;
-    fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool); // user-defined function required
     fn url(&mut self) -> &mut String;
+    // callbacks to be implemented by the user:
+    fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool);
 }
 
-pub struct HttpReqRustResult
+pub struct HttpReqRustExample
 {
     c_type: String,
     host: String,
@@ -154,7 +92,7 @@ pub struct HttpReqRustResult
     c_length: u64
 }
 #[allow(dead_code)]
-impl HttpReqRustResultTrait for HttpReqRustResult {
+impl HttpReqRustTrait for HttpReqRustExample {
     fn new() -> Self { Self{c_type: String::new(), host: String::new(), url: String::new(), c_length: 0} }
     fn c_length(&mut self) -> &mut u64 { &mut self.c_length }
     fn c_type(&mut self) -> &mut String { &mut self.c_type }
@@ -169,7 +107,7 @@ pub struct HttpReqRust <T> {
 }
 #[allow(dead_code)]
 #[allow(unused_variables)]
-impl <T: HttpReqRustResultTrait> HttpReqRust<T> {
+impl <T: HttpReqRustTrait> HttpReqRust<T> {
     pub fn new() -> Self { Self{ output: T::new(), vstate: vec![StateT::new()] } }
     pub fn empty(&self) -> bool { self.vstate.is_empty() }
     pub fn reset(&mut self) {
@@ -221,7 +159,7 @@ impl <T: HttpReqRustResultTrait> HttpReqRust<T> {
     fn parse_s(&mut self, state: &mut StateT, data: &[u8]) {
         loop {
             if cfg!(debug_assertions) {
-                println!("State: {} data: [{:#04X}, {:#04X}, {:#04X}, {:#04X}, {:#04X}]", state.name(),
+                println!("State: {} data: [{:#04X}, {:#04X}, {:#04X}, {:#04X}, {:#04X}]", state.node,
                     if state.remain() > 0 { data[state.left+0] } else { 0 },
                     if state.remain() > 1 { data[state.left+1] } else { 0 },
                     if state.remain() > 2 { data[state.left+2] } else { 0 },
