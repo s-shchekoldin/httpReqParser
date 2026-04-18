@@ -1,5 +1,5 @@
 // ==============================================================
-// Date: 2026-04-18 16:47:36 GMT
+// Date: 2026-04-18 16:57:42 GMT
 // Generated using vProto(2026.04.18)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
@@ -9,6 +9,9 @@
 // m.parse(&byte_slice);
 // If necessary, override HttpReqRust::HttpReqRustExample and its trait as well
 
+
+#[cfg(target_arch = "x86_64")]
+use std::arch::x86_64::*;
 
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 #[allow(dead_code)]
@@ -669,8 +672,38 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0x9][0x20]
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+                    m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+                    let r: u32 = _mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+                    m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+                    let r: u16 = _mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
@@ -985,8 +1018,38 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+                    m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+                    let r: u32 = !_mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+                    m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+                    let r: u16 = !_mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
@@ -1061,8 +1124,38 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0xa][0xd]
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+                    m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
+                    let r: u32 = _mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+                    m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
+                    let r: u16 = _mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
@@ -1218,8 +1311,38 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+                    m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+                    let r: u32 = !_mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+                    m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+                    let r: u16 = !_mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
@@ -1294,8 +1417,38 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0xa][0xd]
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+                    m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
+                    let r: u32 = _mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+                    m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
+                    let r: u16 = _mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
@@ -1451,8 +1604,38 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+                    m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+                    let r: u32 = !_mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+                    m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+                    let r: u16 = !_mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
@@ -1848,8 +2031,36 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     fn range14_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.left;
+        let is_avx2 = is_x86_feature_detected!("avx2");
+        let is_sse2 = is_x86_feature_detected!("sse2");
         while state.left < state.right {
-            if (state.left + 8) <= state.right {
+            if is_avx2 && (state.left + 32) <= state.right {
+                unsafe {
+                    let d = _mm256_lddqu_si256(data.as_ptr().add(state.left) as *const __m256i);
+                    let m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+                    let r: u32 = _mm256_movemask_epi8(m) as u32;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 32;
+                        continue;
+                    }
+                }
+            }
+            else if is_sse2 && (state.left + 16) <= state.right {
+                unsafe {
+                    let d = _mm_loadu_si128(data.as_ptr().add(state.left) as *const __m128i);
+                    let m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+                    let r: u16 = _mm_movemask_epi8(m) as u16;
+                    if r > 0 {
+                        state.left += r.trailing_zeros() as usize;
+                    } else {
+                        state.left += 16;
+                        continue;
+                    }
+                }
+            }
+            else if (state.left + 8) <= state.right {
                 if data[state.left] == 0x0a {
                     state.left += 0;
                 }
