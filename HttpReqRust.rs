@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-04-15 19:12:27 GMT
-// Generated using vProto(2026.04.15)        https://www.cgen.dev
+// Date: 2026-04-18 16:47:36 GMT
+// Generated using vProto(2026.04.18)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -41,7 +41,7 @@ enum NodeT {
                         Bang9_0, Range9_2, Uint9_3, Func9_4, Text9_5, Text9_6,
             Range10_0, Range10_1, Text10_2, Text10_3,
             Text11_0, Text11_1, Cases11_2,
-                Func12_0, Data12_1, Ret12_2,
+                If12_0, Data12_1, Ret12_2,
                 Ret13_0,
              // catch:
             Range14_0, Text14_1,
@@ -76,8 +76,8 @@ impl std::fmt::Display for StateT {
 pub trait HttpReqRustTrait {
     fn new() -> Self;
     // field accessors:
-    fn c_length(&mut self) -> &mut u64;
-    fn c_type(&mut self) -> &mut String;
+    fn clength(&mut self) -> &mut u64;
+    fn ctype(&mut self) -> &mut String;
     fn host(&mut self) -> &mut String;
     fn url(&mut self) -> &mut String;
     // callbacks to be implemented by the user:
@@ -86,16 +86,16 @@ pub trait HttpReqRustTrait {
 
 pub struct HttpReqRustExample
 {
-    c_type: String,
+    ctype: String,
     host: String,
     url: String,
-    c_length: u64
+    clength: u64
 }
 #[allow(dead_code)]
 impl HttpReqRustTrait for HttpReqRustExample {
-    fn new() -> Self { Self{c_type: String::new(), host: String::new(), url: String::new(), c_length: 0} }
-    fn c_length(&mut self) -> &mut u64 { &mut self.c_length }
-    fn c_type(&mut self) -> &mut String { &mut self.c_type }
+    fn new() -> Self { Self{ctype: String::new(), host: String::new(), url: String::new(), clength: 0} }
+    fn clength(&mut self) -> &mut u64 { &mut self.clength }
+    fn ctype(&mut self) -> &mut String { &mut self.ctype }
     fn host(&mut self) -> &mut String { &mut self.host }
     fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool) { println!("payload({}:{})={:X?}", is_first, is_last, data); }
     fn url(&mut self) -> &mut String { &mut self.url }
@@ -111,8 +111,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     pub fn new() -> Self { Self{ output: T::new(), vstate: vec![StateT::new()] } }
     pub fn empty(&self) -> bool { self.vstate.is_empty() }
     pub fn reset(&mut self) {
-        *self.output.c_length() = 0;
-        *self.output.c_type()= String::new();
+        *self.output.clength() = 0;
+        *self.output.ctype()= String::new();
         *self.output.host()= String::new();
         *self.output.url()= String::new();
         for v in & mut self.vstate {
@@ -232,7 +232,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 NodeT::Text11_0 => { self.text11_0(state, data); }
                 NodeT::Text11_1 => { self.text11_1(state, data); }
                 NodeT::Cases11_2 => { self.cases11_2(state, data); }
-                NodeT::Func12_0 => { self.func12_0(state, data); }
+                NodeT::If12_0 => { self.if12_0(state, data); }
                 NodeT::Data12_1 => { self.data12_1(state, data); }
                 NodeT::Ret12_2 => { self.ret12_2(state, data); }
                 NodeT::Ret13_0 => { self.ret13_0(state, data); }
@@ -628,7 +628,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if TERMINATOR[usize::from(data[state.left + 0])] {
+            if TERMINATOR[usize::from(data[state.left])] {
                 state.consumed += state.left - datastart;
                 state.node = if state.consumed >= 1 { NodeT::String4_1 } else { NodeT::NoState };
                 let ret = state.node == NodeT::String4_1;
@@ -670,8 +670,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -683,13 +683,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -733,7 +745,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if TERMINATOR[usize::from(data[state.left + 0])] {
+            if TERMINATOR[usize::from(data[state.left])] {
                 state.consumed += state.left - datastart;
                 state.node = if state.consumed >= 1 { NodeT::Func4_3 } else { NodeT::NoState };
                 let ret = state.node == NodeT::Func4_3;
@@ -801,7 +813,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0-9]
         let datastart = state.left;
         while state.left < state.right {
-            if TERMINATOR[usize::from(data[state.left + 0])] {
+            if TERMINATOR[usize::from(data[state.left])] {
                 state.consumed += state.left - datastart;
                 state.node = if state.consumed >= 1 { NodeT::Text4_6 } else { NodeT::NoState };
                 let ret = state.node == NodeT::Text4_6;
@@ -850,7 +862,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0-9]
         let datastart = state.left;
         while state.left < state.right {
-            if TERMINATOR[usize::from(data[state.left + 0])] {
+            if TERMINATOR[usize::from(data[state.left])] {
                 state.consumed += state.left - datastart;
                 state.node = if state.consumed >= 1 { NodeT::Text4_8 } else { NodeT::NoState };
                 let ret = state.node == NodeT::Text4_8;
@@ -974,8 +986,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -987,13 +999,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1038,8 +1062,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0xa][0xd]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -1051,13 +1075,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1183,8 +1219,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -1196,13 +1232,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1222,10 +1270,10 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     fn _string8_3(&mut self, state: &mut StateT, data: &[u8]) {
         if state.consumed == 0 {
-            self.output.c_type().clear();
+            self.output.ctype().clear();
         }
-        let len = if (self.output.c_type().len() + data.len()) > 64 { 64 - self.output.c_type().len() } else { data.len() };
-        self.output.c_type().push_str(&String::from_utf8_lossy(&data[0 .. len]));
+        let len = if (self.output.ctype().len() + data.len()) > 64 { 64 - self.output.ctype().len() } else { data.len() };
+        self.output.ctype().push_str(&String::from_utf8_lossy(&data[0 .. len]));
     }
     fn string8_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
@@ -1247,8 +1295,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0xa][0xd]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -1260,13 +1308,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1293,7 +1353,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     #[allow(unused_variables)]
     #[allow(unreachable_code)]
     fn _func8_4(this : &mut T) -> bool {
-         println!("TYPE: {}\n", this.c_type()); 
+         println!("TYPE: {}\n", this.ctype()); 
         return true;
     }
     fn func8_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
@@ -1392,8 +1452,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -1405,13 +1465,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1431,10 +1503,10 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     fn _uint9_3(&mut self, state: &mut StateT, data: &[u8]) {
         if state.consumed == 0 {
-            *self.output.c_length() = 0;
+            *self.output.clength() = 0;
         }
         for x in data {
-            *self.output.c_length() = *self.output.c_length()*10 + u64::from(*x - b'0');
+            *self.output.clength() = *self.output.clength()*10 + u64::from(*x - b'0');
         }
     }
     fn uint9_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
@@ -1457,8 +1529,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0-9]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -1470,13 +1542,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1503,7 +1587,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     #[allow(unused_variables)]
     #[allow(unreachable_code)]
     fn _func9_4(this : &mut T) -> bool {
-         println!("LENGTH: {}", this.c_length()); 
+         println!("LENGTH: {}", this.clength()); 
         return true;
     }
     fn func9_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
@@ -1562,7 +1646,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0x9][0x20]
         let datastart = state.left;
         while state.left < state.right {
-            if TERMINATOR[usize::from(data[state.left + 0])] {
+            if TERMINATOR[usize::from(data[state.left])] {
                 state.consumed += state.left - datastart;
                 state.node = if state.consumed >= 1 { NodeT::Range10_1 } else { NodeT::Range14_0 };
                 let ret = state.node == NodeT::Range10_1;
@@ -1597,8 +1681,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]; // ^[0xa][0xd]
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if TERMINATOR[usize::from(data[state.left + 0])] {
+            if (state.left + 8) <= state.right {
+                if TERMINATOR[usize::from(data[state.left])] {
                     state.left += 0;
                 }
                 else if TERMINATOR[usize::from(data[state.left + 1])] {
@@ -1610,13 +1694,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if TERMINATOR[usize::from(data[state.left + 3])] {
                     state.left += 3;
                 }
+                else if TERMINATOR[usize::from(data[state.left + 4])] {
+                    state.left += 4;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 5])] {
+                    state.left += 5;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 6])] {
+                    state.left += 6;
+                }
+                else if TERMINATOR[usize::from(data[state.left + 7])] {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.left + 0])]) {
+            else if !(TERMINATOR[usize::from(data[state.left])]) {
                 state.left += 1;
                 continue;
             }
@@ -1685,7 +1781,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         return true;
     }
     fn cases11_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if self.func12_0(state, data) { // case_1
+        if self.if12_0(state, data) { // case_1
             return true;
         }
         if self.ret13_0(state, data) { // case_2
@@ -1696,12 +1792,11 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[allow(unused_variables)]
     #[allow(unreachable_code)]
-    fn _func12_0(this : &mut T) -> bool {
-         return *this.c_length() > 0; 
-        return true;
+    fn _if12_0(this : &mut T) -> bool {
+        *this.clength() > 0
     }
-    fn func12_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if Self::_func12_0(&mut self.output) {
+    fn if12_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+        if Self::_if12_0(&mut self.output) {
             state.node = NodeT::Data12_1;
             return true;
         }
@@ -1710,7 +1805,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[allow(unused_variables)]
     #[allow(unreachable_code)]
-    fn max_data12_1(this : &mut T) -> usize { let x =  *this.c_length() ; x as usize }
+    fn max_data12_1(this : &mut T) -> usize { let x =  *this.clength() ; x as usize }
     fn data12_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.left;
         if state.consumed == 0 {
@@ -1754,8 +1849,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     fn range14_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.left;
         while state.left < state.right {
-            if (state.left + 4) <= state.right {
-                if data[state.left + 0] == 0x0a {
+            if (state.left + 8) <= state.right {
+                if data[state.left] == 0x0a {
                     state.left += 0;
                 }
                 else if data[state.left + 1] == 0x0a {
@@ -1767,13 +1862,25 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 else if data[state.left + 3] == 0x0a {
                     state.left += 3;
                 }
+                else if data[state.left + 4] == 0x0a {
+                    state.left += 4;
+                }
+                else if data[state.left + 5] == 0x0a {
+                    state.left += 5;
+                }
+                else if data[state.left + 6] == 0x0a {
+                    state.left += 6;
+                }
+                else if data[state.left + 7] == 0x0a {
+                    state.left += 7;
+                }
                 else
                 {
-                    state.left += 4;
+                    state.left += 8;
                     continue;
                 }
             }
-            else if !(data[state.left + 0] == 0x0a) {
+            else if !(data[state.left] == 0x0a) {
                 state.left += 1;
                 continue;
             }
