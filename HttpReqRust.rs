@@ -1,13 +1,13 @@
 // ==============================================================
-// Date: 2026-04-18 16:57:42 GMT
-// Generated using vProto(2026.04.18)        https://www.cgen.dev
+// Date: 2026-04-28 17:05:32 GMT
+// Generated using vProto(2026.04.28)        https://www.cgen.dev
 // Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
 // ==============================================================
 
 // Example usage:
 // let mut m = crate::HttpReqRust::HttpReqRust::<HttpReqRust::HttpReqRustExample>::new();
 // m.parse(&byte_slice);
-// If necessary, override HttpReqRust::HttpReqRustExample and its trait as well
+// Also, you can redefine HttpReqRustTrait implementation for interacting with the HttpReqRust module.
 
 
 #[cfg(target_arch = "x86_64")]
@@ -76,15 +76,26 @@ impl std::fmt::Display for StateT {
     }
 }
 
+#[allow(unreachable_code)]
 pub trait HttpReqRustTrait {
     fn new() -> Self;
+
     // field accessors:
     fn clength(&mut self) -> &mut u64;
     fn ctype(&mut self) -> &mut String;
     fn host(&mut self) -> &mut String;
     fn url(&mut self) -> &mut String;
+
     // callbacks to be implemented by the user:
-    fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool);
+    fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool) { println!("payload({}:{})={:X?}", is_first, is_last, data); }
+
+    // private functions:
+    fn _func4_3(&mut self) -> bool {  println!("URL: {}", self.url());  return true; }
+    fn _func7_3(&mut self) -> bool {  println!("HOST: {}",   self.host());  return true; }
+    fn _func8_4(&mut self) -> bool {  println!("TYPE: {}\n", self.ctype());  return true; }
+    fn _func9_4(&mut self) -> bool {  println!("LENGTH: {}", self.clength());  return true; }
+    fn _if12_0(&mut self) -> bool { *self.clength() > 0 }
+    fn _max_data12_1(&mut self) -> usize { ( *self.clength() ) as usize }
 }
 
 pub struct HttpReqRustExample
@@ -100,7 +111,6 @@ impl HttpReqRustTrait for HttpReqRustExample {
     fn clength(&mut self) -> &mut u64 { &mut self.clength }
     fn ctype(&mut self) -> &mut String { &mut self.ctype }
     fn host(&mut self) -> &mut String { &mut self.host }
-    fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool) { println!("payload({}:{})={:X?}", is_first, is_last, data); }
     fn url(&mut self) -> &mut String { &mut self.url }
 }
 
@@ -793,14 +803,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range4_2;
         return true;
     }
-    #[allow(unused_variables)]
-    #[allow(unreachable_code)]
-    fn _func4_3(this : &mut T) -> bool {
-         println!("URL: {}", this.url()); 
-        return true;
-    }
     fn func4_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if Self::_func4_3(&mut self.output) {
+        if self.output._func4_3() {
             state.node = NodeT::Text4_4;
             return true;
         }
@@ -1210,14 +1214,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::String7_2;
         return true;
     }
-    #[allow(unused_variables)]
-    #[allow(unreachable_code)]
-    fn _func7_3(this : &mut T) -> bool {
-         println!("HOST: {}",   this.host()); 
-        return true;
-    }
     fn func7_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if Self::_func7_3(&mut self.output) {
+        if self.output._func7_3() {
             state.node = NodeT::Text7_4;
             return true;
         }
@@ -1503,14 +1501,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::String8_3;
         return true;
     }
-    #[allow(unused_variables)]
-    #[allow(unreachable_code)]
-    fn _func8_4(this : &mut T) -> bool {
-         println!("TYPE: {}\n", this.ctype()); 
-        return true;
-    }
     fn func8_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if Self::_func8_4(&mut self.output) {
+        if self.output._func8_4() {
             state.node = NodeT::Text8_5;
             return true;
         }
@@ -1767,14 +1759,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Uint9_3;
         return true;
     }
-    #[allow(unused_variables)]
-    #[allow(unreachable_code)]
-    fn _func9_4(this : &mut T) -> bool {
-         println!("LENGTH: {}", this.clength()); 
-        return true;
-    }
     fn func9_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if Self::_func9_4(&mut self.output) {
+        if self.output._func9_4() {
             state.node = NodeT::Text9_5;
             return true;
         }
@@ -1973,22 +1959,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return true;
     }
-    #[allow(unused_variables)]
-    #[allow(unreachable_code)]
-    fn _if12_0(this : &mut T) -> bool {
-        *this.clength() > 0
-    }
     fn if12_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        if Self::_if12_0(&mut self.output) {
+        if self.output._if12_0() {
             state.node = NodeT::Data12_1;
             return true;
         }
         state.node = NodeT::Range14_0;
         return false;
     }
-    #[allow(unused_variables)]
-    #[allow(unreachable_code)]
-    fn max_data12_1(this : &mut T) -> usize { let x =  *this.clength() ; x as usize }
     fn data12_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.left;
         if state.consumed == 0 {
@@ -1997,8 +1975,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         if state.left == state.right {
             return true;
         }
-        else if (state.consumed + state.remain()) >= Self::max_data12_1(&mut self.output) {
-            state.left += Self::max_data12_1(&mut self.output) - state.consumed;
+        else if (state.consumed + state.remain()) >= self.output._max_data12_1() {
+            state.left += self.output._max_data12_1() - state.consumed;
             let left = state.left;
             self.output.payload(&data[datastart .. left], state.consumed == 0, true);
             state.consumed = 0;
