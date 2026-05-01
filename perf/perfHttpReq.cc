@@ -1,7 +1,7 @@
 // ==============================================================
-// Date: 2026-03-30 13:41:45 GMT
-// Generated using vProto(2026.03.30)        https://www.cgen.dev
-// Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
+// Date: 2026-05-01 12:52:52 GMT
+// Generated using vProto(2026.05.01)        https://www.cgen.dev
+// Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
 
@@ -15,15 +15,24 @@
 #if defined(__SSE2__)
 #include <emmintrin.h>
 #endif
+#if !defined(ALWAYS_INLINE)
+    #if defined(_MSC_VER)
+        #define ALWAYS_INLINE __forceinline
+    #elif defined(__clang__)
+        #define ALWAYS_INLINE [[clang::always_inline]]
+    #else
+        #define ALWAYS_INLINE inline
+    #endif
+#endif
 
 #if defined(_MSC_VER)
 #include <intrin.h>
-inline unsigned __ctz32(uint32_t x) { return _tzcnt_u32(x); }
+ALWAYS_INLINE unsigned __ctz32(uint32_t x) { return _tzcnt_u32(x); }
 #else
-inline unsigned __ctz32(uint32_t x) { return __builtin_ctz(x); }
+ALWAYS_INLINE unsigned __ctz32(uint32_t x) { return __builtin_ctz(x); }
 #endif
 
-inline void perfHttpReq::parse(StateT & state)
+void perfHttpReq::parse(StateT & state)
 {
     while(true)
     {
@@ -134,7 +143,7 @@ bool perfHttpReq::parse(const char * data, unsigned len)
     return !empty();
 }
 
-inline bool perfHttpReq::loop1_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::loop1_0(StateT & state) const
 {
     if (state.data == state.end)
         return true;
@@ -162,7 +171,7 @@ inline bool perfHttpReq::loop1_0(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text1_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text1_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 3> text = {0x67, 0x65, 0x74}; // get
     for(; state.data < state.end; state.data++)
@@ -186,7 +195,7 @@ inline bool perfHttpReq::text1_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call1_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call1_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -200,7 +209,7 @@ inline bool perfHttpReq::call1_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call1_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call1_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -214,7 +223,7 @@ inline bool perfHttpReq::call1_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text2_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text2_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 4> text = {0x68, 0x65, 0x61, 0x64}; // head
     for(; state.data < state.end; state.data++)
@@ -238,7 +247,7 @@ inline bool perfHttpReq::text2_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call2_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call2_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -252,7 +261,7 @@ inline bool perfHttpReq::call2_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call2_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call2_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -266,7 +275,7 @@ inline bool perfHttpReq::call2_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text3_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text3_0(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -284,7 +293,7 @@ inline bool perfHttpReq::text3_0(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::cases3_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::cases3_1(StateT & state) const
 {
     if (state.data == state.end)
         return true;
@@ -298,7 +307,7 @@ inline bool perfHttpReq::cases3_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text4_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text4_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 3> text = {0x6f, 0x73, 0x74}; // ost
     for(; state.data < state.end; state.data++)
@@ -322,7 +331,7 @@ inline bool perfHttpReq::text4_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call4_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call4_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -336,7 +345,7 @@ inline bool perfHttpReq::call4_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call4_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call4_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -350,7 +359,7 @@ inline bool perfHttpReq::call4_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text5_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text5_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 2> text = {0x75, 0x74}; // ut
     for(; state.data < state.end; state.data++)
@@ -374,7 +383,7 @@ inline bool perfHttpReq::text5_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call5_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call5_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -388,7 +397,7 @@ inline bool perfHttpReq::call5_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call5_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call5_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -402,7 +411,7 @@ inline bool perfHttpReq::call5_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text6_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text6_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 4> text = {0x61, 0x74, 0x63, 0x68}; // atch
     for(; state.data < state.end; state.data++)
@@ -426,7 +435,7 @@ inline bool perfHttpReq::text6_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call6_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call6_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -440,7 +449,7 @@ inline bool perfHttpReq::call6_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call6_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call6_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -454,7 +463,7 @@ inline bool perfHttpReq::call6_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text7_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text7_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 6> text = {0x64, 0x65, 0x6c, 0x65, 0x74, 0x65}; // delete
     for(; state.data < state.end; state.data++)
@@ -478,7 +487,7 @@ inline bool perfHttpReq::text7_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call7_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call7_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -492,7 +501,7 @@ inline bool perfHttpReq::call7_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call7_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call7_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -506,7 +515,7 @@ inline bool perfHttpReq::call7_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text8_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text8_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 7> text = {0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73}; // options
     for(; state.data < state.end; state.data++)
@@ -530,7 +539,7 @@ inline bool perfHttpReq::text8_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call8_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call8_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -544,7 +553,7 @@ inline bool perfHttpReq::call8_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call8_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call8_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -558,7 +567,7 @@ inline bool perfHttpReq::call8_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text9_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text9_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 7> text = {0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74}; // connect
     for(; state.data < state.end; state.data++)
@@ -582,7 +591,7 @@ inline bool perfHttpReq::text9_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call9_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call9_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -596,7 +605,7 @@ inline bool perfHttpReq::call9_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call9_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call9_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -610,7 +619,7 @@ inline bool perfHttpReq::call9_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text10_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text10_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 4> text = {0x6c, 0x69, 0x6e, 0x6b}; // link
     for(; state.data < state.end; state.data++)
@@ -634,7 +643,7 @@ inline bool perfHttpReq::text10_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call10_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call10_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -648,7 +657,7 @@ inline bool perfHttpReq::call10_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call10_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call10_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -662,7 +671,7 @@ inline bool perfHttpReq::call10_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text11_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text11_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 6> text = {0x75, 0x6e, 0x6c, 0x69, 0x6e, 0x6b}; // unlink
     for(; state.data < state.end; state.data++)
@@ -686,7 +695,7 @@ inline bool perfHttpReq::text11_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call11_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call11_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -700,7 +709,7 @@ inline bool perfHttpReq::call11_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call11_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call11_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -714,7 +723,7 @@ inline bool perfHttpReq::call11_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text12_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text12_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 5> text = {0x74, 0x72, 0x61, 0x63, 0x65}; // trace
     for(; state.data < state.end; state.data++)
@@ -738,7 +747,7 @@ inline bool perfHttpReq::text12_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::call12_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call12_1(StateT & state) const
 {
     state.node = NodeT::Label15_0;
     if (state.rcount < state.rstack.size())
@@ -752,7 +761,7 @@ inline bool perfHttpReq::call12_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::call12_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::call12_2(StateT & state) const
 {
     state.node = NodeT::Label17_0;
     if (state.rcount < state.rstack.size())
@@ -766,7 +775,7 @@ inline bool perfHttpReq::call12_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text13_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text13_0(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -784,7 +793,7 @@ inline bool perfHttpReq::text13_0(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text13_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text13_1(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -802,18 +811,18 @@ inline bool perfHttpReq::text13_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::loop15_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::loop15_0(StateT & state) const
 {
     return label15_0(state);
 }
 
-inline bool perfHttpReq::label15_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::label15_0(StateT & state) const
 {
     state.node = NodeT::Range15_1;
     return true;
 }
 
-inline bool perfHttpReq::range15_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range15_1(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -861,7 +870,7 @@ void perfHttpReq::string15_2(const char * data, unsigned len, uint64_t consumed)
     perfHttpReqResult::url.append(data, len);
 }
 
-inline bool perfHttpReq::string15_2(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::string15_2(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, 
@@ -979,7 +988,7 @@ inline bool perfHttpReq::string15_2(StateT & state)
     return true;
 }
 
-inline bool perfHttpReq::range15_3(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range15_3(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1018,7 +1027,7 @@ inline bool perfHttpReq::range15_3(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text15_4(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text15_4(StateT & state) const
 {
     const static std::array<uint8_t, 5> text = {0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
     for(; state.data < state.end; state.data++)
@@ -1041,7 +1050,7 @@ inline bool perfHttpReq::text15_4(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::range15_5(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range15_5(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1080,7 +1089,7 @@ inline bool perfHttpReq::range15_5(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text15_6(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text15_6(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1098,7 +1107,7 @@ inline bool perfHttpReq::text15_6(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::range15_7(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range15_7(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1137,7 +1146,7 @@ inline bool perfHttpReq::range15_7(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text15_8(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text15_8(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1155,7 +1164,7 @@ inline bool perfHttpReq::text15_8(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text15_9(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text15_9(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1173,24 +1182,24 @@ inline bool perfHttpReq::text15_9(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::ret15_10(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::ret15_10(StateT & state) const
 {
     state.node = state.rcount ? state.rstack[--state.rcount] : NodeT::NoState;
     return state.node != NodeT::NoState;
 }
 
-inline bool perfHttpReq::loop17_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::loop17_0(StateT & state) const
 {
     return label17_0(state);
 }
 
-inline bool perfHttpReq::label17_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::label17_0(StateT & state) const
 {
     state.node = NodeT::Loop17_1;
     return true;
 }
 
-inline bool perfHttpReq::loop17_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::loop17_1(StateT & state) const
 {
     if (state.data == state.end)
         return true;
@@ -1206,7 +1215,7 @@ inline bool perfHttpReq::loop17_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text18_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text18_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 5> text = {0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
     for(; state.data < state.end; state.data++)
@@ -1230,7 +1239,7 @@ inline bool perfHttpReq::text18_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::range18_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range18_1(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1354,7 +1363,7 @@ void perfHttpReq::string18_2(const char * data, unsigned len, uint64_t consumed)
     perfHttpReqResult::host.append(data, len);
 }
 
-inline bool perfHttpReq::string18_2(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::string18_2(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -1472,7 +1481,7 @@ inline bool perfHttpReq::string18_2(StateT & state)
     return true;
 }
 
-inline bool perfHttpReq::text18_3(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text18_3(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1490,7 +1499,7 @@ inline bool perfHttpReq::text18_3(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text18_4(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text18_4(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1508,7 +1517,7 @@ inline bool perfHttpReq::text18_4(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text19_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool perfHttpReq::text19_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 15> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
     for(; state.data < state.end; state.data++)
@@ -1532,7 +1541,7 @@ inline bool perfHttpReq::text19_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool perfHttpReq::range19_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range19_1(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1655,7 +1664,7 @@ void perfHttpReq::uint19_2(const char * data, unsigned len, uint64_t consumed)
         perfHttpReqResult::content_length = perfHttpReqResult::content_length*10 + *data - '0';
 }
 
-inline bool perfHttpReq::uint19_2(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::uint19_2(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1741,7 +1750,7 @@ inline bool perfHttpReq::uint19_2(StateT & state)
     return true;
 }
 
-inline bool perfHttpReq::text19_3(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text19_3(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1759,7 +1768,7 @@ inline bool perfHttpReq::text19_3(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text19_4(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text19_4(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1777,7 +1786,7 @@ inline bool perfHttpReq::text19_4(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::range20_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range20_0(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1816,7 +1825,7 @@ inline bool perfHttpReq::range20_0(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::range20_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range20_1(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -1892,7 +1901,7 @@ inline bool perfHttpReq::range20_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text20_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text20_2(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1910,7 +1919,7 @@ inline bool perfHttpReq::text20_2(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text20_3(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text20_3(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1928,7 +1937,7 @@ inline bool perfHttpReq::text20_3(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text21_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text21_0(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1946,7 +1955,7 @@ inline bool perfHttpReq::text21_0(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text21_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text21_1(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1964,7 +1973,7 @@ inline bool perfHttpReq::text21_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::cases21_2(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::cases21_2(StateT & state)
 {
     if (func22_0(state)) // case_1
         return true;
@@ -1974,12 +1983,12 @@ inline bool perfHttpReq::cases21_2(StateT & state)
     return true;
 }
 
-inline bool perfHttpReq::func22_0()
+ALWAYS_INLINE bool perfHttpReq::func22_0()
 {
      return content_length; 
     return true;
 }
-inline bool perfHttpReq::func22_0(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::func22_0(StateT & state)
 {
     if (func22_0())
     {
@@ -1990,7 +1999,7 @@ inline bool perfHttpReq::func22_0(StateT & state)
     return false;
 }
 
-inline bool perfHttpReq::data22_1(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::data22_1(StateT & state)
 {
     const char * datastart = state.data;
     if (!state.consumed)
@@ -2011,12 +2020,12 @@ inline bool perfHttpReq::data22_1(StateT & state)
     return true;
 }
 
-inline bool perfHttpReq::func22_2()
+ALWAYS_INLINE bool perfHttpReq::func22_2()
 {
      content_length = 0; 
     return true;
 }
-inline bool perfHttpReq::func22_2(StateT & state)
+ALWAYS_INLINE bool perfHttpReq::func22_2(StateT & state)
 {
     if (func22_2())
     {
@@ -2027,19 +2036,19 @@ inline bool perfHttpReq::func22_2(StateT & state)
     return false;
 }
 
-inline bool perfHttpReq::ret22_3(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::ret22_3(StateT & state) const
 {
     state.node = state.rcount ? state.rstack[--state.rcount] : NodeT::NoState;
     return state.node != NodeT::NoState;
 }
 
-inline bool perfHttpReq::ret23_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::ret23_0(StateT & state) const
 {
     state.node = state.rcount ? state.rstack[--state.rcount] : NodeT::NoState;
     return state.node != NodeT::NoState;
 }
 
-inline bool perfHttpReq::range24_0(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::range24_0(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -2154,7 +2163,7 @@ inline bool perfHttpReq::range24_0(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text24_1(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text24_1(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -2172,7 +2181,7 @@ inline bool perfHttpReq::text24_1(StateT & state) const
     return true;
 }
 
-inline bool perfHttpReq::text24_2(StateT & state) const
+ALWAYS_INLINE bool perfHttpReq::text24_2(StateT & state) const
 {
     if(state.data < state.end)
     {

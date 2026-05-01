@@ -1,7 +1,7 @@
 // ==============================================================
-// Date: 2026-03-30 13:41:45 GMT
-// Generated using vProto(2026.03.30)        https://www.cgen.dev
-// Author: Sergey V. Shchekoldin     Email: shchekoldin@gmail.com
+// Date: 2026-05-01 12:52:52 GMT
+// Generated using vProto(2026.05.01)        https://www.cgen.dev
+// Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
 
@@ -15,15 +15,24 @@
 #if defined(__SSE2__)
 #include <emmintrin.h>
 #endif
+#if !defined(ALWAYS_INLINE)
+    #if defined(_MSC_VER)
+        #define ALWAYS_INLINE __forceinline
+    #elif defined(__clang__)
+        #define ALWAYS_INLINE [[clang::always_inline]]
+    #else
+        #define ALWAYS_INLINE inline
+    #endif
+#endif
 
 #if defined(_MSC_VER)
 #include <intrin.h>
-inline unsigned __ctz32(uint32_t x) { return _tzcnt_u32(x); }
+ALWAYS_INLINE unsigned __ctz32(uint32_t x) { return _tzcnt_u32(x); }
 #else
-inline unsigned __ctz32(uint32_t x) { return __builtin_ctz(x); }
+ALWAYS_INLINE unsigned __ctz32(uint32_t x) { return __builtin_ctz(x); }
 #endif
 
-inline void httpReq::parse(StateT & state)
+void httpReq::parse(StateT & state)
 {
     while(true)
     {
@@ -156,12 +165,12 @@ bool httpReq::parse(const char * data, unsigned len)
     return !empty();
 }
 
-inline bool httpReq::loop1_0(StateT & state)
+ALWAYS_INLINE bool httpReq::loop1_0(StateT & state)
 {
     return any1_0(state);
 }
 
-inline bool httpReq::any1_0(StateT & state)
+ALWAYS_INLINE bool httpReq::any1_0(StateT & state)
 {
     if (state.data == state.end)
         return true;
@@ -235,7 +244,7 @@ inline bool httpReq::any1_0(StateT & state)
     return false;
 }
 
-inline bool httpReq::text1_0_0_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_0_0(StateT & state) const
 {
     const static std::array<uint8_t, 3> text = {0x47, 0x45, 0x54}; // get
     for(; state.data < state.end; state.data++)
@@ -258,7 +267,7 @@ inline bool httpReq::text1_0_0_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_1_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_1_0(StateT & state) const
 {
     const static std::array<uint8_t, 4> text = {0x48, 0x45, 0x41, 0x44}; // head
     for(; state.data < state.end; state.data++)
@@ -281,7 +290,7 @@ inline bool httpReq::text1_0_1_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_2_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_2_0(StateT & state) const
 {
     const static std::array<uint8_t, 3> text = {0x50, 0x55, 0x54}; // put
     for(; state.data < state.end; state.data++)
@@ -304,7 +313,7 @@ inline bool httpReq::text1_0_2_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_3_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_3_0(StateT & state) const
 {
     const static std::array<uint8_t, 5> text = {0x50, 0x41, 0x54, 0x43, 0x48}; // patch
     for(; state.data < state.end; state.data++)
@@ -327,7 +336,7 @@ inline bool httpReq::text1_0_3_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_4_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_4_0(StateT & state) const
 {
     const static std::array<uint8_t, 6> text = {0x44, 0x45, 0x4c, 0x45, 0x54, 0x45}; // delete
     for(; state.data < state.end; state.data++)
@@ -350,7 +359,7 @@ inline bool httpReq::text1_0_4_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_5_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_5_0(StateT & state) const
 {
     const static std::array<uint8_t, 7> text = {0x4f, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x53}; // options
     for(; state.data < state.end; state.data++)
@@ -373,7 +382,7 @@ inline bool httpReq::text1_0_5_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_6_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_6_0(StateT & state) const
 {
     const static std::array<uint8_t, 7> text = {0x43, 0x4f, 0x4e, 0x4e, 0x45, 0x43, 0x54}; // connect
     for(; state.data < state.end; state.data++)
@@ -396,7 +405,7 @@ inline bool httpReq::text1_0_6_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_7_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_7_0(StateT & state) const
 {
     const static std::array<uint8_t, 4> text = {0x4c, 0x49, 0x4e, 0x4b}; // link
     for(; state.data < state.end; state.data++)
@@ -419,7 +428,7 @@ inline bool httpReq::text1_0_7_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_8_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_8_0(StateT & state) const
 {
     const static std::array<uint8_t, 6> text = {0x55, 0x4e, 0x4c, 0x49, 0x4e, 0x4b}; // unlink
     for(; state.data < state.end; state.data++)
@@ -442,7 +451,7 @@ inline bool httpReq::text1_0_8_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_9_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_9_0(StateT & state) const
 {
     const static std::array<uint8_t, 5> text = {0x54, 0x52, 0x41, 0x43, 0x45}; // trace
     for(; state.data < state.end; state.data++)
@@ -465,7 +474,7 @@ inline bool httpReq::text1_0_9_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text1_0_10_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text1_0_10_0(StateT & state) const
 {
     const static std::array<uint8_t, 4> text = {0x50, 0x4f, 0x53, 0x54}; // post
     for(; state.data < state.end; state.data++)
@@ -488,7 +497,7 @@ inline bool httpReq::text1_0_10_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::bang1_0(StateT & state)
+ALWAYS_INLINE bool httpReq::bang1_0(StateT & state)
 {
     for(auto & p : pstate)
         p.node = NodeT::NoState;
@@ -502,7 +511,7 @@ inline bool httpReq::bang1_0(StateT & state)
     return true;
 }
 
-inline bool httpReq::call1_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::call1_2(StateT & state) const
 {
     state.node = NodeT::Label3_0;
     if (state.rcount < state.rstack.size())
@@ -516,7 +525,7 @@ inline bool httpReq::call1_2(StateT & state) const
     return true;
 }
 
-inline bool httpReq::call1_3(StateT & state) const
+ALWAYS_INLINE bool httpReq::call1_3(StateT & state) const
 {
     state.node = NodeT::Label6_0;
     if (state.rcount < state.rstack.size())
@@ -530,7 +539,7 @@ inline bool httpReq::call1_3(StateT & state) const
     return true;
 }
 
-inline bool httpReq::reset1_4(StateT & state)
+ALWAYS_INLINE bool httpReq::reset1_4(StateT & state)
 {
     const char * d = state.data;
     const char * e = state.end;
@@ -541,23 +550,23 @@ inline bool httpReq::reset1_4(StateT & state)
     return true;
 }
 
-inline bool httpReq::loop3_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::loop3_0(StateT & state) const
 {
     return label3_0(state);
 }
 
-inline bool httpReq::label3_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::label3_0(StateT & state) const
 {
     state.node = NodeT::Loop3_1;
     return true;
 }
 
-inline bool httpReq::loop3_1(StateT & state) const
+ALWAYS_INLINE bool httpReq::loop3_1(StateT & state) const
 {
     return range4_0(state);
 }
 
-inline bool httpReq::range4_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::range4_0(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -605,7 +614,7 @@ void httpReq::string4_1(const char * data, unsigned len, uint64_t consumed)
     httpReqResult::url.append(data, len);
 }
 
-inline bool httpReq::string4_1(StateT & state)
+ALWAYS_INLINE bool httpReq::string4_1(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, 
@@ -723,7 +732,7 @@ inline bool httpReq::string4_1(StateT & state)
     return true;
 }
 
-inline bool httpReq::range4_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::range4_2(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -762,12 +771,12 @@ inline bool httpReq::range4_2(StateT & state) const
     return true;
 }
 
-inline bool httpReq::func4_3()
+ALWAYS_INLINE bool httpReq::func4_3()
 {
      printf("URL: %s\n", url.c_str()); 
     return true;
 }
-inline bool httpReq::func4_3(StateT & state)
+ALWAYS_INLINE bool httpReq::func4_3(StateT & state)
 {
     if (func4_3())
     {
@@ -778,7 +787,7 @@ inline bool httpReq::func4_3(StateT & state)
     return false;
 }
 
-inline bool httpReq::text4_4(StateT & state) const
+ALWAYS_INLINE bool httpReq::text4_4(StateT & state) const
 {
     const static std::array<uint8_t, 5> text = {0x48, 0x54, 0x54, 0x50, 0x2f}; // http/
     for(; state.data < state.end; state.data++)
@@ -801,7 +810,7 @@ inline bool httpReq::text4_4(StateT & state) const
     return true;
 }
 
-inline bool httpReq::range4_5(StateT & state) const
+ALWAYS_INLINE bool httpReq::range4_5(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -840,7 +849,7 @@ inline bool httpReq::range4_5(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text4_6(StateT & state) const
+ALWAYS_INLINE bool httpReq::text4_6(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -858,7 +867,7 @@ inline bool httpReq::text4_6(StateT & state) const
     return true;
 }
 
-inline bool httpReq::range4_7(StateT & state) const
+ALWAYS_INLINE bool httpReq::range4_7(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -897,7 +906,7 @@ inline bool httpReq::range4_7(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text4_8(StateT & state) const
+ALWAYS_INLINE bool httpReq::text4_8(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -915,7 +924,7 @@ inline bool httpReq::text4_8(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text4_9(StateT & state) const
+ALWAYS_INLINE bool httpReq::text4_9(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -933,24 +942,24 @@ inline bool httpReq::text4_9(StateT & state) const
     return true;
 }
 
-inline bool httpReq::ret4_10(StateT & state) const
+ALWAYS_INLINE bool httpReq::ret4_10(StateT & state) const
 {
     state.node = state.rcount ? state.rstack[--state.rcount] : NodeT::NoState;
     return state.node != NodeT::NoState;
 }
 
-inline bool httpReq::loop6_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::loop6_0(StateT & state) const
 {
     return label6_0(state);
 }
 
-inline bool httpReq::label6_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::label6_0(StateT & state) const
 {
     state.node = NodeT::Loop6_1;
     return true;
 }
 
-inline bool httpReq::loop6_1(StateT & state)
+ALWAYS_INLINE bool httpReq::loop6_1(StateT & state)
 {
     if (state.data == state.end)
         return true;
@@ -971,7 +980,7 @@ inline bool httpReq::loop6_1(StateT & state)
     return true;
 }
 
-inline bool httpReq::text7_0(StateT & state, bool is_branch) const
+ALWAYS_INLINE bool httpReq::text7_0(StateT & state, bool is_branch) const
 {
     const static std::array<uint8_t, 5> text = {0x68, 0x6f, 0x73, 0x74, 0x3a}; // host:
     for(; state.data < state.end; state.data++)
@@ -995,7 +1004,7 @@ inline bool httpReq::text7_0(StateT & state, bool is_branch) const
     return true;
 }
 
-inline bool httpReq::range7_1(StateT & state) const
+ALWAYS_INLINE bool httpReq::range7_1(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1119,7 +1128,7 @@ void httpReq::string7_2(const char * data, unsigned len, uint64_t consumed)
     httpReqResult::host.append(data, len);
 }
 
-inline bool httpReq::string7_2(StateT & state)
+ALWAYS_INLINE bool httpReq::string7_2(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -1237,12 +1246,12 @@ inline bool httpReq::string7_2(StateT & state)
     return true;
 }
 
-inline bool httpReq::func7_3()
+ALWAYS_INLINE bool httpReq::func7_3()
 {
      printf("HOST: %s\n", host.c_str());     
     return true;
 }
-inline bool httpReq::func7_3(StateT & state)
+ALWAYS_INLINE bool httpReq::func7_3(StateT & state)
 {
     if (func7_3())
     {
@@ -1253,7 +1262,7 @@ inline bool httpReq::func7_3(StateT & state)
     return false;
 }
 
-inline bool httpReq::text7_4(StateT & state) const
+ALWAYS_INLINE bool httpReq::text7_4(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1271,7 +1280,7 @@ inline bool httpReq::text7_4(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text7_5(StateT & state) const
+ALWAYS_INLINE bool httpReq::text7_5(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1289,7 +1298,7 @@ inline bool httpReq::text7_5(StateT & state) const
     return true;
 }
 
-inline bool httpReq::any8_0(StateT & state)
+ALWAYS_INLINE bool httpReq::any8_0(StateT & state)
 {
     if (state.data == state.end)
         return true;
@@ -1302,7 +1311,7 @@ inline bool httpReq::any8_0(StateT & state)
     return false;
 }
 
-inline bool httpReq::text8_0_0_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text8_0_0_0(StateT & state) const
 {
     const static std::array<uint8_t, 13> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 0x79, 0x70, 0x65, 0x3a}; // content-type:
     for(; state.data < state.end; state.data++)
@@ -1325,7 +1334,7 @@ inline bool httpReq::text8_0_0_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::bang8_0(StateT & state)
+ALWAYS_INLINE bool httpReq::bang8_0(StateT & state)
 {
     for(auto & p : pstate)
         p.node = NodeT::NoState;
@@ -1339,7 +1348,7 @@ inline bool httpReq::bang8_0(StateT & state)
     return true;
 }
 
-inline bool httpReq::range8_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::range8_2(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1463,7 +1472,7 @@ void httpReq::string8_3(const char * data, unsigned len, uint64_t consumed)
     httpReqResult::type.append(data, len);
 }
 
-inline bool httpReq::string8_3(StateT & state)
+ALWAYS_INLINE bool httpReq::string8_3(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -1581,12 +1590,12 @@ inline bool httpReq::string8_3(StateT & state)
     return true;
 }
 
-inline bool httpReq::func8_4()
+ALWAYS_INLINE bool httpReq::func8_4()
 {
      printf("TYPE: %s\n", type.c_str());     
     return true;
 }
-inline bool httpReq::func8_4(StateT & state)
+ALWAYS_INLINE bool httpReq::func8_4(StateT & state)
 {
     if (func8_4())
     {
@@ -1597,7 +1606,7 @@ inline bool httpReq::func8_4(StateT & state)
     return false;
 }
 
-inline bool httpReq::text8_5(StateT & state) const
+ALWAYS_INLINE bool httpReq::text8_5(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1615,7 +1624,7 @@ inline bool httpReq::text8_5(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text8_6(StateT & state) const
+ALWAYS_INLINE bool httpReq::text8_6(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1633,7 +1642,7 @@ inline bool httpReq::text8_6(StateT & state) const
     return true;
 }
 
-inline bool httpReq::any9_0(StateT & state)
+ALWAYS_INLINE bool httpReq::any9_0(StateT & state)
 {
     if (state.data == state.end)
         return true;
@@ -1646,7 +1655,7 @@ inline bool httpReq::any9_0(StateT & state)
     return false;
 }
 
-inline bool httpReq::text9_0_0_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text9_0_0_0(StateT & state) const
 {
     const static std::array<uint8_t, 15> text = {0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a}; // content-length:
     for(; state.data < state.end; state.data++)
@@ -1669,7 +1678,7 @@ inline bool httpReq::text9_0_0_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::bang9_0(StateT & state)
+ALWAYS_INLINE bool httpReq::bang9_0(StateT & state)
 {
     for(auto & p : pstate)
         p.node = NodeT::NoState;
@@ -1683,7 +1692,7 @@ inline bool httpReq::bang9_0(StateT & state)
     return true;
 }
 
-inline bool httpReq::range9_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::range9_2(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1806,7 +1815,7 @@ void httpReq::uint9_3(const char * data, unsigned len, uint64_t consumed)
         httpReqResult::contentLength = httpReqResult::contentLength*10 + *data - '0';
 }
 
-inline bool httpReq::uint9_3(StateT & state)
+ALWAYS_INLINE bool httpReq::uint9_3(StateT & state)
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1892,12 +1901,12 @@ inline bool httpReq::uint9_3(StateT & state)
     return true;
 }
 
-inline bool httpReq::func9_4()
+ALWAYS_INLINE bool httpReq::func9_4()
 {
      printf("LENGTH: %zu\n", contentLength); 
     return true;
 }
-inline bool httpReq::func9_4(StateT & state)
+ALWAYS_INLINE bool httpReq::func9_4(StateT & state)
 {
     if (func9_4())
     {
@@ -1908,7 +1917,7 @@ inline bool httpReq::func9_4(StateT & state)
     return false;
 }
 
-inline bool httpReq::text9_5(StateT & state) const
+ALWAYS_INLINE bool httpReq::text9_5(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1926,7 +1935,7 @@ inline bool httpReq::text9_5(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text9_6(StateT & state) const
+ALWAYS_INLINE bool httpReq::text9_6(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -1944,7 +1953,7 @@ inline bool httpReq::text9_6(StateT & state) const
     return true;
 }
 
-inline bool httpReq::range10_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::range10_0(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
          true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
@@ -1983,7 +1992,7 @@ inline bool httpReq::range10_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::range10_1(StateT & state) const
+ALWAYS_INLINE bool httpReq::range10_1(StateT & state) const
 {
     const static std::array<bool, 256> terminator = {
         false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
@@ -2059,7 +2068,7 @@ inline bool httpReq::range10_1(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text10_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::text10_2(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -2077,7 +2086,7 @@ inline bool httpReq::text10_2(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text10_3(StateT & state) const
+ALWAYS_INLINE bool httpReq::text10_3(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -2095,7 +2104,7 @@ inline bool httpReq::text10_3(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text11_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::text11_0(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -2113,7 +2122,7 @@ inline bool httpReq::text11_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text11_1(StateT & state) const
+ALWAYS_INLINE bool httpReq::text11_1(StateT & state) const
 {
     if(state.data < state.end)
     {
@@ -2131,7 +2140,7 @@ inline bool httpReq::text11_1(StateT & state) const
     return true;
 }
 
-inline bool httpReq::cases11_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::cases11_2(StateT & state) const
 {
     if (if12_0(state)) // case_1
         return true;
@@ -2141,7 +2150,7 @@ inline bool httpReq::cases11_2(StateT & state) const
     return true;
 }
 
-inline bool httpReq::if12_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::if12_0(StateT & state) const
 {
     if (contentLength)
     {
@@ -2152,7 +2161,7 @@ inline bool httpReq::if12_0(StateT & state) const
     return false;
 }
 
-inline bool httpReq::data12_1(StateT & state)
+ALWAYS_INLINE bool httpReq::data12_1(StateT & state)
 {
     const char * datastart = state.data;
     if (!state.consumed)
@@ -2173,19 +2182,19 @@ inline bool httpReq::data12_1(StateT & state)
     return true;
 }
 
-inline bool httpReq::ret12_2(StateT & state) const
+ALWAYS_INLINE bool httpReq::ret12_2(StateT & state) const
 {
     state.node = state.rcount ? state.rstack[--state.rcount] : NodeT::NoState;
     return state.node != NodeT::NoState;
 }
 
-inline bool httpReq::ret13_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::ret13_0(StateT & state) const
 {
     state.node = state.rcount ? state.rstack[--state.rcount] : NodeT::NoState;
     return state.node != NodeT::NoState;
 }
 
-inline bool httpReq::range14_0(StateT & state) const
+ALWAYS_INLINE bool httpReq::range14_0(StateT & state) const
 {
     const char * datastart = state.data;
     while(state.data < state.end) [[likely]]
@@ -2281,7 +2290,7 @@ inline bool httpReq::range14_0(StateT & state) const
     return true;
 }
 
-inline bool httpReq::text14_1(StateT & state) const
+ALWAYS_INLINE bool httpReq::text14_1(StateT & state) const
 {
     if(state.data < state.end)
     {

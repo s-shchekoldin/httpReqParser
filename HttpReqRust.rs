@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-04-30 17:15:32 GMT
-// Generated using vProto(2026.04.30)        https://www.cgen.dev
+// Date: 2026-05-01 12:52:52 GMT
+// Generated using vProto(2026.05.01)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -88,12 +88,12 @@ pub trait HttpReqRustTrait {
     fn payload(&mut self, data: &[u8], is_first: bool, is_last: bool) { println!("payload({}:{})={:X?}", is_first, is_last, data); }
 
     // private functions:
-    fn _func4_3(&mut self) -> bool {  println!("URL: {}", self.url());  return true; }
-    fn _func7_3(&mut self) -> bool {  println!("HOST: {}",   self.host());  return true; }
-    fn _func8_4(&mut self) -> bool {  println!("TYPE: {}\n", self.ctype());  return true; }
-    fn _func9_4(&mut self) -> bool {  println!("LENGTH: {}", self.clength());  return true; }
-    fn _if12_0(&mut self) -> bool { *self.clength() > 0 }
-    fn _max_data12_1(&mut self) -> usize { ( *self.clength() ) as usize }
+    #[inline(always)] fn _func4_3(&mut self) -> bool {  println!("URL: {}", self.url());  return true; }
+    #[inline(always)] fn _func7_3(&mut self) -> bool {  println!("HOST: {}",   self.host());  return true; }
+    #[inline(always)] fn _func8_4(&mut self) -> bool {  println!("TYPE: {}\n", self.ctype());  return true; }
+    #[inline(always)] fn _func9_4(&mut self) -> bool {  println!("LENGTH: {}", self.clength());  return true; }
+    #[inline(always)] fn _if12_0(&mut self) -> bool { *self.clength() > 0 }
+    #[inline(always)] fn _max_data12_1(&mut self) -> usize { ( *self.clength() ) as usize }
 }
 
 pub struct HttpReqRustExample
@@ -192,61 +192,182 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                 NodeT::Text1_0_8_0 => { self.text1_0_8_0(state, data); }
                 NodeT::Text1_0_9_0 => { self.text1_0_9_0(state, data); }
                 NodeT::Text1_0_10_0 => { self.text1_0_10_0(state, data); }
-                NodeT::Bang1_0 => { self.bang1_0(state, data); }
-                NodeT::Call1_2 => { self.call1_2(state, data); }
-                NodeT::Call1_3 => { self.call1_3(state, data); }
+                NodeT::Bang1_0 => if self.bang1_0(state, data) &&
+                        (state.node == NodeT::Call1_2 && self.call1_2(state, data)) &&
+                        (state.node == NodeT::Call1_3 && self.call1_3(state, data)) &&
+                        (state.node == NodeT::Reset1_4 && self.reset1_4(state, data)){ continue; }
+                NodeT::Call1_2 => if self.call1_2(state, data) &&
+                        (state.node == NodeT::Call1_3 && self.call1_3(state, data)) &&
+                        (state.node == NodeT::Reset1_4 && self.reset1_4(state, data)){ continue; }
+                NodeT::Call1_3 => if self.call1_3(state, data) &&
+                        (state.node == NodeT::Reset1_4 && self.reset1_4(state, data)){ continue; }
                 NodeT::Reset1_4 => { self.reset1_4(state, data); }
                 NodeT::Loop3_0 => { self.loop3_0(state, data); }
-                NodeT::Label3_0 => { self.label3_0(state, data); }
+                NodeT::Label3_0 => if self.label3_0(state, data) &&
+                        (state.node == NodeT::Loop3_1 && self.loop3_1(state, data)){ continue; }
                 NodeT::Loop3_1 => { self.loop3_1(state, data); }
-                NodeT::Range4_0 => { self.range4_0(state, data); }
-                NodeT::String4_1 => { self.string4_1(state, data); }
-                NodeT::Range4_2 => { self.range4_2(state, data); }
-                NodeT::Func4_3 => { self.func4_3(state, data); }
-                NodeT::Text4_4 => { self.text4_4(state, data); }
-                NodeT::Range4_5 => { self.range4_5(state, data); }
-                NodeT::Text4_6 => { self.text4_6(state, data); }
-                NodeT::Range4_7 => { self.range4_7(state, data); }
-                NodeT::Text4_8 => { self.text4_8(state, data); }
-                NodeT::Text4_9 => { self.text4_9(state, data); }
+                NodeT::Range4_0 => if self.range4_0(state, data) &&
+                        (state.node == NodeT::String4_1 && self.string4_1(state, data)) &&
+                        (state.node == NodeT::Range4_2 && self.range4_2(state, data)) &&
+                        (state.node == NodeT::Func4_3 && self.func4_3(state, data)) &&
+                        (state.node == NodeT::Text4_4 && self.text4_4(state, data)) &&
+                        (state.node == NodeT::Range4_5 && self.range4_5(state, data)) &&
+                        (state.node == NodeT::Text4_6 && self.text4_6(state, data)) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::String4_1 => if self.string4_1(state, data) &&
+                        (state.node == NodeT::Range4_2 && self.range4_2(state, data)) &&
+                        (state.node == NodeT::Func4_3 && self.func4_3(state, data)) &&
+                        (state.node == NodeT::Text4_4 && self.text4_4(state, data)) &&
+                        (state.node == NodeT::Range4_5 && self.range4_5(state, data)) &&
+                        (state.node == NodeT::Text4_6 && self.text4_6(state, data)) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Range4_2 => if self.range4_2(state, data) &&
+                        (state.node == NodeT::Func4_3 && self.func4_3(state, data)) &&
+                        (state.node == NodeT::Text4_4 && self.text4_4(state, data)) &&
+                        (state.node == NodeT::Range4_5 && self.range4_5(state, data)) &&
+                        (state.node == NodeT::Text4_6 && self.text4_6(state, data)) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Func4_3 => if self.func4_3(state, data) &&
+                        (state.node == NodeT::Text4_4 && self.text4_4(state, data)) &&
+                        (state.node == NodeT::Range4_5 && self.range4_5(state, data)) &&
+                        (state.node == NodeT::Text4_6 && self.text4_6(state, data)) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Text4_4 => if self.text4_4(state, data) &&
+                        (state.node == NodeT::Range4_5 && self.range4_5(state, data)) &&
+                        (state.node == NodeT::Text4_6 && self.text4_6(state, data)) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Range4_5 => if self.range4_5(state, data) &&
+                        (state.node == NodeT::Text4_6 && self.text4_6(state, data)) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Text4_6 => if self.text4_6(state, data) &&
+                        (state.node == NodeT::Range4_7 && self.range4_7(state, data)) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Range4_7 => if self.range4_7(state, data) &&
+                        (state.node == NodeT::Text4_8 && self.text4_8(state, data)) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Text4_8 => if self.text4_8(state, data) &&
+                        (state.node == NodeT::Text4_9 && self.text4_9(state, data)) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
+                NodeT::Text4_9 => if self.text4_9(state, data) &&
+                        (state.node == NodeT::Ret4_10 && self.ret4_10(state, data)){ continue; }
                 NodeT::Ret4_10 => { self.ret4_10(state, data); }
                 NodeT::Loop6_0 => { self.loop6_0(state, data); }
-                NodeT::Label6_0 => { self.label6_0(state, data); }
+                NodeT::Label6_0 => if self.label6_0(state, data) &&
+                        (state.node == NodeT::Loop6_1 && self.loop6_1(state, data)){ continue; }
                 NodeT::Loop6_1 => { self.loop6_1(state, data); }
-                NodeT::Text7_0 => { self.text7_0(state, data, false); }
-                NodeT::Range7_1 => { self.range7_1(state, data); }
-                NodeT::String7_2 => { self.string7_2(state, data); }
-                NodeT::Func7_3 => { self.func7_3(state, data); }
-                NodeT::Text7_4 => { self.text7_4(state, data); }
+                NodeT::Text7_0 => if self.text7_0(state, data, false) &&
+                        (state.node == NodeT::Range7_1 && self.range7_1(state, data)) &&
+                        (state.node == NodeT::String7_2 && self.string7_2(state, data)) &&
+                        (state.node == NodeT::Func7_3 && self.func7_3(state, data)) &&
+                        (state.node == NodeT::Text7_4 && self.text7_4(state, data)) &&
+                        (state.node == NodeT::Text7_5 && self.text7_5(state, data)){ continue; }
+                NodeT::Range7_1 => if self.range7_1(state, data) &&
+                        (state.node == NodeT::String7_2 && self.string7_2(state, data)) &&
+                        (state.node == NodeT::Func7_3 && self.func7_3(state, data)) &&
+                        (state.node == NodeT::Text7_4 && self.text7_4(state, data)) &&
+                        (state.node == NodeT::Text7_5 && self.text7_5(state, data)){ continue; }
+                NodeT::String7_2 => if self.string7_2(state, data) &&
+                        (state.node == NodeT::Func7_3 && self.func7_3(state, data)) &&
+                        (state.node == NodeT::Text7_4 && self.text7_4(state, data)) &&
+                        (state.node == NodeT::Text7_5 && self.text7_5(state, data)){ continue; }
+                NodeT::Func7_3 => if self.func7_3(state, data) &&
+                        (state.node == NodeT::Text7_4 && self.text7_4(state, data)) &&
+                        (state.node == NodeT::Text7_5 && self.text7_5(state, data)){ continue; }
+                NodeT::Text7_4 => if self.text7_4(state, data) &&
+                        (state.node == NodeT::Text7_5 && self.text7_5(state, data)){ continue; }
                 NodeT::Text7_5 => { self.text7_5(state, data); }
                 NodeT::Any8_0 => { self.any8_0(state, data); }
                 NodeT::Text8_0_0_0 => { self.text8_0_0_0(state, data); }
-                NodeT::Bang8_0 => { self.bang8_0(state, data); }
-                NodeT::Range8_2 => { self.range8_2(state, data); }
-                NodeT::String8_3 => { self.string8_3(state, data); }
-                NodeT::Func8_4 => { self.func8_4(state, data); }
-                NodeT::Text8_5 => { self.text8_5(state, data); }
+                NodeT::Bang8_0 => if self.bang8_0(state, data) &&
+                        (state.node == NodeT::Range8_2 && self.range8_2(state, data)) &&
+                        (state.node == NodeT::String8_3 && self.string8_3(state, data)) &&
+                        (state.node == NodeT::Func8_4 && self.func8_4(state, data)) &&
+                        (state.node == NodeT::Text8_5 && self.text8_5(state, data)) &&
+                        (state.node == NodeT::Text8_6 && self.text8_6(state, data)){ continue; }
+                NodeT::Range8_2 => if self.range8_2(state, data) &&
+                        (state.node == NodeT::String8_3 && self.string8_3(state, data)) &&
+                        (state.node == NodeT::Func8_4 && self.func8_4(state, data)) &&
+                        (state.node == NodeT::Text8_5 && self.text8_5(state, data)) &&
+                        (state.node == NodeT::Text8_6 && self.text8_6(state, data)){ continue; }
+                NodeT::String8_3 => if self.string8_3(state, data) &&
+                        (state.node == NodeT::Func8_4 && self.func8_4(state, data)) &&
+                        (state.node == NodeT::Text8_5 && self.text8_5(state, data)) &&
+                        (state.node == NodeT::Text8_6 && self.text8_6(state, data)){ continue; }
+                NodeT::Func8_4 => if self.func8_4(state, data) &&
+                        (state.node == NodeT::Text8_5 && self.text8_5(state, data)) &&
+                        (state.node == NodeT::Text8_6 && self.text8_6(state, data)){ continue; }
+                NodeT::Text8_5 => if self.text8_5(state, data) &&
+                        (state.node == NodeT::Text8_6 && self.text8_6(state, data)){ continue; }
                 NodeT::Text8_6 => { self.text8_6(state, data); }
                 NodeT::Any9_0 => { self.any9_0(state, data); }
                 NodeT::Text9_0_0_0 => { self.text9_0_0_0(state, data); }
-                NodeT::Bang9_0 => { self.bang9_0(state, data); }
-                NodeT::Range9_2 => { self.range9_2(state, data); }
-                NodeT::Uint9_3 => { self.uint9_3(state, data); }
-                NodeT::Func9_4 => { self.func9_4(state, data); }
-                NodeT::Text9_5 => { self.text9_5(state, data); }
+                NodeT::Bang9_0 => if self.bang9_0(state, data) &&
+                        (state.node == NodeT::Range9_2 && self.range9_2(state, data)) &&
+                        (state.node == NodeT::Uint9_3 && self.uint9_3(state, data)) &&
+                        (state.node == NodeT::Func9_4 && self.func9_4(state, data)) &&
+                        (state.node == NodeT::Text9_5 && self.text9_5(state, data)) &&
+                        (state.node == NodeT::Text9_6 && self.text9_6(state, data)){ continue; }
+                NodeT::Range9_2 => if self.range9_2(state, data) &&
+                        (state.node == NodeT::Uint9_3 && self.uint9_3(state, data)) &&
+                        (state.node == NodeT::Func9_4 && self.func9_4(state, data)) &&
+                        (state.node == NodeT::Text9_5 && self.text9_5(state, data)) &&
+                        (state.node == NodeT::Text9_6 && self.text9_6(state, data)){ continue; }
+                NodeT::Uint9_3 => if self.uint9_3(state, data) &&
+                        (state.node == NodeT::Func9_4 && self.func9_4(state, data)) &&
+                        (state.node == NodeT::Text9_5 && self.text9_5(state, data)) &&
+                        (state.node == NodeT::Text9_6 && self.text9_6(state, data)){ continue; }
+                NodeT::Func9_4 => if self.func9_4(state, data) &&
+                        (state.node == NodeT::Text9_5 && self.text9_5(state, data)) &&
+                        (state.node == NodeT::Text9_6 && self.text9_6(state, data)){ continue; }
+                NodeT::Text9_5 => if self.text9_5(state, data) &&
+                        (state.node == NodeT::Text9_6 && self.text9_6(state, data)){ continue; }
                 NodeT::Text9_6 => { self.text9_6(state, data); }
-                NodeT::Range10_0 => { self.range10_0(state, data); }
-                NodeT::Range10_1 => { self.range10_1(state, data); }
-                NodeT::Text10_2 => { self.text10_2(state, data); }
+                NodeT::Range10_0 => if self.range10_0(state, data) &&
+                        (state.node == NodeT::Range10_1 && self.range10_1(state, data)) &&
+                        (state.node == NodeT::Text10_2 && self.text10_2(state, data)) &&
+                        (state.node == NodeT::Text10_3 && self.text10_3(state, data)){ continue; }
+                NodeT::Range10_1 => if self.range10_1(state, data) &&
+                        (state.node == NodeT::Text10_2 && self.text10_2(state, data)) &&
+                        (state.node == NodeT::Text10_3 && self.text10_3(state, data)){ continue; }
+                NodeT::Text10_2 => if self.text10_2(state, data) &&
+                        (state.node == NodeT::Text10_3 && self.text10_3(state, data)){ continue; }
                 NodeT::Text10_3 => { self.text10_3(state, data); }
-                NodeT::Text11_0 => { self.text11_0(state, data); }
-                NodeT::Text11_1 => { self.text11_1(state, data); }
+                NodeT::Text11_0 => if self.text11_0(state, data) &&
+                        (state.node == NodeT::Text11_1 && self.text11_1(state, data)) &&
+                        (state.node == NodeT::Cases11_2 && self.cases11_2(state, data)){ continue; }
+                NodeT::Text11_1 => if self.text11_1(state, data) &&
+                        (state.node == NodeT::Cases11_2 && self.cases11_2(state, data)){ continue; }
                 NodeT::Cases11_2 => { self.cases11_2(state, data); }
-                NodeT::If12_0 => { self.if12_0(state, data); }
-                NodeT::Data12_1 => { self.data12_1(state, data); }
+                NodeT::If12_0 => if self.if12_0(state, data) &&
+                        (state.node == NodeT::Data12_1 && self.data12_1(state, data)) &&
+                        (state.node == NodeT::Ret12_2 && self.ret12_2(state, data)){ continue; }
+                NodeT::Data12_1 => if self.data12_1(state, data) &&
+                        (state.node == NodeT::Ret12_2 && self.ret12_2(state, data)){ continue; }
                 NodeT::Ret12_2 => { self.ret12_2(state, data); }
                 NodeT::Ret13_0 => { self.ret13_0(state, data); }
-                NodeT::Range14_0 => { self.range14_0(state, data); }
+                NodeT::Range14_0 => if self.range14_0(state, data) &&
+                        (state.node == NodeT::Text14_1 && self.text14_1(state, data)){ continue; }
                 NodeT::Text14_1 => { self.text14_1(state, data); }
                 NodeT::Loop16_0 => { self.loop16_0(state, data); }
                 NodeT::NoState => { break; }
@@ -256,10 +377,10 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             }
         } // loop
     }
-    fn loop1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn loop1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         return self.any1_0(state, data);
     }
-    fn any1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn any1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos == data.len() {
             return true;
         }
@@ -354,7 +475,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::NoState;
         return false;
     }
-    fn text1_0_0_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_0_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;3] = [0x47, 0x45, 0x54]; // get
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -373,7 +494,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_0_0;
         return true;
     }
-    fn text1_0_1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;4] = [0x48, 0x45, 0x41, 0x44]; // head
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -392,7 +513,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_1_0;
         return true;
     }
-    fn text1_0_2_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_2_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;3] = [0x50, 0x55, 0x54]; // put
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -411,7 +532,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_2_0;
         return true;
     }
-    fn text1_0_3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;5] = [0x50, 0x41, 0x54, 0x43, 0x48]; // patch
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -430,7 +551,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_3_0;
         return true;
     }
-    fn text1_0_4_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_4_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;6] = [0x44, 0x45, 0x4c, 0x45, 0x54, 0x45]; // delete
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -449,7 +570,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_4_0;
         return true;
     }
-    fn text1_0_5_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_5_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;7] = [0x4f, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x53]; // options
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -468,7 +589,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_5_0;
         return true;
     }
-    fn text1_0_6_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_6_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;7] = [0x43, 0x4f, 0x4e, 0x4e, 0x45, 0x43, 0x54]; // connect
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -487,7 +608,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_6_0;
         return true;
     }
-    fn text1_0_7_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_7_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;4] = [0x4c, 0x49, 0x4e, 0x4b]; // link
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -506,7 +627,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_7_0;
         return true;
     }
-    fn text1_0_8_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_8_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;6] = [0x55, 0x4e, 0x4c, 0x49, 0x4e, 0x4b]; // unlink
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -525,7 +646,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_8_0;
         return true;
     }
-    fn text1_0_9_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_9_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;5] = [0x54, 0x52, 0x41, 0x43, 0x45]; // trace
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -544,7 +665,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_9_0;
         return true;
     }
-    fn text1_0_10_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text1_0_10_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;4] = [0x50, 0x4f, 0x53, 0x54]; // post
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -563,14 +684,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text1_0_10_0;
         return true;
     }
-    fn bang1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn bang1_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Call1_2;
         for v in & mut self.vstate {
             v.node = NodeT::NoState;
         }
         return true;
     }
-    fn call1_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn call1_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Label3_0;
         let rlen = state.rstack.len();
         if state.rcount < rlen {
@@ -585,7 +706,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
         return true;
     }
-    fn call1_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn call1_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Label6_0;
         let rlen = state.rstack.len();
         if state.rcount < rlen {
@@ -600,24 +721,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
         return true;
     }
-    fn reset1_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn reset1_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::NoState;
         self.reset();
         let c = self.vstate.len();
         self.vstate[c-1].pos = state.pos;
         return true;
     }
-    fn loop3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn loop3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         return self.label3_0(state, data);
     }
-    fn label3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn label3_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Loop3_1;
         return true;
     }
-    fn loop3_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn loop3_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         return self.range4_0(state, data);
     }
-    fn range4_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range4_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -652,14 +773,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range4_0;
         return true;
     }
-    fn _string4_1(&mut self, state: &mut StateT, data: &[u8]) {
+    #[inline(always)] fn _string4_1(&mut self, state: &mut StateT, data: &[u8]) {
         if state.consumed == 0 {
             self.output.url().clear();
         }
         let len = if (self.output.url().len() + data.len()) > 128 { 128 - self.output.url().len() } else { data.len() };
         self.output.url().push_str(&String::from_utf8_lossy(&data[0 .. len]));
     }
-    fn string4_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn string4_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
             false, false, false, false, false, false, false, false, false,  true, false, false, false, false, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -764,7 +885,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::String4_1;
         return true;
     }
-    fn range4_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range4_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -799,7 +920,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range4_2;
         return true;
     }
-    fn func4_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn func4_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if self.output._func4_3() {
             state.node = NodeT::Text4_4;
             return true;
@@ -807,7 +928,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::NoState;
         return false;
     }
-    fn text4_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text4_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;5] = [0x48, 0x54, 0x54, 0x50, 0x2f]; // http/
         while state.pos < data.len() {
             if TEXT[state.consumed] != data[state.pos] {
@@ -826,7 +947,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text4_4;
         return true;
     }
-    fn range4_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range4_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -861,7 +982,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range4_5;
         return true;
     }
-    fn text4_6(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text4_6(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x2E != data[state.pos] {
                 state.node = NodeT::NoState;
@@ -875,7 +996,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text4_6;
         return true;
     }
-    fn range4_7(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range4_7(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -910,7 +1031,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range4_7;
         return true;
     }
-    fn text4_8(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text4_8(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0D != data[state.pos] {
                 state.node = NodeT::Text4_9;
@@ -924,7 +1045,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text4_8;
         return true;
     }
-    fn text4_9(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text4_9(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::NoState;
@@ -938,7 +1059,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text4_9;
         return true;
     }
-    fn ret4_10(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn ret4_10(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.rcount > 0 {
             state.rcount = state.rcount - 1;
             state.node = state.rstack[state.rcount]
@@ -947,14 +1068,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
         return state.node != NodeT::NoState;
     }
-    fn loop6_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn loop6_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         return self.label6_0(state, data);
     }
-    fn label6_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn label6_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Loop6_1;
         return true;
     }
-    fn loop6_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn loop6_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos == data.len() {
             return true;
         }
@@ -979,7 +1100,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return true;
     }
-    fn text7_0(&mut self, state: &mut StateT, data: &[u8], is_branch: bool) -> bool {
+    #[inline(always)] fn text7_0(&mut self, state: &mut StateT, data: &[u8], is_branch: bool) -> bool {
         static TEXT:[u8;5] = [0x68, 0x6f, 0x73, 0x74, 0x3a]; // host:
         while state.pos < data.len() {
             if ((TEXT[state.consumed] ^ data[state.pos]) & 0xDF) != 0 {
@@ -999,7 +1120,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text7_0;
         return true;
     }
-    fn range7_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range7_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1098,14 +1219,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range7_1;
         return true;
     }
-    fn _string7_2(&mut self, state: &mut StateT, data: &[u8]) {
+    #[inline(always)] fn _string7_2(&mut self, state: &mut StateT, data: &[u8]) {
         if state.consumed == 0 {
             self.output.host().clear();
         }
         let len = if (self.output.host().len() + data.len()) > 64 { 64 - self.output.host().len() } else { data.len() };
         self.output.host().push_str(&String::from_utf8_lossy(&data[0 .. len]));
     }
-    fn string7_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn string7_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
             false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -1210,7 +1331,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::String7_2;
         return true;
     }
-    fn func7_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn func7_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if self.output._func7_3() {
             state.node = NodeT::Text7_4;
             return true;
@@ -1218,7 +1339,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return false;
     }
-    fn text7_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text7_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0D != data[state.pos] {
                 state.node = NodeT::Text7_5;
@@ -1232,7 +1353,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text7_4;
         return true;
     }
-    fn text7_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text7_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::Range14_0;
@@ -1246,7 +1367,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text7_5;
         return true;
     }
-    fn any8_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn any8_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos == data.len() {
             return true;
         }
@@ -1260,7 +1381,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return false;
     }
-    fn text8_0_0_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text8_0_0_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;13] = [0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x74, 0x79, 0x70, 0x65, 0x3a]; // content-type:
         while state.pos < data.len() {
             if ((TEXT[state.consumed] ^ data[state.pos]) & 0xDF) != 0 {
@@ -1279,14 +1400,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text8_0_0_0;
         return true;
     }
-    fn bang8_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn bang8_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Range8_2;
         for v in & mut self.vstate {
             v.node = NodeT::NoState;
         }
         return true;
     }
-    fn range8_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range8_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1385,14 +1506,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range8_2;
         return true;
     }
-    fn _string8_3(&mut self, state: &mut StateT, data: &[u8]) {
+    #[inline(always)] fn _string8_3(&mut self, state: &mut StateT, data: &[u8]) {
         if state.consumed == 0 {
             self.output.ctype().clear();
         }
         let len = if (self.output.ctype().len() + data.len()) > 64 { 64 - self.output.ctype().len() } else { data.len() };
         self.output.ctype().push_str(&String::from_utf8_lossy(&data[0 .. len]));
     }
-    fn string8_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn string8_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
             false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -1497,7 +1618,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::String8_3;
         return true;
     }
-    fn func8_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn func8_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if self.output._func8_4() {
             state.node = NodeT::Text8_5;
             return true;
@@ -1505,7 +1626,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return false;
     }
-    fn text8_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text8_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0D != data[state.pos] {
                 state.node = NodeT::Text8_6;
@@ -1519,7 +1640,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text8_5;
         return true;
     }
-    fn text8_6(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text8_6(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::Range14_0;
@@ -1533,7 +1654,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text8_6;
         return true;
     }
-    fn any9_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn any9_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos == data.len() {
             return true;
         }
@@ -1547,7 +1668,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return false;
     }
-    fn text9_0_0_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text9_0_0_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TEXT:[u8;15] = [0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2d, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a]; // content-length:
         while state.pos < data.len() {
             if ((TEXT[state.consumed] ^ data[state.pos]) & 0xDF) != 0 {
@@ -1566,14 +1687,14 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text9_0_0_0;
         return true;
     }
-    fn bang9_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn bang9_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::Range9_2;
         for v in & mut self.vstate {
             v.node = NodeT::NoState;
         }
         return true;
     }
-    fn range9_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range9_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1672,7 +1793,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range9_2;
         return true;
     }
-    fn _uint9_3(&mut self, state: &mut StateT, data: &[u8]) {
+    #[inline(always)] fn _uint9_3(&mut self, state: &mut StateT, data: &[u8]) {
         if state.consumed == 0 {
             *self.output.clength() = 0;
         }
@@ -1680,7 +1801,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             *self.output.clength() = *self.output.clength()*10 + u64::from(*x - b'0');
         }
     }
-    fn uint9_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn uint9_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1755,7 +1876,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Uint9_3;
         return true;
     }
-    fn func9_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn func9_4(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if self.output._func9_4() {
             state.node = NodeT::Text9_5;
             return true;
@@ -1763,7 +1884,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return false;
     }
-    fn text9_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text9_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0D != data[state.pos] {
                 state.node = NodeT::Text9_6;
@@ -1777,7 +1898,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text9_5;
         return true;
     }
-    fn text9_6(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text9_6(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::Range14_0;
@@ -1791,7 +1912,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text9_6;
         return true;
     }
-    fn range10_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range10_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
              true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, 
              true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
@@ -1826,7 +1947,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range10_0;
         return true;
     }
-    fn range10_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range10_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         static TERMINATOR:[bool;256] = [
             false, false, false, false, false, false, false, false, false, false,  true, false, false,  true, false, false, 
             false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 
@@ -1889,7 +2010,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range10_1;
         return true;
     }
-    fn text10_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text10_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0D != data[state.pos] {
                 state.node = NodeT::Text10_3;
@@ -1903,7 +2024,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text10_2;
         return true;
     }
-    fn text10_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text10_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::Range14_0;
@@ -1917,7 +2038,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text10_3;
         return true;
     }
-    fn text11_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text11_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0D != data[state.pos] {
                 state.node = NodeT::Text11_1;
@@ -1931,7 +2052,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text11_0;
         return true;
     }
-    fn text11_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text11_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::Range14_0;
@@ -1945,7 +2066,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text11_1;
         return true;
     }
-    fn cases11_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn cases11_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if self.if12_0(state, data) { // case_1
             return true;
         }
@@ -1955,7 +2076,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return true;
     }
-    fn if12_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn if12_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if self.output._if12_0() {
             state.node = NodeT::Data12_1;
             return true;
@@ -1963,7 +2084,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return false;
     }
-    fn data12_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn data12_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
         if state.consumed == 0 {
             state.node = NodeT::Data12_1;
@@ -1985,7 +2106,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
         return true;
     }
-    fn ret12_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn ret12_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.rcount > 0 {
             state.rcount = state.rcount - 1;
             state.node = state.rstack[state.rcount]
@@ -1994,7 +2115,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
         return state.node != NodeT::NoState;
     }
-    fn ret13_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn ret13_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.rcount > 0 {
             state.rcount = state.rcount - 1;
             state.node = state.rstack[state.rcount]
@@ -2003,7 +2124,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
         return state.node != NodeT::NoState;
     }
-    fn range14_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn range14_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
         let is_avx2 = is_x86_feature_detected!("avx2");
         let is_sse2 = is_x86_feature_detected!("sse2");
@@ -2083,7 +2204,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Range14_0;
         return true;
     }
-    fn text14_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn text14_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         if state.pos < data.len() {
             if 0x0A != data[state.pos] {
                 state.node = NodeT::NoState;
@@ -2097,7 +2218,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         state.node = NodeT::Text14_1;
         return true;
     }
-    fn loop16_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
+    #[inline(always)] fn loop16_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         state.node = NodeT::NoState;
         return true;
     }
