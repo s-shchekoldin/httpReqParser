@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-05-06 08:57:59 GMT
-// Generated using vProto(2026.05.06)        https://www.cgen.dev
+// Date: 2026-05-07 17:02:02 GMT
+// Generated using vProto(2026.05.07)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -138,8 +138,8 @@ bool httpReq::parse(const char * data, unsigned len)
     for(bool reparse = true; reparse; )
     {
         reparse = false;
-        unsigned d_flow = 0;
-        for(unsigned s_flow = 0; s_flow < pstate.size(); s_flow++)
+        size_t d_flow = 0;
+        for(size_t s_flow = 0; s_flow < pstate.size(); s_flow++)
         {
             if (pstate[s_flow].node == NodeT::NoState)
                 continue;
