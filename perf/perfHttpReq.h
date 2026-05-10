@@ -1,5 +1,5 @@
 // ==============================================================
-// Date: 2026-05-10 21:07:38 GMT
+// Date: 2026-05-10 21:12:42 GMT
 // Generated using vProto(2026.05.10)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // ==============================================================
@@ -17,7 +17,7 @@ struct perfHttpReqResult
 {
     std::string host;
     std::string url;
-    uint64_t content_length = 0;
+    uint64_t clength = 0;
 
     // Don't forget to declare:
     void payload([[maybe_unused]] const char * data, [[maybe_unused]] unsigned len, [[maybe_unused]] bool isFirst, [[maybe_unused]] bool isLast);
@@ -54,12 +54,12 @@ private:
             Label17_0, Loop17_1,
                 Text18_0, Range18_1, String18_2, Text18_3, Text18_4,
                 Text19_0, Range19_1, Uint19_2, Text19_3, Text19_4,
-                Range20_0, Range20_1, Text20_2, Text20_3,
+                Range20_0, Range20_1, Text20_2,
                 Text21_0, Text21_1, Cases21_2,
                     Func22_0, Data22_1, Func22_2, Ret22_3,
                     Ret23_0,
                  // catch:
-                Range24_0, Text24_1, Text24_2,
+                Range24_0, Text24_1,
         NoState
     };
     struct StateT
@@ -145,7 +145,6 @@ private:
     bool range20_0(StateT & state) const;
     bool range20_1(StateT & state) const;
     bool text20_2(StateT & state) const;
-    bool text20_3(StateT & state) const;
     bool text21_0(StateT & state) const;
     bool text21_1(StateT & state) const;
     bool cases21_2(StateT & state);
@@ -158,6 +157,5 @@ private:
     bool ret23_0(StateT & state) const;
     bool range24_0(StateT & state) const;
     bool text24_1(StateT & state) const;
-    bool text24_2(StateT & state) const;
 };
 #endif
