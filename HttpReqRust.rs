@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-05-06 08:57:59 GMT
-// Generated using vProto(2026.05.06)        https://www.cgen.dev
+// Date: 2026-05-10 21:07:38 GMT
+// Generated using vProto(2026.05.10)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -765,10 +765,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn string4_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
@@ -776,13 +774,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u32 = _mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let pos = state.pos;
+                        self._string4_1(state, &data[datastart .. pos]);
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Range4_2;
+                            return true;
+                        }
+                        state.node = NodeT::NoState;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
@@ -790,13 +799,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u16 = _mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let pos = state.pos;
+                        self._string4_1(state, &data[datastart .. pos]);
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Range4_2;
+                            return true;
+                        }
+                        state.node = NodeT::NoState;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] == 0x09 || data[state.pos] == 0x20 {
                     state.pos += 0;
                 }
@@ -838,10 +858,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::Range4_2;
                 return true;
-            } else {
-                state.node = NodeT::NoState;
-                return false;
             }
+            state.node = NodeT::NoState;
+            return false;
         }
         if datastart < state.pos {
             let pos = state.pos;
@@ -1071,10 +1090,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn range7_1(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
@@ -1082,13 +1099,22 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u32 = !_mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::String7_2;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
@@ -1096,13 +1122,22 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u16 = !_mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::String7_2;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] != 0x09 && data[state.pos] != 0x20 {
                     state.pos += 0;
                 }
@@ -1142,10 +1177,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::String7_2;
                 return true;
-            } else {
-                state.node = NodeT::Range14_0;
-                return false;
             }
+            state.node = NodeT::Range14_0;
+            return false;
         }
         state.consumed += state.pos - datastart;
         state.node = NodeT::Range7_1;
@@ -1160,10 +1194,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn string7_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
@@ -1171,13 +1203,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u32 = _mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let pos = state.pos;
+                        self._string7_2(state, &data[datastart .. pos]);
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Func7_3;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
@@ -1185,13 +1228,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u16 = _mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let pos = state.pos;
+                        self._string7_2(state, &data[datastart .. pos]);
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Func7_3;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] == 0x0a || data[state.pos] == 0x0d {
                     state.pos += 0;
                 }
@@ -1233,10 +1287,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::Func7_3;
                 return true;
-            } else {
-                state.node = NodeT::Range14_0;
-                return false;
             }
+            state.node = NodeT::Range14_0;
+            return false;
         }
         if datastart < state.pos {
             let pos = state.pos;
@@ -1324,10 +1377,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn range8_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
@@ -1335,13 +1386,22 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u32 = !_mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::String8_3;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
@@ -1349,13 +1409,22 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u16 = !_mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::String8_3;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] != 0x09 && data[state.pos] != 0x20 {
                     state.pos += 0;
                 }
@@ -1395,10 +1464,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::String8_3;
                 return true;
-            } else {
-                state.node = NodeT::Range14_0;
-                return false;
             }
+            state.node = NodeT::Range14_0;
+            return false;
         }
         state.consumed += state.pos - datastart;
         state.node = NodeT::Range8_2;
@@ -1413,10 +1481,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn string8_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
@@ -1424,13 +1490,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u32 = _mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let pos = state.pos;
+                        self._string8_3(state, &data[datastart .. pos]);
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Func8_4;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
@@ -1438,13 +1515,24 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u16 = _mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let pos = state.pos;
+                        self._string8_3(state, &data[datastart .. pos]);
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Func8_4;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] == 0x0a || data[state.pos] == 0x0d {
                     state.pos += 0;
                 }
@@ -1486,10 +1574,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::Func8_4;
                 return true;
-            } else {
-                state.node = NodeT::Range14_0;
-                return false;
             }
+            state.node = NodeT::Range14_0;
+            return false;
         }
         if datastart < state.pos {
             let pos = state.pos;
@@ -1577,10 +1664,8 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn range9_2(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let mut m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
@@ -1588,13 +1673,22 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u32 = !_mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Uint9_3;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let mut m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
@@ -1602,13 +1696,22 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     let r: u16 = !_mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Uint9_3;
+                            return true;
+                        }
+                        state.node = NodeT::Range14_0;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] != 0x09 && data[state.pos] != 0x20 {
                     state.pos += 0;
                 }
@@ -1648,10 +1751,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::Uint9_3;
                 return true;
-            } else {
-                state.node = NodeT::Range14_0;
-                return false;
             }
+            state.node = NodeT::Range14_0;
+            return false;
         }
         state.consumed += state.pos - datastart;
         state.node = NodeT::Range9_2;
@@ -1727,10 +1829,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::Func9_4;
                 return true;
-            } else {
-                state.node = NodeT::Range14_0;
-                return false;
             }
+            state.node = NodeT::Range14_0;
+            return false;
         }
         if datastart < state.pos {
             let pos = state.pos;
@@ -1956,36 +2057,52 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
     }
     #[inline(always)] fn range14_0(&mut self, state: &mut StateT, data: &[u8]) -> bool {
         let datastart = state.pos;
-        let is_avx2 = is_x86_feature_detected!("avx2");
-        let is_sse2 = is_x86_feature_detected!("sse2");
-        while state.pos < data.len() {
-            if is_avx2 && (state.pos + 32) <= data.len() {
+        if is_x86_feature_detected!("avx2") {
+            while (state.pos + 32) <= data.len() {
                 unsafe {
                     let d = _mm256_lddqu_si256(data.as_ptr().add(state.pos) as *const __m256i);
                     let m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
                     let r: u32 = _mm256_movemask_epi8(m) as u32;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Text14_1;
+                            return true;
+                        }
+                        state.node = NodeT::NoState;
+                        return false;
                     } else {
                         state.pos += 32;
-                        continue;
                     }
                 }
             }
-            else if is_sse2 && (state.pos + 16) <= data.len() {
+        }
+        if is_x86_feature_detected!("sse2") {
+            while (state.pos + 16) <= data.len() {
                 unsafe {
                     let d = _mm_loadu_si128(data.as_ptr().add(state.pos) as *const __m128i);
                     let m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
                     let r: u16 = _mm_movemask_epi8(m) as u16;
                     if r > 0 {
                         state.pos += r.trailing_zeros() as usize;
+                        let total = state.consumed + state.pos - datastart;
+                        state.consumed = 0;
+                        if total >= 1 {
+                            state.node = NodeT::Text14_1;
+                            return true;
+                        }
+                        state.node = NodeT::NoState;
+                        return false;
                     } else {
                         state.pos += 16;
-                        continue;
                     }
                 }
             }
-            else if (state.pos + 8) <= data.len() {
+        }
+        while state.pos < data.len() {
+            if (state.pos + 8) <= data.len() {
                 if data[state.pos] == 0x0a {
                     state.pos += 0;
                 }
@@ -2025,10 +2142,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
             if total >= 1 {
                 state.node = NodeT::Text14_1;
                 return true;
-            } else {
-                state.node = NodeT::NoState;
-                return false;
             }
+            state.node = NodeT::NoState;
+            return false;
         }
         state.consumed += state.pos - datastart;
         state.node = NodeT::Range14_0;

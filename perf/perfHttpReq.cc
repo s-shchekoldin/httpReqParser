@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-05-06 08:57:59 GMT
-// Generated using vProto(2026.05.06)        https://www.cgen.dev
+// Date: 2026-05-10 21:07:38 GMT
+// Generated using vProto(2026.05.10)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -856,40 +856,57 @@ void perfHttpReq::string15_2(const char * data, unsigned len, uint64_t consumed)
 ALWAYS_INLINE bool perfHttpReq::string15_2(StateT & state)
 {
     const char * datastart = state.data;
+#if defined(__AVX2__)
+    while(&state.data[32] <= state.end) [[likely]]
+    {
+        const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+        __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+        m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+        uint32_t r = _mm256_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            string15_2(datastart, unsigned(state.data - datastart), state.consumed);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Range15_3;
+                return true;
+            }
+            state.node = NodeT::NoState;
+            return false;
+        } else
+            state.data += 32;
+    }
+#endif
+#if defined(__SSE2__)
+    while(&state.data[16] <= state.end) [[likely]]
+    {
+        const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+        __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+        m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+        uint16_t r = _mm_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            string15_2(datastart, unsigned(state.data - datastart), state.consumed);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Range15_3;
+                return true;
+            }
+            state.node = NodeT::NoState;
+            return false;
+        } else
+            state.data += 16;
+    }
+#endif
     while(state.data < state.end) [[likely]]
     {
-#if defined(__AVX2__)
-        if(&state.data[32] <= state.end)
-        {
-            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
-            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
-            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
-            uint32_t r = _mm256_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 32;
-                continue;
-            }
-        }
-#elif defined(__SSE2__)
-        if(&state.data[16] <= state.end)
-        {
-            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
-            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
-            uint16_t r = _mm_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 16;
-                continue;
-            }
-        }
-#else
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (uint8_t(state.data[0]) == uint8_t(0x09) || uint8_t(state.data[0]) == uint8_t(0x20)) [[unlikely]]
                 state.data += 0;
@@ -907,29 +924,12 @@ ALWAYS_INLINE bool perfHttpReq::string15_2(StateT & state)
                 state.data += 6;
             else if (uint8_t(state.data[7]) == uint8_t(0x09) || uint8_t(state.data[7]) == uint8_t(0x20)) [[unlikely]]
                 state.data += 7;
-            else if (uint8_t(state.data[8]) == uint8_t(0x09) || uint8_t(state.data[8]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 8;
-            else if (uint8_t(state.data[9]) == uint8_t(0x09) || uint8_t(state.data[9]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 9;
-            else if (uint8_t(state.data[10]) == uint8_t(0x09) || uint8_t(state.data[10]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 10;
-            else if (uint8_t(state.data[11]) == uint8_t(0x09) || uint8_t(state.data[11]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 11;
-            else if (uint8_t(state.data[12]) == uint8_t(0x09) || uint8_t(state.data[12]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 12;
-            else if (uint8_t(state.data[13]) == uint8_t(0x09) || uint8_t(state.data[13]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 13;
-            else if (uint8_t(state.data[14]) == uint8_t(0x09) || uint8_t(state.data[14]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 14;
-            else if (uint8_t(state.data[15]) == uint8_t(0x09) || uint8_t(state.data[15]) == uint8_t(0x20)) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
-#endif
         else if (!(uint8_t(state.data[0]) == uint8_t(0x09) || uint8_t(state.data[0]) == uint8_t(0x20))) [[unlikely]]
         {
             state.data++;
@@ -942,10 +942,9 @@ ALWAYS_INLINE bool perfHttpReq::string15_2(StateT & state)
         {
             state.node = NodeT::Range15_3;
             return true;
-        } else {
-            state.node = NodeT::NoState;
-            return false;
         }
+        state.node = NodeT::NoState;
+        return false;
     }
     if (datastart < state.data)
         string15_2(datastart, unsigned(state.data - datastart), state.consumed);
@@ -1191,40 +1190,55 @@ ALWAYS_INLINE bool perfHttpReq::text18_0(StateT & state, bool is_branch) const
 ALWAYS_INLINE bool perfHttpReq::range18_1(StateT & state) const
 {
     const char * datastart = state.data;
+#if defined(__AVX2__)
+    while(&state.data[32] <= state.end) [[likely]]
+    {
+        const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+        __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+        m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+        uint32_t r = ~_mm256_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::String18_2;
+                return true;
+            }
+            state.node = NodeT::Range24_0;
+            return false;
+        } else
+            state.data += 32;
+    }
+#endif
+#if defined(__SSE2__)
+    while(&state.data[16] <= state.end) [[likely]]
+    {
+        const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+        __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+        m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+        uint16_t r = ~_mm_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::String18_2;
+                return true;
+            }
+            state.node = NodeT::Range24_0;
+            return false;
+        } else
+            state.data += 16;
+    }
+#endif
     while(state.data < state.end) [[likely]]
     {
-#if defined(__AVX2__)
-        if(&state.data[32] <= state.end)
-        {
-            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
-            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
-            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
-            uint32_t r = ~_mm256_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 32;
-                continue;
-            }
-        }
-#elif defined(__SSE2__)
-        if(&state.data[16] <= state.end)
-        {
-            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
-            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
-            uint16_t r = ~_mm_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 16;
-                continue;
-            }
-        }
-#else
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (uint8_t(state.data[0]) != uint8_t(0x09) && uint8_t(state.data[0]) != uint8_t(0x20)) [[unlikely]]
                 state.data += 0;
@@ -1242,29 +1256,12 @@ ALWAYS_INLINE bool perfHttpReq::range18_1(StateT & state) const
                 state.data += 6;
             else if (uint8_t(state.data[7]) != uint8_t(0x09) && uint8_t(state.data[7]) != uint8_t(0x20)) [[unlikely]]
                 state.data += 7;
-            else if (uint8_t(state.data[8]) != uint8_t(0x09) && uint8_t(state.data[8]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 8;
-            else if (uint8_t(state.data[9]) != uint8_t(0x09) && uint8_t(state.data[9]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 9;
-            else if (uint8_t(state.data[10]) != uint8_t(0x09) && uint8_t(state.data[10]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 10;
-            else if (uint8_t(state.data[11]) != uint8_t(0x09) && uint8_t(state.data[11]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 11;
-            else if (uint8_t(state.data[12]) != uint8_t(0x09) && uint8_t(state.data[12]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 12;
-            else if (uint8_t(state.data[13]) != uint8_t(0x09) && uint8_t(state.data[13]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 13;
-            else if (uint8_t(state.data[14]) != uint8_t(0x09) && uint8_t(state.data[14]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 14;
-            else if (uint8_t(state.data[15]) != uint8_t(0x09) && uint8_t(state.data[15]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
-#endif
         else if (!(uint8_t(state.data[0]) != uint8_t(0x09) && uint8_t(state.data[0]) != uint8_t(0x20))) [[unlikely]]
         {
             state.data++;
@@ -1276,10 +1273,9 @@ ALWAYS_INLINE bool perfHttpReq::range18_1(StateT & state) const
         {
             state.node = NodeT::String18_2;
             return true;
-        } else {
-            state.node = NodeT::Range24_0;
-            return false;
         }
+        state.node = NodeT::Range24_0;
+        return false;
     }
     state.consumed += unsigned(state.data - datastart);
     state.node = NodeT::Range18_1;
@@ -1298,40 +1294,57 @@ void perfHttpReq::string18_2(const char * data, unsigned len, uint64_t consumed)
 ALWAYS_INLINE bool perfHttpReq::string18_2(StateT & state)
 {
     const char * datastart = state.data;
+#if defined(__AVX2__)
+    while(&state.data[32] <= state.end) [[likely]]
+    {
+        const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+        __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+        m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
+        uint32_t r = _mm256_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            string18_2(datastart, unsigned(state.data - datastart), state.consumed);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Text18_3;
+                return true;
+            }
+            state.node = NodeT::Range24_0;
+            return false;
+        } else
+            state.data += 32;
+    }
+#endif
+#if defined(__SSE2__)
+    while(&state.data[16] <= state.end) [[likely]]
+    {
+        const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+        __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+        m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
+        uint16_t r = _mm_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            string18_2(datastart, unsigned(state.data - datastart), state.consumed);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Text18_3;
+                return true;
+            }
+            state.node = NodeT::Range24_0;
+            return false;
+        } else
+            state.data += 16;
+    }
+#endif
     while(state.data < state.end) [[likely]]
     {
-#if defined(__AVX2__)
-        if(&state.data[32] <= state.end)
-        {
-            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
-            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
-            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
-            uint32_t r = _mm256_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 32;
-                continue;
-            }
-        }
-#elif defined(__SSE2__)
-        if(&state.data[16] <= state.end)
-        {
-            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
-            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
-            uint16_t r = _mm_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 16;
-                continue;
-            }
-        }
-#else
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (uint8_t(state.data[0]) == uint8_t(0x0a) || uint8_t(state.data[0]) == uint8_t(0x0d)) [[unlikely]]
                 state.data += 0;
@@ -1349,29 +1362,12 @@ ALWAYS_INLINE bool perfHttpReq::string18_2(StateT & state)
                 state.data += 6;
             else if (uint8_t(state.data[7]) == uint8_t(0x0a) || uint8_t(state.data[7]) == uint8_t(0x0d)) [[unlikely]]
                 state.data += 7;
-            else if (uint8_t(state.data[8]) == uint8_t(0x0a) || uint8_t(state.data[8]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 8;
-            else if (uint8_t(state.data[9]) == uint8_t(0x0a) || uint8_t(state.data[9]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 9;
-            else if (uint8_t(state.data[10]) == uint8_t(0x0a) || uint8_t(state.data[10]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 10;
-            else if (uint8_t(state.data[11]) == uint8_t(0x0a) || uint8_t(state.data[11]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 11;
-            else if (uint8_t(state.data[12]) == uint8_t(0x0a) || uint8_t(state.data[12]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 12;
-            else if (uint8_t(state.data[13]) == uint8_t(0x0a) || uint8_t(state.data[13]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 13;
-            else if (uint8_t(state.data[14]) == uint8_t(0x0a) || uint8_t(state.data[14]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 14;
-            else if (uint8_t(state.data[15]) == uint8_t(0x0a) || uint8_t(state.data[15]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
-#endif
         else if (!(uint8_t(state.data[0]) == uint8_t(0x0a) || uint8_t(state.data[0]) == uint8_t(0x0d))) [[unlikely]]
         {
             state.data++;
@@ -1384,10 +1380,9 @@ ALWAYS_INLINE bool perfHttpReq::string18_2(StateT & state)
         {
             state.node = NodeT::Text18_3;
             return true;
-        } else {
-            state.node = NodeT::Range24_0;
-            return false;
         }
+        state.node = NodeT::Range24_0;
+        return false;
     }
     if (datastart < state.data)
         string18_2(datastart, unsigned(state.data - datastart), state.consumed);
@@ -1459,40 +1454,55 @@ ALWAYS_INLINE bool perfHttpReq::text19_0(StateT & state, bool is_branch) const
 ALWAYS_INLINE bool perfHttpReq::range19_1(StateT & state) const
 {
     const char * datastart = state.data;
+#if defined(__AVX2__)
+    while(&state.data[32] <= state.end) [[likely]]
+    {
+        const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+        __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
+        m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
+        uint32_t r = ~_mm256_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Uint19_2;
+                return true;
+            }
+            state.node = NodeT::Range24_0;
+            return false;
+        } else
+            state.data += 32;
+    }
+#endif
+#if defined(__SSE2__)
+    while(&state.data[16] <= state.end) [[likely]]
+    {
+        const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+        __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
+        m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
+        uint16_t r = ~_mm_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Uint19_2;
+                return true;
+            }
+            state.node = NodeT::Range24_0;
+            return false;
+        } else
+            state.data += 16;
+    }
+#endif
     while(state.data < state.end) [[likely]]
     {
-#if defined(__AVX2__)
-        if(&state.data[32] <= state.end)
-        {
-            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
-            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0x9), d);
-            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0x20), d));
-            uint32_t r = ~_mm256_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 32;
-                continue;
-            }
-        }
-#elif defined(__SSE2__)
-        if(&state.data[16] <= state.end)
-        {
-            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0x9), d);
-            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0x20), d));
-            uint16_t r = ~_mm_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 16;
-                continue;
-            }
-        }
-#else
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (uint8_t(state.data[0]) != uint8_t(0x09) && uint8_t(state.data[0]) != uint8_t(0x20)) [[unlikely]]
                 state.data += 0;
@@ -1510,29 +1520,12 @@ ALWAYS_INLINE bool perfHttpReq::range19_1(StateT & state) const
                 state.data += 6;
             else if (uint8_t(state.data[7]) != uint8_t(0x09) && uint8_t(state.data[7]) != uint8_t(0x20)) [[unlikely]]
                 state.data += 7;
-            else if (uint8_t(state.data[8]) != uint8_t(0x09) && uint8_t(state.data[8]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 8;
-            else if (uint8_t(state.data[9]) != uint8_t(0x09) && uint8_t(state.data[9]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 9;
-            else if (uint8_t(state.data[10]) != uint8_t(0x09) && uint8_t(state.data[10]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 10;
-            else if (uint8_t(state.data[11]) != uint8_t(0x09) && uint8_t(state.data[11]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 11;
-            else if (uint8_t(state.data[12]) != uint8_t(0x09) && uint8_t(state.data[12]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 12;
-            else if (uint8_t(state.data[13]) != uint8_t(0x09) && uint8_t(state.data[13]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 13;
-            else if (uint8_t(state.data[14]) != uint8_t(0x09) && uint8_t(state.data[14]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 14;
-            else if (uint8_t(state.data[15]) != uint8_t(0x09) && uint8_t(state.data[15]) != uint8_t(0x20)) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
-#endif
         else if (!(uint8_t(state.data[0]) != uint8_t(0x09) && uint8_t(state.data[0]) != uint8_t(0x20))) [[unlikely]]
         {
             state.data++;
@@ -1544,10 +1537,9 @@ ALWAYS_INLINE bool perfHttpReq::range19_1(StateT & state) const
         {
             state.node = NodeT::Uint19_2;
             return true;
-        } else {
-            state.node = NodeT::Range24_0;
-            return false;
         }
+        state.node = NodeT::Range24_0;
+        return false;
     }
     state.consumed += unsigned(state.data - datastart);
     state.node = NodeT::Range19_1;
@@ -1584,7 +1576,7 @@ ALWAYS_INLINE bool perfHttpReq::uint19_2(StateT & state)
     const char * datastart = state.data;
     while(state.data < state.end) [[likely]]
     {
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (terminator[uint8_t(state.data[0])]) [[unlikely]]
                 state.data += 0;
@@ -1602,25 +1594,9 @@ ALWAYS_INLINE bool perfHttpReq::uint19_2(StateT & state)
                 state.data += 6;
             else if (terminator[uint8_t(state.data[7])]) [[unlikely]]
                 state.data += 7;
-            else if (terminator[uint8_t(state.data[8])]) [[unlikely]]
-                state.data += 8;
-            else if (terminator[uint8_t(state.data[9])]) [[unlikely]]
-                state.data += 9;
-            else if (terminator[uint8_t(state.data[10])]) [[unlikely]]
-                state.data += 10;
-            else if (terminator[uint8_t(state.data[11])]) [[unlikely]]
-                state.data += 11;
-            else if (terminator[uint8_t(state.data[12])]) [[unlikely]]
-                state.data += 12;
-            else if (terminator[uint8_t(state.data[13])]) [[unlikely]]
-                state.data += 13;
-            else if (terminator[uint8_t(state.data[14])]) [[unlikely]]
-                state.data += 14;
-            else if (terminator[uint8_t(state.data[15])]) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
@@ -1636,10 +1612,9 @@ ALWAYS_INLINE bool perfHttpReq::uint19_2(StateT & state)
         {
             state.node = NodeT::Text19_3;
             return true;
-        } else {
-            state.node = NodeT::Range24_0;
-            return false;
         }
+        state.node = NodeT::Range24_0;
+        return false;
     }
     if (datastart < state.data)
         uint19_2(datastart, unsigned(state.data - datastart), state.consumed);
@@ -1711,7 +1686,7 @@ ALWAYS_INLINE bool perfHttpReq::range20_1(StateT & state) const
     const char * datastart = state.data;
     while(state.data < state.end) [[likely]]
     {
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (uint8_t(state.data[0]) == uint8_t(0x0a) || uint8_t(state.data[0]) == uint8_t(0x0d)) [[unlikely]]
                 state.data += 0;
@@ -1729,25 +1704,9 @@ ALWAYS_INLINE bool perfHttpReq::range20_1(StateT & state) const
                 state.data += 6;
             else if (uint8_t(state.data[7]) == uint8_t(0x0a) || uint8_t(state.data[7]) == uint8_t(0x0d)) [[unlikely]]
                 state.data += 7;
-            else if (uint8_t(state.data[8]) == uint8_t(0x0a) || uint8_t(state.data[8]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 8;
-            else if (uint8_t(state.data[9]) == uint8_t(0x0a) || uint8_t(state.data[9]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 9;
-            else if (uint8_t(state.data[10]) == uint8_t(0x0a) || uint8_t(state.data[10]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 10;
-            else if (uint8_t(state.data[11]) == uint8_t(0x0a) || uint8_t(state.data[11]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 11;
-            else if (uint8_t(state.data[12]) == uint8_t(0x0a) || uint8_t(state.data[12]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 12;
-            else if (uint8_t(state.data[13]) == uint8_t(0x0a) || uint8_t(state.data[13]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 13;
-            else if (uint8_t(state.data[14]) == uint8_t(0x0a) || uint8_t(state.data[14]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 14;
-            else if (uint8_t(state.data[15]) == uint8_t(0x0a) || uint8_t(state.data[15]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
@@ -1915,40 +1874,55 @@ ALWAYS_INLINE bool perfHttpReq::ret23_0(StateT & state) const
 ALWAYS_INLINE bool perfHttpReq::range24_0(StateT & state) const
 {
     const char * datastart = state.data;
+#if defined(__AVX2__)
+    while(&state.data[32] <= state.end) [[likely]]
+    {
+        const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
+        __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
+        m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
+        uint32_t r = _mm256_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Text24_1;
+                return true;
+            }
+            state.node = NodeT::NoState;
+            return false;
+        } else
+            state.data += 32;
+    }
+#endif
+#if defined(__SSE2__)
+    while(&state.data[16] <= state.end) [[likely]]
+    {
+        const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
+        __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
+        m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
+        uint16_t r = _mm_movemask_epi8(m);
+        if (r) [[unlikely]]
+        {
+            state.data += __ctz32(r);
+            uint64_t total = state.consumed + unsigned(state.data - datastart);
+            state.consumed = 0;
+            if (total >= 1)
+            {
+                state.node = NodeT::Text24_1;
+                return true;
+            }
+            state.node = NodeT::NoState;
+            return false;
+        } else
+            state.data += 16;
+    }
+#endif
     while(state.data < state.end) [[likely]]
     {
-#if defined(__AVX2__)
-        if(&state.data[32] <= state.end)
-        {
-            const __m256i d = _mm256_lddqu_si256((const __m256i *)state.data);
-            __m256i m = _mm256_cmpeq_epi8(_mm256_set1_epi8(0xa), d);
-            m = _mm256_or_si256(m, _mm256_cmpeq_epi8(_mm256_set1_epi8(0xd), d));
-            uint32_t r = _mm256_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 32;
-                continue;
-            }
-        }
-#elif defined(__SSE2__)
-        if(&state.data[16] <= state.end)
-        {
-            const __m128i d = _mm_loadu_si128((const __m128i *)state.data);
-            __m128i m = _mm_cmpeq_epi8(_mm_set1_epi8(0xa), d);
-            m = _mm_or_si128(m, _mm_cmpeq_epi8(_mm_set1_epi8(0xd), d));
-            uint16_t r = _mm_movemask_epi8(m);
-            if (r)
-                state.data += __ctz32(r);
-            else
-            {
-                state.data += 16;
-                continue;
-            }
-        }
-#else
-        if(&state.data[16] <= state.end)
+        if(&state.data[8] <= state.end)
         {
             if (uint8_t(state.data[0]) == uint8_t(0x0a) || uint8_t(state.data[0]) == uint8_t(0x0d)) [[unlikely]]
                 state.data += 0;
@@ -1966,29 +1940,12 @@ ALWAYS_INLINE bool perfHttpReq::range24_0(StateT & state) const
                 state.data += 6;
             else if (uint8_t(state.data[7]) == uint8_t(0x0a) || uint8_t(state.data[7]) == uint8_t(0x0d)) [[unlikely]]
                 state.data += 7;
-            else if (uint8_t(state.data[8]) == uint8_t(0x0a) || uint8_t(state.data[8]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 8;
-            else if (uint8_t(state.data[9]) == uint8_t(0x0a) || uint8_t(state.data[9]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 9;
-            else if (uint8_t(state.data[10]) == uint8_t(0x0a) || uint8_t(state.data[10]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 10;
-            else if (uint8_t(state.data[11]) == uint8_t(0x0a) || uint8_t(state.data[11]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 11;
-            else if (uint8_t(state.data[12]) == uint8_t(0x0a) || uint8_t(state.data[12]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 12;
-            else if (uint8_t(state.data[13]) == uint8_t(0x0a) || uint8_t(state.data[13]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 13;
-            else if (uint8_t(state.data[14]) == uint8_t(0x0a) || uint8_t(state.data[14]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 14;
-            else if (uint8_t(state.data[15]) == uint8_t(0x0a) || uint8_t(state.data[15]) == uint8_t(0x0d)) [[unlikely]]
-                state.data += 15;
             else
             {
-                state.data += 16;
+                state.data += 8;
                 continue;
             }
         }
-#endif
         else if (!(uint8_t(state.data[0]) == uint8_t(0x0a) || uint8_t(state.data[0]) == uint8_t(0x0d))) [[unlikely]]
         {
             state.data++;
@@ -2000,10 +1957,9 @@ ALWAYS_INLINE bool perfHttpReq::range24_0(StateT & state) const
         {
             state.node = NodeT::Text24_1;
             return true;
-        } else {
-            state.node = NodeT::NoState;
-            return false;
         }
+        state.node = NodeT::NoState;
+        return false;
     }
     state.consumed += unsigned(state.data - datastart);
     state.node = NodeT::Range24_0;
