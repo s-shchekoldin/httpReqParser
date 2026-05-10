@@ -12,13 +12,13 @@
 'TRACE'         call:URL call:HEADERS
 "\r"? "\n"
 
-label:URL [ \t] [^ \t]->string:url(init=1024) [ \t] "HTTP/" [0-9] "." [0-9] "\r"? "\n" return
+label:URL [ \t] [^ \t]->string:url(init=1024, sse) [ \t] "HTTP/" [0-9] "." [0-9] "\r"? "\n" return
 
 label:HEADERS
-    'Host:' [ \t]+ [^\r\n]->string:host(init=64) "\r"? "\n"
-    'Content-Length:' [ \t]+ u64:clength         "\r"? "\n"
+    'Host:' [ \t]* [^\r\n]->string:host(init=64) "\r"? "\n"
+    'Content-Length:' [ \t]* u64:clength         "\r"? "\n"
     [ \t] [^\n]* "\n"
     "\r"? "\n" \
         { return clength; } data:payload(max=clength) { clength = 0; } return
         return
-    catch: [^\n]* "\n"
+    catch: [^\n]* (sse) "\n"
