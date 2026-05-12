@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-05-10 21:41:13 GMT
-// Generated using vProto(2026.05.10)        https://www.cgen.dev
+// Date: 2026-05-12 19:57:21 GMT
+// Generated using vProto(2026.05.12)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // autoSSE: 1 cpp98: 0 (SSE4.2: 0 AVX2: 1 SSE2: 1)
 // ==============================================================
@@ -998,27 +998,10 @@ ALWAYS_INLINE bool perfHttpReq::text15_4(StateT & state) const
 
 ALWAYS_INLINE bool perfHttpReq::range15_5(StateT & state) const
 {
-    const static std::array<bool, 256> terminator = {
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-        false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
     const char * datastart = state.data;
     while(state.data < state.end)
     {
-        if (terminator[uint8_t(state.data[0])]) [[unlikely]]
+        if (!((uint8_t(state.data[0]) >= uint8_t(0x30) && uint8_t(state.data[0]) < uint8_t(0x3a)))) [[unlikely]]
         {
             state.consumed += unsigned(state.data - datastart);
             state.node = (state.consumed >= 1) ? NodeT::Text15_6 : NodeT::NoState;
@@ -1055,27 +1038,10 @@ ALWAYS_INLINE bool perfHttpReq::text15_6(StateT & state) const
 
 ALWAYS_INLINE bool perfHttpReq::range15_7(StateT & state) const
 {
-    const static std::array<bool, 256> terminator = {
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-        false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
     const char * datastart = state.data;
     while(state.data < state.end)
     {
-        if (terminator[uint8_t(state.data[0])]) [[unlikely]]
+        if (!((uint8_t(state.data[0]) >= uint8_t(0x30) && uint8_t(state.data[0]) < uint8_t(0x3a)))) [[unlikely]]
         {
             state.consumed += unsigned(state.data - datastart);
             state.node = (state.consumed >= 1) ? NodeT::Text15_8 : NodeT::NoState;
@@ -1450,43 +1416,26 @@ void perfHttpReq::uint19_2(const char * data, unsigned len, uint64_t consumed)
 
 ALWAYS_INLINE bool perfHttpReq::uint19_2(StateT & state)
 {
-    const static std::array<bool, 256> terminator = {
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-        false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-         true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}; // [0-9]
     const char * datastart = state.data;
     while(state.data < state.end) [[likely]]
     {
         if(&state.data[8] <= state.end)
         {
-            if (terminator[uint8_t(state.data[0])]) [[unlikely]]
+            if (!((uint8_t(state.data[0]) >= uint8_t(0x30) && uint8_t(state.data[0]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 0;
-            else if (terminator[uint8_t(state.data[1])]) [[unlikely]]
+            else if (!((uint8_t(state.data[1]) >= uint8_t(0x30) && uint8_t(state.data[1]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 1;
-            else if (terminator[uint8_t(state.data[2])]) [[unlikely]]
+            else if (!((uint8_t(state.data[2]) >= uint8_t(0x30) && uint8_t(state.data[2]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 2;
-            else if (terminator[uint8_t(state.data[3])]) [[unlikely]]
+            else if (!((uint8_t(state.data[3]) >= uint8_t(0x30) && uint8_t(state.data[3]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 3;
-            else if (terminator[uint8_t(state.data[4])]) [[unlikely]]
+            else if (!((uint8_t(state.data[4]) >= uint8_t(0x30) && uint8_t(state.data[4]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 4;
-            else if (terminator[uint8_t(state.data[5])]) [[unlikely]]
+            else if (!((uint8_t(state.data[5]) >= uint8_t(0x30) && uint8_t(state.data[5]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 5;
-            else if (terminator[uint8_t(state.data[6])]) [[unlikely]]
+            else if (!((uint8_t(state.data[6]) >= uint8_t(0x30) && uint8_t(state.data[6]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 6;
-            else if (terminator[uint8_t(state.data[7])]) [[unlikely]]
+            else if (!((uint8_t(state.data[7]) >= uint8_t(0x30) && uint8_t(state.data[7]) < uint8_t(0x3a)))) [[unlikely]]
                 state.data += 7;
             else
             {
@@ -1494,7 +1443,7 @@ ALWAYS_INLINE bool perfHttpReq::uint19_2(StateT & state)
                 continue;
             }
         }
-        else if (!(terminator[uint8_t(state.data[0])])) [[unlikely]]
+        else if (!(!((uint8_t(state.data[0]) >= uint8_t(0x30) && uint8_t(state.data[0]) < uint8_t(0x3a))))) [[unlikely]]
         {
             state.data++;
             continue;

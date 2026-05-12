@@ -1,6 +1,6 @@
 // ==============================================================
-// Date: 2026-05-10 21:07:38 GMT
-// Generated using vProto(2026.05.10)        https://www.cgen.dev
+// Date: 2026-05-12 19:57:21 GMT
+// Generated using vProto(2026.05.12)        https://www.cgen.dev
 // Author: Sergey Shchekoldin        Email: shchekoldin@gmail.com
 // ==============================================================
 
@@ -916,26 +916,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         return true;
     }
     #[inline(always)] fn range4_5(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        static TERMINATOR:[bool;256] = [
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-            false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0-9]
         let datastart = state.pos;
         while state.pos < data.len() {
-            if TERMINATOR[usize::from(data[state.pos])] {
+            if !((data[state.pos] >= 0x30 && data[state.pos] < 0x3a)) {
                 state.consumed += state.pos - datastart;
                 state.node = if state.consumed >= 1 { NodeT::Text4_6 } else { NodeT::NoState };
                 let ret = state.node == NodeT::Text4_6;
@@ -965,26 +948,9 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         return true;
     }
     #[inline(always)] fn range4_7(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        static TERMINATOR:[bool;256] = [
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-            false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0-9]
         let datastart = state.pos;
         while state.pos < data.len() {
-            if TERMINATOR[usize::from(data[state.pos])] {
+            if !((data[state.pos] >= 0x30 && data[state.pos] < 0x3a)) {
                 state.consumed += state.pos - datastart;
                 state.node = if state.consumed >= 1 { NodeT::Text4_8 } else { NodeT::NoState };
                 let ret = state.node == NodeT::Text4_8;
@@ -1768,48 +1734,31 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
         }
     }
     #[inline(always)] fn uint9_3(&mut self, state: &mut StateT, data: &[u8]) -> bool {
-        static TERMINATOR:[bool;256] = [
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-            false, false, false, false, false, false, false, false, false, false,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, 
-             true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true]; // [0-9]
         let datastart = state.pos;
         while state.pos < data.len() {
             if (state.pos + 8) <= data.len() {
-                if TERMINATOR[usize::from(data[state.pos])] {
+                if !((data[state.pos] >= 0x30 && data[state.pos] < 0x3a)) {
                     state.pos += 0;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 1])] {
+                else if !((data[state.pos + 1] >= 0x30 && data[state.pos + 1] < 0x3a)) {
                     state.pos += 1;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 2])] {
+                else if !((data[state.pos + 2] >= 0x30 && data[state.pos + 2] < 0x3a)) {
                     state.pos += 2;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 3])] {
+                else if !((data[state.pos + 3] >= 0x30 && data[state.pos + 3] < 0x3a)) {
                     state.pos += 3;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 4])] {
+                else if !((data[state.pos + 4] >= 0x30 && data[state.pos + 4] < 0x3a)) {
                     state.pos += 4;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 5])] {
+                else if !((data[state.pos + 5] >= 0x30 && data[state.pos + 5] < 0x3a)) {
                     state.pos += 5;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 6])] {
+                else if !((data[state.pos + 6] >= 0x30 && data[state.pos + 6] < 0x3a)) {
                     state.pos += 6;
                 }
-                else if TERMINATOR[usize::from(data[state.pos + 7])] {
+                else if !((data[state.pos + 7] >= 0x30 && data[state.pos + 7] < 0x3a)) {
                     state.pos += 7;
                 }
                 else
@@ -1818,7 +1767,7 @@ impl <T: HttpReqRustTrait> HttpReqRust<T> {
                     continue;
                 }
             }
-            else if !(TERMINATOR[usize::from(data[state.pos])]) {
+            else if !(!((data[state.pos] >= 0x30 && data[state.pos] < 0x3a))) {
                 state.pos += 1;
                 continue;
             }
